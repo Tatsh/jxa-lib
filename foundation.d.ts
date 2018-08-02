@@ -52,7 +52,7 @@ interface NSFileHandle extends BridgedObject<IdType> {
 }
 
 interface NSTask extends BridgedObject<IdType> {
-  static alloc: NSTask;
+  static readonly alloc: NSTask;
   readonly init: NSTask;
   launchPath: NSString | string;
   arguments: (NSString | string)[];
@@ -69,8 +69,8 @@ interface NSPipe extends BridgedObject<IdType> {
 }
 
 interface NSRange {
-  length: number;
-  location: number;
+  readonly length: number;
+  readonly location: number;
 }
 
 interface NSNumberFormatter extends BridgedObject<IdType> {
