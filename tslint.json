@@ -1,0 +1,287 @@
+{
+  "rulesDirectory": [],
+  "rules": {
+    "callable-types": true,
+    "class-name": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "curly": true,
+    "deprecation": {
+      "severity": "error"
+    },
+    "eofline": true,
+    "forin": true,
+    "no-angle-bracket-type-assertion": true,
+    "no-boolean-literal-compare": true,
+    "arrow-parens": [
+      true,
+      "ban-single-arg-parens"
+    ],
+    "import-blacklist": [
+      true,
+      "rxjs",
+      "rxjs/Rx"
+    ],
+    "import-spacing": true,
+    "indent": [
+      true,
+      "spaces"
+    ],
+    "jsdoc-format": true,
+    "no-redundant-jsdoc": true,
+    "no-reference-import": true,
+    "interface-over-type-literal": true,
+    "label-position": true,
+    "max-line-length": [
+      true,
+      79
+    ],
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "static-field",
+          "instance-field",
+          "static-method",
+          "instance-method"
+        ]
+      }
+    ],
+    "no-floating-promises": true,
+    "no-dynamic-delete": true,
+    "no-duplicate-variable": [
+      true,
+      "check-parameters"
+    ],
+    "no-duplicate-switch-case": true,
+    "no-arg": true,
+    "no-bitwise": true,
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-super": true,
+    "no-duplicate-imports": true,
+    "no-empty": false,
+    "no-empty-interface": true,
+    "no-eval": true,
+    "no-inferrable-types": true,
+    "no-inferred-empty-object-type": true,
+    "no-implicit-dependencies": true,
+    "strict-type-predicates": true,
+    "no-for-in-array": true,
+    "prefer-for-of": true,
+    "no-misused-new": true,
+    "newline-before-return": true,
+    "no-non-null-assertion": true,
+    "no-shadowed-variable": true,
+    "no-return-await": true,
+    "arrow-return-shorthand": [
+      true,
+      "multiline"
+    ],
+    "no-string-literal": false,
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
+    "no-trailing-whitespace": true,
+    "no-unnecessary-initializer": true,
+    "no-unnecessary-type-assertion": true,
+    "no-unnecessary-callback-wrapper": true,
+    "no-unnecessary-qualifier": true,
+    "no-sparse-arrays": true,
+    "number-literal-format": true,
+    "no-use-before-declare": true,
+    "no-var-keyword": true,
+    "no-var-requires": true,
+    "no-reference": true,
+    "no-void-expression": [
+      true,
+      "ignore-arrow-function-shorthand"
+    ],
+    "no-namespace": [
+      true,
+      "allow-declarations"
+    ],
+    "no-magic-numbers": [
+      true,
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      100,
+      30,
+      60,
+      600,
+      3600,
+      32,
+      64,
+      128,
+      256,
+      512,
+      1024,
+      86400
+    ],
+    "no-internal-module": true,
+    "no-import-side-effect": true,
+    "object-literal-sort-keys": false,
+    "object-literal-key-quotes": [
+      true,
+      "consistent-as-needed"
+    ],
+    "one-variable-per-declaration": [
+      true,
+      "ignore-for-loop"
+    ],
+    "prefer-function-over-method": true,
+    "prefer-readonly": true,
+    "prefer-method-signature": true,
+    "linebreak-style": [
+      true,
+      "LF"
+    ],
+    "switch-final-break": [
+      true,
+      "always"
+    ],
+    "no-unbound-method": [
+      true,
+      "ignore-static"
+    ],
+    "no-submodule-imports": [
+      true,
+      "rxjs",
+      "@angular/platform-browser",
+      "@angular/core/testing",
+      "@angular/common/http"
+    ],
+    "ban": [
+      true,
+      "eval"
+    ],
+    "await-promise": true,
+    "prefer-switch": [
+      true,
+      {
+        "min-cases": 4
+      }
+    ],
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape",
+      "avoid-template"
+    ],
+    "prefer-while": true,
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace",
+      "check-finally"
+    ],
+    "binary-expression-operand-order": true,
+    "align": [
+      true,
+      "parameters",
+      "arguments",
+      "statements",
+      "members",
+      "elements"
+    ],
+    "restrict-plus-operands": true,
+    "prefer-object-spread": true,
+    "prefer-const": true,
+    "radix": true,
+    "semicolon": [
+      true,
+      "always"
+    ],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
+    "typedef-whitespace": [
+      true,
+      {
+        "call-signature": "nospace",
+        "index-signature": "nospace",
+        "parameter": "nospace",
+        "property-declaration": "nospace",
+        "variable-declaration": "nospace"
+      }
+    ],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-trailing-underscore",
+      "allow-pascal-case"
+    ],
+    "whitespace": [
+      true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-separator",
+      "check-type"
+    ],
+    "directive-selector": [
+      false,
+      "attribute",
+      "app",
+      "camelCase"
+    ],
+    "no-unsafe-finally": true,
+    "no-object-literal-type-assertion": true,
+    "no-null-keyword": true,
+    "no-invalid-template-strings": true,
+    "no-unsafe-any": true,
+    "no-unnecessary-class": [
+      true,
+      "allow-constructor-only"
+    ],
+    "use-isnan": true,
+    "use-default-type-parameter": true,
+    "member-access": [
+      true,
+      "no-public"
+    ],
+    "ban-types": [
+      true,
+      [
+        "Object",
+        "Use {} instead."
+      ],
+      [
+        "String"
+      ]
+    ],
+    "no-consecutive-blank-lines": true,
+    "no-irregular-whitespace": true,
+    "no-parameter-reassignment": true,
+    "adjacent-overload-signatures": true,
+    "no-any": true,
+    "ban-comma-operator": true,
+    "unified-signatures": true
+  }
+}

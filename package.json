@@ -1,0 +1,24 @@
+{
+  "name": "vacuum-mail-app",
+  "version": "0.0.1",
+  "description": "Runs VACUUM on the Mail.app database.",
+  "main": "dist/vacuum-mail-app.js",
+  "bin": {
+    "vacuum-mail": "dist/vacuum-mail-app.js"
+  },
+  "keywords": [
+    "jxa",
+    "typescript",
+    "applescript",
+    "mail-app",
+    "macos"
+  ],
+  "author": "Andrew Udvare <audvare@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2",
+    "typescript-formatter": "^7.2.2"
+  },
+  "types": "./index.d.ts"
+}

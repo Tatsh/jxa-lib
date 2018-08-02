@@ -1,0 +1,36 @@
+{
+    "files": [
+        "./core.d.ts",
+        "./foundation.d.ts",
+        "./application.d.ts",
+        "./automation.d.ts",
+        "./library.d.ts",
+        "./objc.d.ts",
+        "./object-specifier.d.ts",
+        "./path.d.ts",
+        "./progress.d.ts",
+        "./ref.d.ts",
+        "./index.d.ts",
+        "./test.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es6",
+        "newLine": "LF",
+        "outDir": "./dist/",
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noImplicitThis": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "lib": [
+            "es2017"
+        ],
+    }
+}
