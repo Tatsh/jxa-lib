@@ -14,6 +14,7 @@ interface NSString extends BridgedObject<string> {
   initWithDataEncoding(d: NSData, encoding: number): NSString;
   compareOptions(s: JXString, n: number): number;
   writeToFileAtomically(filename: JXString, atomically: boolean): boolean;
+  stringWithString(s: JXString): NSString;
 }
 
 interface NSDictionary<K = NSString, V> extends BridgedObject<{}> {
@@ -31,12 +32,18 @@ interface NSFileManager extends BridgedObject<IdType> {
   attributesOfItemAtPathError(
     path: NSString | string,
     error: nil | void
-  ): NSDictionary;
+  ): NSDictionary<NSString, NSString>;
   contentsOfDirectoryAtPathError(
     path: NSString | string,
     error: nil | void
   ): NSArray<NSString>;
   fileExistsAtPath(path: string | NSString): boolean;
+}
+
+interface NSDate extends BridgedObject<IdType> {
+}
+
+interface NSBoolean extends BridgedObject<boolean> {
 }
 
 interface NSData extends BridgedObject<IdType> {
