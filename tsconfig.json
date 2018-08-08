@@ -1,21 +1,10 @@
 {
-    "files": [
-        "./core.d.ts",
-        "./foundation.d.ts",
-        "./application.d.ts",
-        "./automation.d.ts",
-        "./library.d.ts",
-        "./objc.d.ts",
-        "./object-specifier.d.ts",
-        "./path.d.ts",
-        "./progress.d.ts",
-        "./ref.d.ts",
-        "./index.d.ts",
-        "./test.ts"
+    "include": [
+        "./**/*.ts"
     ],
     "compilerOptions": {
         "noImplicitAny": true,
-        "target": "es6",
+        "target": "es5",
         "newLine": "LF",
         "outDir": "./dist/",
         "declaration": false,
