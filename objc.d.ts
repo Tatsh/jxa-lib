@@ -11,7 +11,10 @@ interface ObjCGlobal {
   ['import'](name: string): void;
   unwrap(x: NSString): string;
   unwrap(x: NSNumber): number;
+  unwrap(x: NSDate): Date;
+  unwrap(x: NSBoolean): boolean;
   unwrap<I = any, R = any>(x: I): R;
+  deepUnwrap(x: NSArray<NSString>): string[];
   deepUnwrap<I = any, R = any>(x: I): R;
   registerSubclass();
   dict();
