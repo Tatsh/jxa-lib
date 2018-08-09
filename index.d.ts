@@ -25,9 +25,14 @@ interface $Global {
   static _Exit(code: number): void;
   static atexit(func: any): number;
   static system(cmd: string): number;
-  static malloc<T>(n: number): RefType<T>;
+  static malloc(n: number): RefType<number>;
+  static free(p: RefType<number>): void;
+
   // string
-  static memset<T>(p: RefType<T>, val: number | string, len: number): RefType<T>;
+  static memchr(p: RefType<number>, c: number, n: number): RefType<number>;
+  static memcmp(p: RefType<number>, q: RefType<number>, n: number): number;
+  static memcpy(dst: RefType<number>, src: RefType<number>, n: number): RefType<number>;
+  static memset(p: RefType<number>, val: number, len: number): RefType<number>;
 
   // Generic constants
   static readonly NSNumericSearch: number;
