@@ -88,3 +88,10 @@ interface NSNumberFormatter extends BridgedObject<IdType> {
   generatesDecimalNumbers: boolean;
   getObjectValueForStringRangeError(obj: RefType<{}>, str: JXString, range: NSRange, error: nil | void)
 }
+
+interface NSWorkspace {
+  sharedWorkspace: NSWorkspace;
+  runningApplications: {
+    bundleIdentifier: NSString;
+  }[];
+}
