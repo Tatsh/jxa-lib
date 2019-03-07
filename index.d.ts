@@ -2,6 +2,9 @@ interface $Global {
   // NSBeep
   static NSBeep(): void;
 
+  // stdio
+  static printf(format: string, ...args): number;
+
   // stdlib
   static atof(x: string): number;
   static atoi(x: string): number;
@@ -74,5 +77,8 @@ interface $Global {
 
   // NSPipe
   static readonly NSPipe: NSPipe;
+
+  // NSWorkspace
+  static readonly NSWorkspace: NSWorkspace;
 }
 declare readonly var $: $Global;
