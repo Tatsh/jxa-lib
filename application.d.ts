@@ -22,6 +22,9 @@ interface Application {
   displayDialog(message: string, args?: {
     withTitle?: string;
     defaultAnswer?: string;
+    buttons?: string[];
+    defaultButton?: number; // starts at index 1
+    withIcon?: number;
   });
 }
 declare function Application(x: string | number): Application;
