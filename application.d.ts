@@ -25,7 +25,7 @@ interface Application {
     buttons?: string[];
     defaultButton?: number; // starts at index 1
     withIcon?: number;
-  });
+  }): {buttonReturned?: string};
 }
 declare function Application(x: string | number): Application;
 
