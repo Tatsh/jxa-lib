@@ -58,3 +58,24 @@ interface FinderFolder {
     url(): string;
   }[];
 }
+
+interface SystemEventsProcess {
+  windows: {
+    [name: string]: {
+      tabGroups: {
+        scrollAreas: {
+          tables: {
+            rows: {}[];
+          }[]
+        }[]
+      }[]
+    }
+  };
+}
+
+interface SystemEventsApplication extends Application {
+  processes: {
+    [name: string]: SystemEventsProcess
+  };
+  keyCode(n: number): void;
+}
