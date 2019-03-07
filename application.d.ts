@@ -25,3 +25,36 @@ interface Application {
   });
 }
 declare function Application(x: string | number): Application;
+
+interface SelectionType {
+  class(): string;
+}
+
+interface FileTrack extends SelectionType {
+  location(): PathObject;
+  name(): string;
+  delete(): void;
+}
+
+interface ITunesLibrary {
+  name(): string;
+  tracks(): FileTrack[];
+}
+
+interface ITunesApplication extends Application {
+  sources(): ITunesLibrary[];
+  selection(): SelectionType[];
+  refresh(track: FileTrack): void;
+  currentTrack(): {};
+  add(paths: PathObject[], args: { to?: ITunesLibrary; }): void;
+}
+
+interface FinderApplication extends Application {
+  exists(location: PathObject): boolean;
+}
+
+interface FinderFolder {
+  entireContents(): {
+    url(): string;
+  }[];
+}
