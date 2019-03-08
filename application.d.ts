@@ -63,8 +63,14 @@ interface FinderFolder {
 }
 
 interface SystemEventsProcess {
+  visible: boolean;
   windows: {
     [name: string]: {
+      radioGroups: {
+        radioButtons: {
+          click: () => void;
+        }[];
+      }[];
       tabGroups: {
         scrollAreas: {
           tables: {
