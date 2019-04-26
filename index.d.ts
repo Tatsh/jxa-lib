@@ -80,5 +80,9 @@ interface $Global {
 
   // NSWorkspace
   static readonly NSWorkspace: NSWorkspace;
+
+  // NSPasteboard
+  static readonly NSPasteboard: NSPasteboard;
+  static readonly NSPasteboardTypeString: NSPasteboardType;
 }
 declare readonly var $: $Global;
