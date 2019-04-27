@@ -44,7 +44,7 @@ interface ITunesLibrary {
   tracks(): FileTrack[];
 }
 
-interface ITunesApplication extends Application {
+interface ItunesApplication extends Application {
   sources(): ITunesLibrary[];
   selection(): SelectionType[];
   refresh(track: FileTrack): void;
