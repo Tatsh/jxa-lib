@@ -13,7 +13,7 @@ app.activate();
 delay(2);
 
 const se = Application('System Events') as SystemEventsApplication;
-const ft = se.processes['FaceTime'] as SystemEventsProcess;
+const ft = se.processes['FaceTime'];
 ft.visible = false;
 const group = ft.windows[0].radioGroups[0];
 

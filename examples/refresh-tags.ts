@@ -1,9 +1,9 @@
-class ITunesHelper {
+class ItunesHelper {
   private finder = Application('Finder') as FinderApplication;
-  private itunes: ITunesApplication;
+  private itunes: ItunesApplication;
   private library?: ITunesLibrary;
 
-  constructor(itunesApp: ITunesApplication) {
+  constructor(itunesApp: ItunesApplication) {
     this.itunes = itunesApp;
 
     Object.defineProperties(this, {
@@ -69,8 +69,8 @@ class ITunesHelper {
   }
 }
 
-const tunesApp = Application('iTunes') as ITunesApplication;
-const itunes = new ITunesHelper(tunesApp);
+const tunesApp = Application('iTunes') as ItunesApplication;
+const itunes = new ItunesHelper(tunesApp);
 const selections: FileTrack[] = Array.prototype.filter.call(
   tunesApp.selection(),
   (x: SelectionType) => x.class() === 'fileTrack'

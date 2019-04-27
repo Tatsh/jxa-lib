@@ -27,7 +27,7 @@ tell application "iTunes"
 end tell
 */
 
-const app = Application('iTunes') as ITunesApplication;
+const app = Application('iTunes') as ItunesApplication;
 app.includeStandardAdditions = true;
 
 if (!app.selection().length) {
