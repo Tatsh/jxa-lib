@@ -1,13 +1,13 @@
 const path = require('path');
 
 module.exports = {
-  entry: './examples/fetch-google-command.ts',
+  entry: './examples/reset-facetime-block-list.ts',
   mode: 'none',
   module: {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.tsx?$/,
+        test: /\.ts$/,
         use: 'ts-loader'
       }
     ]
@@ -17,6 +17,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js']
+    extensions: ['.ts', '.js']
   }
 };
