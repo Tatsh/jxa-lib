@@ -1,25 +1,21 @@
 {
-    "include": [
-        "./**/*.ts"
-    ],
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "target": "es5",
-        "newLine": "LF",
-        "outDir": "./dist/",
-        "declaration": false,
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "allowSyntheticDefaultImports": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "noUnusedLocals": true,
-        "noImplicitThis": true,
-        "strict": true,
-        "skipLibCheck": true,
-        "lib": [
-            "es2017"
-        ],
-    }
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": ["es2019"],
+    "moduleResolution": "node",
+    "newLine": "LF",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "outDir": "./dist/",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es5"
+  },
+  "include": ["./**/*.ts"]
 }

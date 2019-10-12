@@ -1,22 +1,20 @@
 {
-  "name": "jxa-lib",
-  "version": "0.0.1",
+  "author": "Andrew Udvare <audvare@gmail.com>",
   "description": "TypeScript library for AppleScript.",
-  "main": "dist/main.js",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
+    "typescript": "^2.9.2",
+    "webpack": "^4.29.6"
+  },
   "keywords": [
     "jxa",
     "typescript",
     "applescript",
     "macos"
   ],
-  "author": "Andrew Udvare <audvare@gmail.com>",
   "license": "MIT",
-  "devDependencies": {
-    "awesome-typescript-loader": "^5.2.1",
-    "tslint": "^5.13.1",
-    "typescript": "^2.9.2",
-    "typescript-formatter": "^7.2.2",
-    "webpack": "^4.29.6"
-  },
-  "types": "./index.d.ts"
+  "main": "dist/main.js",
+  "name": "jxa-lib",
+  "types": "./index.d.ts",
+  "version": "0.0.1"
 }
