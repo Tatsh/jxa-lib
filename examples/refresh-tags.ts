@@ -1,5 +1,5 @@
 class ItunesHelper {
-  private finder = Application('Finder') as FinderApplication;
+  private finder = Application('Finder');
   private itunes: ItunesApplication;
   private library?: ITunesLibrary;
 
@@ -69,7 +69,7 @@ class ItunesHelper {
   }
 }
 
-const tunesApp = Application('iTunes') as ItunesApplication;
+const tunesApp = Application('Music');
 const itunes = new ItunesHelper(tunesApp);
 const selections: FileTrack[] = Array.prototype.filter.call(
   tunesApp.selection(),
