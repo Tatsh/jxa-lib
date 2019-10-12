@@ -40,11 +40,9 @@ interface NSFileManager extends BridgedObject<IdType> {
   fileExistsAtPath(path: string | NSString): boolean;
 }
 
-interface NSDate extends BridgedObject<IdType> {
-}
+interface NSDate extends BridgedObject<IdType> {}
 
-interface NSBoolean extends BridgedObject<boolean> {
-}
+interface NSBoolean extends BridgedObject<boolean> {}
 
 interface NSData extends BridgedObject<IdType> {
   static alloc: NSData;
@@ -86,12 +84,49 @@ interface NSNumberFormatter extends BridgedObject<IdType> {
   formatterBehavior: number;
   numberStyle: number;
   generatesDecimalNumbers: boolean;
-  getObjectValueForStringRangeError(obj: RefType<{}>, str: JXString, range: NSRange, error: nil | void)
+  getObjectValueForStringRangeError(
+    obj: RefType<{}>,
+    str: JXString,
+    range: NSRange,
+    error: nil | void
+  );
 }
 
 interface NSWorkspace {
-  sharedWorkspace: NSWorkspace;
+  static sharedWorkspace: NSWorkspace;
   runningApplications: {
     bundleIdentifier: NSString;
   }[];
+}
+
+interface NSURLResponse {
+  readonly statusCode: number;
+}
+
+interface NSURL {
+  static URLWithString: (url: string) => NSURL;
+}
+
+interface NSDataTask {
+  resume: any;
+  cancel: any;
+  suspend: any;
+  priority: number;
+  readonly state: number;
+}
+
+interface NSURLSession {
+  static sharedSession: NSURLSession;
+  dataTaskWithURLCompletionHandler: (
+    url: NSURL,
+    handler: (data?: NSData, response?: NSURLResponse, error?: NSError) => void
+  ) => NSDataTask;
+}
+
+interface NSRunLoop {
+  static currentRunLoop: NSRunLoop;
+  static currentMode: any;
+  static mainRunLoop: NSRunLoop;
+  getCFRunLoop: any;
+  run: any;
 }
