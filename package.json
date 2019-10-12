@@ -7,15 +7,14 @@
     "webpack": "^4.29.6"
   },
   "keywords": [
-    "jxa",
-    "typescript",
     "applescript",
-    "macos"
+    "jxa",
+    "macos",
+    "typescript"
   ],
   "license": "MIT",
   "main": "dist/main.js",
   "name": "jxa-lib",
   "types": "./types/index.d.ts",
-  "version": "0.0.1",
-  "dependencies": {}
+  "version": "0.0.1"
 }
