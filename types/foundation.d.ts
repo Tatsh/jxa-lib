@@ -1,3 +1,7 @@
+interface NSObject<T> extends BridgedObject<IdType> {
+  init: any;
+}
+
 interface NSError extends BridgedObject<IdType> {
   static alloc: NSError;
   readonly code: string;

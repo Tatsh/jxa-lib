@@ -87,6 +87,9 @@ interface $Global {
   static readonly NSNumber: NSNumber;
   static readonly NSNumberFormatter: NSNumberFormatter;
 
+  // NSObject
+  static readonly NSObject: NSObject;
+
   // NSRange
   static NSStringFromRange(range: NSRange): NSString;
   static NSUnionRange(range1: NSRange, range2: NSRange): NSRange;

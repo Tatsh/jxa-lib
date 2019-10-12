@@ -1,5 +1,4 @@
-interface nil {
-}
+interface nil {}
 
 interface ObjCGlobal {
   wrap(): nil;
@@ -25,7 +24,7 @@ interface ObjCGlobal {
   block();
   super();
 }
-declare readonly var ObjC: ObjCGlobal;
+declare var ObjC: ObjCGlobal;
 
 /**
  * Alias function to `ObjC.wrap()`.

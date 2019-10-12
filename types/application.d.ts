@@ -19,13 +19,16 @@ interface Application {
   name(): string;
   launch(): void;
   say(s: string): void;
-  displayDialog(message: string, args?: {
-    withTitle?: string;
-    defaultAnswer?: string;
-    buttons?: string[];
-    defaultButton?: number; // starts at index 1
-    withIcon?: number;
-  }): {buttonReturned?: string};
+  displayDialog(
+    message: string,
+    args?: {
+      withTitle?: string;
+      defaultAnswer?: string;
+      buttons?: string[];
+      defaultButton?: number; // starts at index 1
+      withIcon?: number;
+    }
+  ): { buttonReturned?: string };
 }
 declare function Application(x: string | number): Application;
 
@@ -49,7 +52,7 @@ interface ItunesApplication extends Application {
   selection(): SelectionType[];
   refresh(track: FileTrack): void;
   currentTrack(): {};
-  add(paths: PathObject[], args: { to?: ITunesLibrary; }): void;
+  add(paths: PathObject[], args: { to?: ITunesLibrary }): void;
 }
 
 interface FinderApplication extends Application {
@@ -75,16 +78,21 @@ interface SystemEventsProcess {
         scrollAreas: {
           tables: {
             rows: {}[];
-          }[]
-        }[]
-      }[]
-    }
+          }[];
+        }[];
+      }[];
+    };
   };
 }
 
 interface SystemEventsApplication extends Application {
   processes: {
-    [name: string]: SystemEventsProcess
+    [name: string]: SystemEventsProcess;
   };
   keyCode(n: number): void;
 }
+
+declare function Application(x: 'Finder'): FinderApplication;
+declare function Application(x: 'iTunes'): ItunesApplication;
+declare function Application(x: 'Music'): ItunesApplication;
+declare function Application(x: 'System Events'): SystemEventsApplication;

@@ -1,7 +1,7 @@
 interface LimitedConsole {
   static log(...args: any[]): void;
 }
-declare readonly var console: LimitedConsole;
+declare var console: LimitedConsole;
 
 interface BridgedObject<T> {
   js: T;
@@ -10,8 +10,7 @@ interface BridgedObject<T> {
   setProperty<U = any>(key: string, value: U);
 }
 
-interface IdType {
-}
+interface IdType {}
 
 declare function delay(n: number): void;
 
