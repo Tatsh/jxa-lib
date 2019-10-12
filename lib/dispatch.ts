@@ -11,8 +11,12 @@ export class DispatchSemaphore {
     this.sema = dispatch_semaphore_create(n);
   }
 
-  wait(timeout: number): number {
+  wait(timeout: number) {
     return dispatch_semaphore_wait(this.sema, timeout);
+  }
+
+  waitForever(): number {
+    return dispatch_semaphore_wait(this.sema, $.DISPATCH_TIME_FOREVER);
   }
 
   signal() {
