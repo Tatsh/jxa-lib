@@ -5,7 +5,7 @@ export const dispatch_semaphore_signal = $.dispatch_semaphore_signal;
 export const dispatch_semaphore_wait = $.dispatch_semaphore_wait;
 
 export class DispatchSemaphore {
-  private sema: any;
+  private sema: dispatch_semaphore_t;
 
   constructor(n: number) {
     this.sema = dispatch_semaphore_create(n);
