@@ -34,8 +34,42 @@ interface $Global {
   // string
   static memchr(p: RefType<number>, c: number, n: number): RefType<number>;
   static memcmp(p: RefType<number>, q: RefType<number>, n: number): number;
-  static memcpy(dst: RefType<number>, src: RefType<number>, n: number): RefType<number>;
+  static memcpy(
+    dst: RefType<number>,
+    src: RefType<number>,
+    n: number
+  ): RefType<number>;
   static memset(p: RefType<number>, val: number, len: number): RefType<number>;
+
+  // unistd
+  static sleep(n: number): number;
+
+  // CoreFoundation
+  static CFRunLoopRun(): never;
+
+  // Dispatch
+  static NSEC_PER_SEC: number;
+  static QOS_CLASS_BACKGROUND: number;
+  static QOS_CLASS_USER_INTERACTIVE: number;
+  static DISPATCH_QUEUE_PRIORITY_DEFAULT: number;
+  static DISPATCH_TIME_NOW: number;
+  static DISPATCH_TIME_FOREVER: number;
+  static dispatch_get_global_queue(
+    identifier: number,
+    flags: number
+  ): dispatch_queue_global_t;
+  static dispatch_async(queue: dispatch_queue_t, block: () => void): void;
+  static dispatch_main(): never;
+  static dispatch_semaphore_create(n: number): dispatch_semaphore_t;
+  static dispatch_semaphore_signal(sema: dispatch_semaphore_t): number;
+  static dispatch_semaphore_wait(
+    sema: dispatch_semaphore_t,
+    timeout: number
+  ): number;
+  static dispatch_time(t: number, delta: number): number;
+
+  // NSApplicationMain
+  static NSApplicationMain(argc: number, argv: RefType<number>): number;
 
   // Generic constants
   static readonly NSNumericSearch: number;
@@ -60,6 +94,7 @@ interface $Global {
   static NSMakeRange(loc: number, length: number): NSRange;
 
   // NSString
+  static readonly NSASCIIStringEncoding: number;
   static readonly NSUTF8StringEncoding: number;
   static readonly NSString: NSString;
 
@@ -84,5 +119,21 @@ interface $Global {
   // NSPasteboard
   static readonly NSPasteboard: NSPasteboard;
   static readonly NSPasteboardTypeString: NSPasteboardType;
+
+  // NSRunLoop
+  static readonly NSRunLoop: NSRunLoop;
+
+  // NSURL
+  static readonly NSURL: NSURL;
+
+  // NSURLSession
+  static readonly NSURLSession: NSURLSession;
+  static readonly NSURLSessionTaskStateRunning: number;
+  static readonly NSURLSessionTaskStateSuspended: number;
+  static readonly NSURLSessionTaskStateCanceling: number;
+  static readonly NSURLSessionTaskStateCompleted: number;
+  static readonly NSURLSessionTaskPriorityDefault: number;
+  static readonly NSURLSessionTaskPriorityLow: number;
+  static readonly NSURLSessionTaskPriorityHigh: number;
 }
-declare readonly var $: $Global;
+declare var $: $Global;
