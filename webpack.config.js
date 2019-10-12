@@ -1,15 +1,22 @@
+const path = require('path');
+
 module.exports = {
-  entry: './dist/test.js',
-  mode: 'development',
+  entry: './examples/fetch-google-command.ts',
+  mode: 'none',
   module: {
     rules: [
       {
+        exclude: /node_modules/,
         test: /\.tsx?$/,
-        use: 'awesome-typescript-loader'
+        use: 'ts-loader'
       }
     ]
   },
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
+  },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx']
+    extensions: ['.tsx', '.ts', '.js']
   }
 };

@@ -2,7 +2,7 @@
   "author": "Andrew Udvare <audvare@gmail.com>",
   "description": "TypeScript library for AppleScript.",
   "devDependencies": {
-    "awesome-typescript-loader": "^5.2.1",
+    "ts-loader": "^6.2.0",
     "typescript": "^2.9.2",
     "webpack": "^4.29.6"
   },
@@ -15,6 +15,7 @@
   "license": "MIT",
   "main": "dist/main.js",
   "name": "jxa-lib",
-  "types": "./index.d.ts",
-  "version": "0.0.1"
+  "types": "./types/index.d.ts",
+  "version": "0.0.1",
+  "dependencies": {}
 }
