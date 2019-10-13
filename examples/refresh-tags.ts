@@ -1,3 +1,5 @@
+import { getenv } from '../lib/stdlib';
+
 class ItunesHelper {
   private finder = Application('Finder');
   private itunes: ItunesApplication;
@@ -69,14 +71,20 @@ class ItunesHelper {
   }
 }
 
-const tunesApp = Application('Music');
-const itunes = new ItunesHelper(tunesApp);
-const selections: FileTrack[] = Array.prototype.filter.call(
-  tunesApp.selection(),
-  (x: SelectionType) => x.class() === 'fileTrack'
-);
+export default function refreshTags() {
+  const tunesApp = Application('Music');
+  const itunes = new ItunesHelper(tunesApp);
+  const selections: FileTrack[] = Array.prototype.filter.call(
+    tunesApp.selection(),
+    (x: SelectionType) => x.class() === 'fileTrack'
+  );
+  itunes.clearOrphanedTracks();
+  for (const track of selections) {
+    tunesApp.refresh(track);
+  }
+  return 0;
+}
 
-itunes.clearOrphanedTracks();
-for (const track of selections) {
-  tunesApp.refresh(track);
+if ((getenv('_') as string).endsWith('refresh-tags.ts')) {
+  refreshTags();
 }

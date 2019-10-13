@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './examples/reset-facetime-block-list.ts',
+  entry: './examples/index.ts',
   mode: 'none',
   module: {
     rules: [

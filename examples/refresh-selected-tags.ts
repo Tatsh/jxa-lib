@@ -1,5 +1,9 @@
-/*
+import { getenv } from '../lib/stdlib';
+import { applicationWithStandardAdditions } from '../lib/util';
+
+/**
 Original source:
+```applescript
 (*
 Refresh Selected Tags v1.0
 June 6, 2006 (yes, that's 6/6/06)
@@ -25,27 +29,35 @@ tell application "iTunes"
             default button 1
     end if
 end tell
+```
 */
+export default function refreshSelectedTags() {
+  const app = applicationWithStandardAdditions('Music');
 
-const app = Application('iTunes') as ItunesApplication;
-app.includeStandardAdditions = true;
-
-if (!app.selection().length) {
-    const msg = 'No tracks selected. Select some tracks with some stale tags.';
-    app.displayDialog(msg, {
+  if (!app.selection().length) {
+    app.displayDialog(
+      'No tracks selected. Select some tracks with some stale tags.',
+      {
         buttons: ['I will!'],
         defaultButton: 1,
         withIcon: 0
-    });
-} else {
-    for (const track of app.selection()) {
-        if (track.class() === 'fileTrack') {
-            app.refresh(track as FileTrack);
-        }
+      }
+    );
+    return 1;
+  }
+  for (const track of app.selection()) {
+    if (track.class() === 'fileTrack') {
+      app.refresh(track as FileTrack);
     }
+  }
+  app.displayDialog('Selected tags have been freshened up.', {
+    buttons: ['Okay'],
+    defaultButton: 1
+  });
 
-    app.displayDialog('Selected tags have been freshened up.', {
-        buttons: ['Okay'],
-        defaultButton: 1
-    });
+  return 0;
+}
+
+if ((getenv('_') as string).endsWith('refresh-selected-tags.ts')) {
+  refreshSelectedTags();
 }
