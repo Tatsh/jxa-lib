@@ -1,0 +1,25 @@
+export declare const _Exit: $Global["_Exit"];
+export declare const abort: $Global["abort"];
+export declare const atexit: $Global["atexit"];
+export declare const arc4random: $Global["arc4random"];
+export declare const arc4random_addrandom: $Global["arc4random_addrandom"];
+export declare const arc4random_buf: $Global["arc4random_buf"];
+export declare const arc4random_stir: $Global["arc4random_stir"];
+export declare const arc4random_uniform: $Global["arc4random_uniform"];
+export declare const atof: $Global["atof"];
+export declare const atoi: $Global["atoi"];
+export declare const atoll: $Global["atoll"];
+export declare const exit: $Global["exit"];
+export declare const free: $Global["free"];
+/** Will throw if the environment variable does not exist. */
+export declare const getenv: $Global["getenv"];
+export declare const malloc: $Global["malloc"];
+export declare const putenv: $Global["putenv"];
+export declare const rand: $Global["rand"];
+export declare const setenv: $Global["setenv"];
+export declare const srand: $Global["srand"];
+export declare const strtod: $Global["strtod"];
+export declare const strtof: $Global["strtof"];
+export declare const strtold: $Global["strtold"];
+export declare const system: $Global["system"];
+export declare const unsetenv: $Global["unsetenv"];
