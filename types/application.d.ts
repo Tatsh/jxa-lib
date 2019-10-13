@@ -29,6 +29,18 @@ interface Application {
       withIcon?: number;
     }
   ): { buttonReturned?: string };
+  chooseFromList(
+    l: (number | string)[],
+    args?: {
+      withTitle?: string;
+      withPrompt?: string;
+      defaultItems?: (number | string)[];
+      okButtonName?: string;
+      cancelButtonName?: string;
+      multipleSelectionsAllowed?: boolean;
+      emptySelectionAllowed?: boolean;
+    }
+  ): false | (number | string)[];
 }
 declare function Application(x: string | number): Application;
 
