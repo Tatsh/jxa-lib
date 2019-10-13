@@ -20,5 +20,5 @@
   "main": "dist/main.js",
   "name": "jxa-lib",
   "types": "./types/index.d.ts",
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
