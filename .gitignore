@@ -31,5 +31,5 @@ __pycache__/
 ehthumbs.db
 Thumbs.db
 
+# This project
 /node_modules/
-/dist/
