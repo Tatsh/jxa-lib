@@ -1,3 +1,5 @@
+import { filter } from 'ramda';
+
 import { getenv } from '../lib/stdlib';
 
 class ItunesHelper {
@@ -74,9 +76,9 @@ class ItunesHelper {
 export default function refreshTags() {
   const tunesApp = Application('Music');
   const itunes = new ItunesHelper(tunesApp);
-  const selections: FileTrack[] = Array.prototype.filter.call(
-    tunesApp.selection(),
-    (x: SelectionType) => x.class() === 'fileTrack'
+  const selections = filter(
+    x => x.class() === 'fileTrack',
+    tunesApp.selection() as FileTrack[]
   );
   itunes.clearOrphanedTracks();
   for (const track of selections) {
