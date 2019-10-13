@@ -1,7 +1,11 @@
 {
   "author": "Andrew Udvare <audvare@gmail.com>",
+  "dependencies": {
+    "ramda": "^0.26.1"
+  },
   "description": "TypeScript library for AppleScript.",
   "devDependencies": {
+    "@types/ramda": "github:types/npm-ramda#dist",
     "ts-loader": "^6.2.0",
     "typescript": "^2.9.2",
     "webpack": "^4.29.6"
