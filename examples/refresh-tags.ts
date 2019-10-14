@@ -5,28 +5,14 @@ import { getenv } from '../lib/stdlib';
 class ItunesHelper {
   private finder = Application('Finder');
   private itunes: ItunesApplication;
-  private library?: ITunesLibrary;
+  private library?: LibraryPlaylist;
 
   constructor(itunesApp: ItunesApplication) {
     this.itunes = itunesApp;
-
-    Object.defineProperties(this, {
-      library: {
-        get: () => {
-          if (this.library) {
-            return this.library;
-          }
-          for (const source of this.itunes.sources()) {
-            if (source.name() === 'Library') {
-              this.library = source;
-              break;
-            }
-          }
-
-          return this.library;
-        }
-      }
-    });
+    this.library = filter(
+      x => x.name() === 'Library',
+      this.itunes.sources()
+    )[0].libraryPlaylists()[0];
   }
 
   clearOrphanedTracks(): FileTrack[] {
@@ -36,13 +22,13 @@ class ItunesHelper {
 
     const ret = [];
 
-    for (const track of this.library.tracks()) {
+    for (const track of this.library.fileTracks()) {
       const name = track.name();
       let loc: PathObject;
       try {
         loc = track.location();
       } catch (e) {
-        $.printf(`Removing ${name} (catch)\n`);
+        $.printf(`Removing ${name} (caught ${e})\n`);
         ret.push(track);
         track.delete();
         continue;
@@ -62,26 +48,27 @@ class ItunesHelper {
     if (!this.library) {
       return;
     }
-    const paths: PathObject[] = [];
+    const paths: string[] = [];
     for (const x of root.entireContents()) {
       paths.push(x.url().replace(/^file\:\/\//, ''));
     }
     this.itunes.add(paths, { to: this.library });
-    for (const track of this.library.tracks()) {
+    for (const track of this.library.fileTracks()) {
       this.itunes.refresh(track);
     }
+  }
+
+  fileTracks() {
+    return this.library!.fileTracks();
   }
 }
 
 export default function refreshTags() {
   const tunesApp = Application('Music');
   const itunes = new ItunesHelper(tunesApp);
-  const selections = filter(
-    x => x.class() === 'fileTrack',
-    tunesApp.selection() as FileTrack[]
-  );
   itunes.clearOrphanedTracks();
-  for (const track of selections) {
+  console.log('Please be patient!');
+  for (const track of itunes.fileTracks()) {
     tunesApp.refresh(track);
   }
   return 0;

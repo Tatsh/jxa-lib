@@ -17,8 +17,8 @@ export const main = () => {
       'Reset the FaceTime block list'
     ],
     {
+      withTitle: 'jxalib examples',
       withPrompt:
-        'jxalib examples\n\n' +
         'Please open the associated app with the task you choose before ' +
         'clicking OK.\n\n' +
         `If you choose "Reset the FaceTime block list", have FaceTime.app's ` +
@@ -27,7 +27,7 @@ export const main = () => {
       emptySelectionAllowed: false
     }
   );
-  if (!item) {
+  if (!item || !item.length) {
     return 0;
   }
   switch (item[0] as string) {

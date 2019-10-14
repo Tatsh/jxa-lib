@@ -4,6 +4,7 @@ import { exit, getenv } from '../lib/stdlib';
 import { stringWithData } from '../lib/string';
 import { sleep } from '../lib/unistd';
 
+/** Demonstrates how to use the Dispatch framework to fetch webpage contents.*/
 export default function fetchGoogle() {
   const sema = new DispatchSemaphore(0);
 

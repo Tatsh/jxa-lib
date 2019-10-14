@@ -3,10 +3,9 @@
 // A tool like Browserify must be run on the output script for this to work.
 import { exit, getenv } from '../lib/stdlib';
 
+/** Clears the badge of the FaceTime app by swapping between the first and
+ * second tabs. */
 export default function clearFaceTimeBadge() {
-  const standalone = (getenv('_') as string).endsWith(
-    'facetime-clear-badge.ts'
-  );
   const app = Application('FaceTime');
   app.activate();
   delay(2);
@@ -28,8 +27,9 @@ export default function clearFaceTimeBadge() {
   delay(1);
 
   app.quit();
-  if (standalone) {
-    exit(0);
-  }
   return 0;
+}
+
+if ((getenv('_') as string).endsWith('facetime-clear-badge.ts')) {
+  exit(clearFaceTimeBadge());
 }
