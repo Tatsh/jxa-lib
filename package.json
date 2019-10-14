@@ -1,13 +1,13 @@
 {
   "author": "Andrew Udvare <audvare@gmail.com>",
   "dependencies": {
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "@types/ramda": "github:types/npm-ramda#dist",
+    "typescript": "^2.9.2"
   },
   "description": "TypeScript library for AppleScript.",
   "devDependencies": {
-    "@types/ramda": "github:types/npm-ramda#dist",
     "ts-loader": "^6.2.0",
-    "typescript": "^2.9.2",
     "webpack": "^4.29.6"
   },
   "keywords": [
@@ -17,8 +17,8 @@
     "typescript"
   ],
   "license": "MIT",
-  "main": "dist/main.js",
+  "main": "dist/examples/index.js",
   "name": "jxa-lib",
-  "types": "./types/index.d.ts",
+  "types": "./dist/examples/index.d.ts",
   "version": "0.0.2"
 }
