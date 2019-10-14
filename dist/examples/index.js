@@ -114,15 +114,15 @@ const main = () => {
         'Refresh all tags in Music.app',
         'Reset the FaceTime block list'
     ], {
-        withPrompt: 'jxalib examples\n\n' +
-            'Please open the associated app with the task you choose before ' +
+        withTitle: 'jxalib examples',
+        withPrompt: 'Please open the associated app with the task you choose before ' +
             'clicking OK.\n\n' +
             `If you choose "Reset the FaceTime block list", have FaceTime.app's ` +
             'Preferences window already open.\n',
         multipleSelectionsAllowed: false,
         emptySelectionAllowed: false
     });
-    if (!item) {
+    if (!item || !item.length) {
         return 0;
     }
     switch (item[0]) {
@@ -213,6 +213,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "applicationWithStandardAdditions", function() { return applicationWithStandardAdditions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "chr", function() { return chr; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ord", function() { return ord; });
+/** Convert an `NSError` type to a JavaScript error and throw it. */
 const throwErrorIfNotNil = (error) => {
     if (error && !error.isNil()) {
         throw new Error(error.localizedDescription.js);
@@ -239,8 +240,9 @@ __webpack_require__.r(__webpack_exports__);
 // and second tabs.
 // A tool like Browserify must be run on the output script for this to work.
 
+/** Clears the badge of the FaceTime app by swapping between the first and
+ * second tabs. */
 function clearFaceTimeBadge() {
-    const standalone = Object(_lib_stdlib__WEBPACK_IMPORTED_MODULE_0__["getenv"])('_').endsWith('facetime-clear-badge.ts');
     const app = Application('FaceTime');
     app.activate();
     delay(2);
@@ -260,10 +262,10 @@ function clearFaceTimeBadge() {
     }
     delay(1);
     app.quit();
-    if (standalone) {
-        Object(_lib_stdlib__WEBPACK_IMPORTED_MODULE_0__["exit"])(0);
-    }
     return 0;
+}
+if (Object(_lib_stdlib__WEBPACK_IMPORTED_MODULE_0__["getenv"])('_').endsWith('facetime-clear-badge.ts')) {
+    Object(_lib_stdlib__WEBPACK_IMPORTED_MODULE_0__["exit"])(clearFaceTimeBadge());
 }
 
 
@@ -284,6 +286,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+/** Demonstrates how to use the Dispatch framework to fetch webpage contents.*/
 function fetchGoogle() {
     const sema = new _lib_dispatch__WEBPACK_IMPORTED_MODULE_0__["DispatchSemaphore"](0);
     Object(_lib_fetch__WEBPACK_IMPORTED_MODULE_1__["default"])('https://www.google.com/')
@@ -316,19 +319,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dispatch_semaphore_wait", function() { return dispatch_semaphore_wait; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DispatchSemaphore", function() { return DispatchSemaphore; });
 ObjC.import('dispatch');
+/** Creates new counting semaphore with an initial value. */
 const dispatch_semaphore_create = $.dispatch_semaphore_create;
+/** Signals (increments) a semaphore. */
 const dispatch_semaphore_signal = $.dispatch_semaphore_signal;
+/** Waits for (decrements) a semaphore. */
 const dispatch_semaphore_wait = $.dispatch_semaphore_wait;
 class DispatchSemaphore {
     constructor(n) {
         this.sema = dispatch_semaphore_create(n);
     }
+    /** Waits for (decrements) a semaphore. */
     wait(timeout) {
         return dispatch_semaphore_wait(this.sema, timeout);
     }
+    /** Waits for (decrements) a semaphore, with timeout parameter
+     * `DISPATCH_TIME_FOREVER`. */
     waitForever() {
         return dispatch_semaphore_wait(this.sema, $.DISPATCH_TIME_FOREVER);
     }
+    /** Signals (increments) a semaphore. */
     signal() {
         return dispatch_semaphore_signal(this.sema);
     }
@@ -343,6 +353,7 @@ class DispatchSemaphore {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return fetch; });
 ObjC.import('Cocoa');
+/** Basic fetch-like function. Only GET method is supported.*/
 async function fetch(url) {
     return new Promise((resolve, reject) => {
         $.NSURLSession.sharedSession.dataTaskWithURLCompletionHandler($.NSURL.URLWithString(url), (data, response, error) => {
@@ -375,6 +386,7 @@ const memchr = $.memchr;
 const memcmp = $.memcmp;
 const memcpy = $.memcpy;
 const memset = $.memset;
+/** Convert NSData to a JavaScript string. */
 const stringWithData = (data, encoding = $.NSASCIIStringEncoding) => ObjC.unwrap($.NSString.alloc.initWithDataEncoding(data, encoding));
 
 
@@ -386,6 +398,7 @@ const stringWithData = (data, encoding = $.NSASCIIStringEncoding) => ObjC.unwrap
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sleep", function() { return sleep; });
 ObjC.import('unistd');
+/** Block for a period of time, in seconds (integer only). */
 const sleep = $.sleep;
 
 
@@ -471,36 +484,21 @@ class ItunesHelper {
     constructor(itunesApp) {
         this.finder = Application('Finder');
         this.itunes = itunesApp;
-        Object.defineProperties(this, {
-            library: {
-                get: () => {
-                    if (this.library) {
-                        return this.library;
-                    }
-                    for (const source of this.itunes.sources()) {
-                        if (source.name() === 'Library') {
-                            this.library = source;
-                            break;
-                        }
-                    }
-                    return this.library;
-                }
-            }
-        });
+        this.library = Object(ramda__WEBPACK_IMPORTED_MODULE_0__["filter"])(x => x.name() === 'Library', this.itunes.sources())[0].libraryPlaylists()[0];
     }
     clearOrphanedTracks() {
         if (!this.library) {
             return [];
         }
         const ret = [];
-        for (const track of this.library.tracks()) {
+        for (const track of this.library.fileTracks()) {
             const name = track.name();
             let loc;
             try {
                 loc = track.location();
             }
             catch (e) {
-                $.printf(`Removing ${name} (catch)\n`);
+                $.printf(`Removing ${name} (caught ${e})\n`);
                 ret.push(track);
                 track.delete();
                 continue;
@@ -522,17 +520,20 @@ class ItunesHelper {
             paths.push(x.url().replace(/^file\:\/\//, ''));
         }
         this.itunes.add(paths, { to: this.library });
-        for (const track of this.library.tracks()) {
+        for (const track of this.library.fileTracks()) {
             this.itunes.refresh(track);
         }
+    }
+    fileTracks() {
+        return this.library.fileTracks();
     }
 }
 function refreshTags() {
     const tunesApp = Application('Music');
     const itunes = new ItunesHelper(tunesApp);
-    const selections = Object(ramda__WEBPACK_IMPORTED_MODULE_0__["filter"])(x => x.class() === 'fileTrack', tunesApp.selection());
     itunes.clearOrphanedTracks();
-    for (const track of selections) {
+    console.log('Please be patient!');
+    for (const track of itunes.fileTracks()) {
         tunesApp.refresh(track);
     }
     return 0;

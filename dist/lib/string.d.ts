@@ -1,5 +1,6 @@
-export declare const memchr: $Global["memchr"];
-export declare const memcmp: $Global["memcmp"];
-export declare const memcpy: $Global["memcpy"];
-export declare const memset: $Global["memset"];
+export declare const memchr: typeof $.memchr;
+export declare const memcmp: typeof $.memcmp;
+export declare const memcpy: typeof $.memcpy;
+export declare const memset: typeof $.memset;
+/** Convert NSData to a JavaScript string. */
 export declare const stringWithData: (data: NSData, encoding?: number) => string;
