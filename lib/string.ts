@@ -5,6 +5,7 @@ export const memcmp = $.memcmp;
 export const memcpy = $.memcpy;
 export const memset = $.memset;
 
+/** Convert NSData to a JavaScript string. */
 export const stringWithData = (
   data: NSData,
   encoding = $.NSASCIIStringEncoding

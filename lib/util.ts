@@ -1,9 +1,11 @@
+/** Convert an `NSError` type to a JavaScript error and throw it. */
 export const throwErrorIfNotNil = (error?: NSError) => {
   if (error && !(error as NSError).isNil()) {
     throw new Error((error as NSError).localizedDescription.js);
   }
 };
 
+/** Get an `Application` instance with `includeStandardAdditions` enabled. */
 export function applicationWithStandardAdditions(
   spec: 'Finder'
 ): FinderApplication;
