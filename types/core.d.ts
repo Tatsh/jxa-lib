@@ -1,7 +1,8 @@
-interface LimitedConsole {
-  static log(...args: any[]): void;
+declare namespace console {
+  /** Log a value to the console. Very few types will be expanded in this
+   * function so it's best to be as specific as possible. */
+  function log(...args: any[]): void;
 }
-declare var console: LimitedConsole;
 
 interface BridgedObject<T> {
   js: T;

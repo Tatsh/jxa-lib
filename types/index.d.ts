@@ -1,142 +1,141 @@
-interface $Global {
+declare namespace $ {
   // NSBeep
-  static NSBeep(): void;
+  function NSBeep(): void;
 
   // stdio
-  static printf(format: string, ...args): number;
+  function printf(format: string, ...args): number;
 
   // stdlib
-  static atof(x: string): number;
-  static atoi(x: string): number;
-  static atoll(x: string): number;
-  static strtof(s: string, se: number | void): number;
-  static strtod(x: string, se: number | void): number;
-  static strtold(x: string, se: number | void): number;
-  static rand(): number;
-  static srand(seed: number): void;
-  static arc4random(): number;
-  static arc4random_uniform(max: number): number;
-  static arc4random_buf<T>(buf: RefType<T>, size: number): void;
-  static arc4random_stir(): void;
-  static arc4random_addrandom(dat: RefType<string>, datlen: number): void;
-  static exit(code: number): void;
-  static getenv(name: string): string | void;
-  static setenv(name: string, value: string, overwrite: number): number;
-  static putenv(s: string): number;
-  static unsetenv(name: string): number;
-  static abort(): void;
-  static _Exit(code: number): void;
-  static atexit(func: any): number;
-  static system(cmd: string): number;
-  static malloc(n: number): RefType<number>;
-  static free(p: RefType<number>): void;
+  function atof(x: string): number;
+  function atoi(x: string): number;
+  function atoll(x: string): number;
+  function strtof(s: string, se: number | void): number;
+  function strtod(x: string, se: number | void): number;
+  function strtold(x: string, se: number | void): number;
+  function rand(): number;
+  function srand(seed: number): void;
+  function arc4random(): number;
+  function arc4random_uniform(max: number): number;
+  function arc4random_buf<T>(buf: RefType<T>, size: number): void;
+  function arc4random_stir(): void;
+  function arc4random_addrandom(dat: RefType<string>, datlen: number): void;
+  function exit(code: number): void;
+  function getenv(name: string): string | void;
+  function setenv(name: string, value: string, overwrite: number): number;
+  function putenv(s: string): number;
+  function unsetenv(name: string): number;
+  function abort(): void;
+  function _Exit(code: number): void;
+  function atexit(func: any): number;
+  function system(cmd: string): number;
+  function malloc(n: number): RefType<number>;
+  function free(p: RefType<number>): void;
 
   // string
-  static memchr(p: RefType<number>, c: number, n: number): RefType<number>;
-  static memcmp(p: RefType<number>, q: RefType<number>, n: number): number;
-  static memcpy(
+  function memchr(p: RefType<number>, c: number, n: number): RefType<number>;
+  function memcmp(p: RefType<number>, q: RefType<number>, n: number): number;
+  function memcpy(
     dst: RefType<number>,
     src: RefType<number>,
     n: number
   ): RefType<number>;
-  static memset(p: RefType<number>, val: number, len: number): RefType<number>;
+  function memset(p: RefType<number>, val: number, len: number): RefType<number>;
 
   // unistd
-  static sleep(n: number): number;
+  function sleep(n: number): number;
 
   // CoreFoundation
-  static CFRunLoopRun(): never;
+  function CFRunLoopRun(): never;
 
   // Dispatch
-  static NSEC_PER_SEC: number;
-  static QOS_CLASS_BACKGROUND: number;
-  static QOS_CLASS_USER_INTERACTIVE: number;
-  static DISPATCH_QUEUE_PRIORITY_DEFAULT: number;
-  static DISPATCH_TIME_NOW: number;
-  static DISPATCH_TIME_FOREVER: number;
-  static dispatch_get_global_queue(
+  const NSEC_PER_SEC: number;
+  const QOS_CLASS_BACKGROUND: number;
+  const QOS_CLASS_USER_INTERACTIVE: number;
+  const DISPATCH_QUEUE_PRIORITY_DEFAULT: number;
+  const DISPATCH_TIME_NOW: number;
+  const DISPATCH_TIME_FOREVER: number;
+  function dispatch_get_global_queue(
     identifier: number,
     flags: number
   ): dispatch_queue_global_t;
-  static dispatch_async(queue: dispatch_queue_t, block: () => void): void;
-  static dispatch_main(): never;
-  static dispatch_semaphore_create(n: number): dispatch_semaphore_t;
-  static dispatch_semaphore_signal(sema: dispatch_semaphore_t): number;
-  static dispatch_semaphore_wait(
+  function dispatch_async(queue: dispatch_queue_t, block: () => void): void;
+  function dispatch_main(): never;
+  function dispatch_semaphore_create(n: number): dispatch_semaphore_t;
+  function dispatch_semaphore_signal(sema: dispatch_semaphore_t): number;
+  function dispatch_semaphore_wait(
     sema: dispatch_semaphore_t,
     timeout: number
   ): number;
-  static dispatch_time(t: number, delta: number): number;
+  function dispatch_time(t: number, delta: number): number;
 
   // NSApplicationMain
-  static NSApplicationMain(argc: number, argv: RefType<number>): number;
+  function NSApplicationMain(argc: number, argv: RefType<number>): number;
 
   // Generic constants
-  static readonly NSNumericSearch: number;
-  static readonly NSOrderedDescending: number;
+  const NSNumericSearch: number;
+  const NSOrderedDescending: number;
 
   // NSFile*
-  static readonly NSFileSize: NSString;
-  static readonly NSFileManager: NSFileManager;
-  static readonly NSFileHandle: NSFileHandle;
+  const NSFileSize: NSString;
+  const NSFileManager: NSFileManager;
+  const NSFileHandle: NSFileHandle;
 
   // NSNumber*
-  static readonly NSNumberFormatterBehaviorDefault: number;
-  static readonly NSNumberFormatterBehavior10_0: number;
-  static readonly NSNumberFormatterBehavior10_4: number;
-  static readonly NSNumber: NSNumber;
-  static readonly NSNumberFormatter: NSNumberFormatter;
+  const NSNumberFormatterBehaviorDefault: number;
+  const NSNumberFormatterBehavior10_0: number;
+  const NSNumberFormatterBehavior10_4: number;
+  const NSNumber: NSNumber;
+  const NSNumberFormatter: NSNumberFormatter;
 
   // NSObject
-  static readonly NSObject: NSObject;
+  const NSObject: NSObject;
 
   // NSRange
-  static NSStringFromRange(range: NSRange): NSString;
-  static NSUnionRange(range1: NSRange, range2: NSRange): NSRange;
-  static readonly NSNotFound: number;
-  static NSMakeRange(loc: number, length: number): NSRange;
+  function NSStringFromRange(range: NSRange): NSString;
+  function NSUnionRange(range1: NSRange, range2: NSRange): NSRange;
+  const NSNotFound: number;
+  function NSMakeRange(loc: number, length: number): NSRange;
 
   // NSString
-  static readonly NSASCIIStringEncoding: number;
-  static readonly NSUTF8StringEncoding: number;
-  static readonly NSString: NSString;
+  const NSASCIIStringEncoding: number;
+  const NSUTF8StringEncoding: number;
+  const NSString: NSString;
 
   // NSArray
-  static readonly NSArray: NSArray;
+  const NSArray: NSArray;
 
   // NSDictionary
-  static readonly NSDictionary: NSDictionary;
+  const NSDictionary: NSDictionary;
 
   // NSData
-  static readonly NSData: NSData;
+  const NSData: NSData;
 
   // NSTask
-  static readonly NSTask: NSTask;
+  const NSTask: NSTask;
 
   // NSPipe
-  static readonly NSPipe: NSPipe;
+  const NSPipe: NSPipe;
 
   // NSWorkspace
-  static readonly NSWorkspace: NSWorkspace;
+  const NSWorkspace: NSWorkspace;
 
   // NSPasteboard
-  static readonly NSPasteboard: NSPasteboard;
-  static readonly NSPasteboardTypeString: NSPasteboardType;
+  const NSPasteboard: NSPasteboard;
+  const NSPasteboardTypeString: NSPasteboardType;
 
   // NSRunLoop
-  static readonly NSRunLoop: NSRunLoop;
+  const NSRunLoop: NSRunLoop;
 
   // NSURL
-  static readonly NSURL: NSURL;
+  const NSURL: NSURL;
 
   // NSURLSession
-  static readonly NSURLSession: NSURLSession;
-  static readonly NSURLSessionTaskStateRunning: number;
-  static readonly NSURLSessionTaskStateSuspended: number;
-  static readonly NSURLSessionTaskStateCanceling: number;
-  static readonly NSURLSessionTaskStateCompleted: number;
-  static readonly NSURLSessionTaskPriorityDefault: number;
-  static readonly NSURLSessionTaskPriorityLow: number;
-  static readonly NSURLSessionTaskPriorityHigh: number;
+  const NSURLSession: NSURLSession;
+  const NSURLSessionTaskStateRunning: number;
+  const NSURLSessionTaskStateSuspended: number;
+  const NSURLSessionTaskStateCanceling: number;
+  const NSURLSessionTaskStateCompleted: number;
+  const NSURLSessionTaskPriorityDefault: number;
+  const NSURLSessionTaskPriorityLow: number;
+  const NSURLSessionTaskPriorityHigh: number;
 }
-declare var $: $Global;

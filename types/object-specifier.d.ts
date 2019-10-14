@@ -1,4 +1,3 @@
-interface ObjectSpecifierGlobal {
-  classOf(x: any): any;
+namespace ObjectSpecifier {
+  function classOf(x: any): any;
 }
-declare var ObjectSpecifier: ObjectSpecifierGlobal;
