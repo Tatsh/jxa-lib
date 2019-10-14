@@ -13,8 +13,8 @@ module.exports = {
     ]
   },
   output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'index.js',
+    path: path.resolve(__dirname, 'dist', 'examples')
   },
   resolve: {
     extensions: ['.ts', '.js']
