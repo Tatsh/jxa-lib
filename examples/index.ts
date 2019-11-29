@@ -19,7 +19,7 @@ export const main = () => {
       "Reset the FaceTime block list"
     ],
     {
-      withTitle: "jxalib examples",
+      withTitle: "jxa-lib examples",
       withPrompt:
         "Please open the associated app with the task you choose before " +
         "clicking OK.\n\n" +
