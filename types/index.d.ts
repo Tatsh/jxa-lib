@@ -39,7 +39,11 @@ declare namespace $ {
     src: RefType<number>,
     n: number
   ): RefType<number>;
-  function memset(p: RefType<number>, val: number, len: number): RefType<number>;
+  function memset(
+    p: RefType<number>,
+    val: number,
+    len: number
+  ): RefType<number>;
 
   // unistd
   function sleep(n: number): number;
@@ -75,10 +79,18 @@ declare namespace $ {
   const NSNumericSearch: number;
   const NSOrderedDescending: number;
 
+  // NSBitmapImageFileType
+  const NSPNGFileType: number;
+
   // NSFile*
   const NSFileSize: NSString;
   const NSFileManager: NSFileManager;
   const NSFileHandle: NSFileHandle;
+  function NSHomeDirectory(): NSString;
+
+  // NSImage
+  const NSImage: NSImage;
+  const NSBitmapImageRep: NSBitmapImageRep;
 
   // NSNumber*
   const NSNumberFormatterBehaviorDefault: number;
@@ -118,6 +130,8 @@ declare namespace $ {
 
   // NSWorkspace
   const NSWorkspace: NSWorkspace;
+  const NSExcludeQuickDrawElementsIconCreationOption: number;
+  const NSExclude10_4ElementsIconCreationOption: number;
 
   // NSPasteboard
   const NSPasteboard: NSPasteboard;

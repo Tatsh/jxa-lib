@@ -19,6 +19,7 @@ interface NSString extends BridgedObject<string> {
   compareOptions(s: JXString, n: number): number;
   writeToFileAtomically(filename: JXString, atomically: boolean): boolean;
   stringWithString(s: JXString): NSString;
+  stringByAppendingPathComponent(s: JXString): NSString;
 }
 
 interface NSDictionary<K = NSString, V> extends BridgedObject<{}> {
@@ -29,6 +30,7 @@ interface NSDictionary<K = NSString, V> extends BridgedObject<{}> {
 interface NSArray<T> extends BridgedObject<Array> {
   static alloc: NSArray<T>;
   containsObject(obj: T): boolean;
+  objectAtIndex(n: number): T;
 }
 
 interface NSFileManager extends BridgedObject<IdType> {
@@ -96,11 +98,38 @@ interface NSNumberFormatter extends BridgedObject<IdType> {
   );
 }
 
+interface NSImageRep extends BridgedObject<IdType> {
+  representationUsingTypeProperties(type: number, properties: object): NSData;
+}
+
+interface NSBitmapImageRep extends NSImageRep {
+  static imageRepWithData(data: NSData): NSBitmapImageRep;
+}
+
+interface NSImage extends BridgedObject<IdType> {
+  TIFFRepresentation: NSData;
+  representations: NSArray<NSImageRep>;
+}
+
 interface NSWorkspace {
   static sharedWorkspace: NSWorkspace;
   runningApplications: {
     bundleIdentifier: NSString;
   }[];
+  getInfoForFileApplicationType(
+    fullPath: JXString,
+    appName?: JXString,
+    type?: JXString
+  ): bool;
+  isFilePackageAtPath(fullPath: JXString): boolean;
+  iconForFile(fullPath: JXString): NSImage;
+  iconForFileType(fileType: JXString): NSImage;
+  iconForFiles(fullPaths: NSArray<JXString>): NSImage;
+  setIconForFileOptions(
+    image: NSImage,
+    fullPath: JXString,
+    options: number
+  ): boolean;
 }
 
 interface NSURLResponse {

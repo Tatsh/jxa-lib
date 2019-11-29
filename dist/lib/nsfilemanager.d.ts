@@ -43,4 +43,5 @@ export declare class FileManager {
     attributesOfItem(path: JXString): FileAttributes;
     contentsOfDirectory(path: JXString): string[];
     fileExists(path: JXString): boolean;
+    homeDirectory(): string;
 }

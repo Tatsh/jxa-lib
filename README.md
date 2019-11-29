@@ -9,7 +9,7 @@ This is a work in progress and is not yet stable.
 To run the examples, run `webpack` in the root of the project. Then Execute `dist/main.js` like so:
 
 ```sh
-osascript -l JavaScript dist/main.js
+osascript -l JavaScript dist/examples/index.js
 ```
 
 A prompt window will appear for the Finder application.
@@ -19,16 +19,16 @@ A prompt window will appear for the Finder application.
 In the `lib` directory, a helper library is available to make this easier to use in TypeScript (or ES6). It removes prefixes where possible to be more like Swift and removes long method names. Example:
 
 ```typescript
-import { FileManager } from 'jxa-lib';
+import { FileManager } from "jxa-lib";
 
 const fm = new FileManager();
 let attr;
 try {
-  attr = fm.attributesOfItem('/some-file');
+  attr = fm.attributesOfItem("/some-file");
 } catch (e) {
   // Instead of having to pass &error (Ref object) like in Objective-C,
   // an exception is thrown
-  console.log('Maybe /some-file does not exist?');
+  console.log("Maybe /some-file does not exist?");
 }
 
 // attr type is FileAttributes or undefined, which does not have prefixes removed
@@ -47,18 +47,18 @@ See the [examples](examples) directory.
 You do not have to use `ObjC.import()` because all modules will do this on their own.
 
 ```typescript
-import { exit, free, malloc } from 'jxa-lib/stdlib';
-import { memchr, memset } from 'jxa-lib/string';
+import { exit, free, malloc } from "jxa-lib/stdlib";
+import { memchr, memset } from "jxa-lib/string";
 
 const size = 32;
 const buf = malloc(size); // returns Ref<number>
 memset(buf, 0, size);
-for (let i = 0, c = 'a'.charCodeAt(0); i < size; i++, c++) {
+for (let i = 0, c = "a".charCodeAt(0); i < size; i++, c++) {
   buf[i] = c;
 }
 
-const asciiC = 'c'.charCodeAt(0);
-const asciiD = 'd'.charCodeAt(0);
+const asciiC = "c".charCodeAt(0);
+const asciiD = "d".charCodeAt(0);
 
 // memchr() returns Ref<number> or Ref to NULL
 const result = memchr(buf, asciiC, size);

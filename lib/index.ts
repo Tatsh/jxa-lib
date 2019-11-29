@@ -1,1 +1,2 @@
-export * from './nsfilemanager';
+export * from "./nsfilemanager";
+export * from "./nsworkspace";

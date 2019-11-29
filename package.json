@@ -19,6 +19,6 @@
   "license": "MIT",
   "main": "dist/examples/index.js",
   "name": "jxa-lib",
-  "types": "./dist/examples/index.d.ts",
+  "types": "./dist/",
   "version": "0.0.2"
 }
