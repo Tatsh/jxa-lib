@@ -1,3 +1,5 @@
+import { equals } from 'ramda';
+
 /** Convert an `NSError` type to a JavaScript error and throw it. */
 export const throwErrorIfNotNil = (error?: NSError) => {
   if (error && !(error as NSError).isNil()) {
@@ -26,3 +28,13 @@ export function applicationWithStandardAdditions(
 export const chr = (x: number) => String.fromCharCode(x);
 export const ord = (xs: string | string[]): number =>
   String.prototype.charCodeAt.call(xs, 0);
+
+export const propExecEq = <
+  S extends keyof T,
+  VT,
+  T extends Record<S, (args?: AT) => VT>,
+  AT = any
+>(
+  name: S,
+  value: VT
+) => (x: T, args?: AT) => equals(x[name](args), value);
