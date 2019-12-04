@@ -1,16 +1,17 @@
 import { filter } from 'ramda';
 
 import { getenv } from '../lib/stdlib';
+import { propExecEq } from '../lib/util';
 
 class ItunesHelper {
-  private finder = Application('Finder');
+  private finder = Application("Finder");
   private itunes: ItunesApplication;
   private library?: LibraryPlaylist;
 
   constructor(itunesApp: ItunesApplication) {
     this.itunes = itunesApp;
     this.library = filter(
-      x => x.name() === 'Library',
+      propExecEq<"name", string, Source>("name", "Library"),
       this.itunes.sources()
     )[0].libraryPlaylists()[0];
   }
@@ -19,9 +20,7 @@ class ItunesHelper {
     if (!this.library) {
       return [];
     }
-
     const ret = [];
-
     for (const track of this.library.fileTracks()) {
       const name = track.name();
       let loc: PathObject;
@@ -50,7 +49,7 @@ class ItunesHelper {
     }
     const paths: string[] = [];
     for (const x of root.entireContents()) {
-      paths.push(x.url().replace(/^file\:\/\//, ''));
+      paths.push(x.url().replace(/^file\:\/\//, ""));
     }
     this.itunes.add(paths, { to: this.library });
     for (const track of this.library.fileTracks()) {
@@ -64,16 +63,16 @@ class ItunesHelper {
 }
 
 export default function refreshTags() {
-  const tunesApp = Application('Music');
+  const tunesApp = Application("Music");
   const itunes = new ItunesHelper(tunesApp);
   itunes.clearOrphanedTracks();
-  console.log('Please be patient!');
+  console.log("Please be patient!");
   for (const track of itunes.fileTracks()) {
     tunesApp.refresh(track);
   }
   return 0;
 }
 
-if ((getenv('_') as string).endsWith('refresh-tags.ts')) {
+if ((getenv("_") as string).endsWith("refresh-tags.ts")) {
   refreshTags();
 }
