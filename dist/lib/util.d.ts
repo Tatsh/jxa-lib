@@ -6,3 +6,4 @@ export declare function applicationWithStandardAdditions(spec: 'iTunes'): Itunes
 export declare function applicationWithStandardAdditions(spec: 'Music'): ItunesApplication;
 export declare const chr: (x: number) => string;
 export declare const ord: (xs: string | string[]) => number;
+export declare const propExecEq: <S extends keyof T, VT, T extends Record<S, (args?: AT | undefined) => VT>, AT = any>(name: S, value: VT) => (x: T, args?: AT | undefined) => boolean;
