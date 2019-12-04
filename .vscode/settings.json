@@ -5,6 +5,7 @@
     "NSURL",
     "applescript",
     "facetime",
+    "frontmost",
     "nsworkspace",
     "sema",
     "unistd"
