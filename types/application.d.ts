@@ -7,7 +7,7 @@ interface Application {
   /** The version number of the application. */
   version(): string;
   id(): any;
-  /** Is this the frontmost (active) application? */
+  /** Is this the front-most (active) application? */
   frontmost(): boolean;
   strictCommandScope: boolean;
   propertiesOfClass(): any[];
@@ -165,7 +165,7 @@ interface ItunesApplication extends Application {
   sources(): Source[];
   /** Gets the currently selected items. */
   selection(): Item[];
-  /** Uupdate file track information from the current information in the
+  /** Update file track information from the current information in the
    * track’s file. */
   refresh(track: FileTrack): void;
   currentTrack(): Track;
