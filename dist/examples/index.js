@@ -14904,11 +14904,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /** Demonstrates calling `[NSWorkspace iconForFile:]`. */
 function getIconOfChromeAppsDirectory() {
-    const ws = new _lib_nsworkspace__WEBPACK_IMPORTED_MODULE_0__["Workspace"]();
     const p = $.NSHomeDirectory()
         .stringByAppendingPathComponent("Applications")
         .stringByAppendingPathComponent("Chrome Apps.localized");
-    const image = ws.iconForFile(p);
+    const image = _lib_nsworkspace__WEBPACK_IMPORTED_MODULE_0__["Workspace"].shared.iconForFile(p);
     const tiff = image.TIFFRepresentation;
     const r = $.NSBitmapImageRep.imageRepWithData(tiff);
     const data = r.representationUsingTypeProperties($.NSPNGFileType, ObjC.wrap({}));
@@ -14925,23 +14924,61 @@ function getIconOfChromeAppsDirectory() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Workspace", function() { return Workspace; });
 ObjC.import("AppKit");
+/**
+ * A workspace that can launch other apps and perform a variety of
+ * file-handling services.
+ */
 class Workspace {
     constructor() {
         this.ws = $.NSWorkspace.sharedWorkspace;
     }
+    /**
+     * Retrieves information about the specified file.
+     * @param fullPath The full path to the desired file.
+     * @param appName The app the system would use to open the file.
+     * @param type On input, a pointer to a string object variable;
+     * on return, if the method is successful, this variable contains a string
+     * object with the filename extension or encoded HFS file type of the file.
+     * @returns `true` if the information was retrieved successfully;
+     * otherwise, `false` if the file could not be found or the app was not
+     * associated with the file.
+     */
     getInfoForFile(fullPath, appName, type) {
         return this.ws.getInfoForFileApplicationType(fullPath, appName, type);
     }
+    /**
+     * Determines whether the specified path is a file package.
+     * @param fullPath The full path to examine.
+     * @returns `true` if the path identifies a file package; otherwise, `false`
+     * if the path does not exist, is not a directory, or is not a file package.
+     */
     isFilePackage(fullPath) {
         return this.ws.isFilePackageAtPath(fullPath);
     }
+    /**
+     * Returns an image containing the icon for the specified file.
+     * @param fullPath The full path to the file.
+     * @returns The icon associated with the file.
+     */
     iconForFile(fullPath) {
         return this.ws.iconForFile(fullPath);
     }
+    /**
+     * Returns an image containing the icon for the specified files.
+     *
+     * If `fullPaths` specifies one file, that file's icon is returned. If
+     * `fullPaths` specifies more than one file, an icon representing the
+     * multiple selection is returned.
+     * @param paths An array of `JXString` objects, each of which contains the
+     * full path to a file.
+     * @returns The icon associated with the group of files.
+     */
     iconForFiles(paths) {
         return this.ws.iconForFiles(ObjC.wrap(paths));
     }
 }
+/** Returns the shared `NSWorkspace` instance. */
+Workspace.shared = new Workspace();
 
 
 /***/ }),
