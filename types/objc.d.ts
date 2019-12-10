@@ -1,5 +1,25 @@
 interface nil {}
 
+type ObjCType = string | RefType;
+type ObjCSignature = [ObjCType, ObjCType[]];
+
+interface ObjCClass {
+  name: string;
+  superclass?: string;
+  protocols?: string[];
+  properties: {
+    [key: string]: string;
+  };
+  methods: (
+    ...x: any[]
+  ) =>
+    | any
+    | {
+        type: ObjCSignature;
+        implementation: (...x: any[]) => any;
+      };
+}
+
 namespace ObjC {
   /** Convert a JavaScript typed value to a JXA typed value. */
   export function wrap(): nil;
@@ -19,7 +39,7 @@ namespace ObjC {
   export function unwrap<I = any, R = any>(x: I): R;
   export function deepUnwrap(x: NSArray<NSString>): string[];
   export function deepUnwrap<T, U>(x: T): U;
-  export function registerSubclass();
+  export function registerSubclass(class_: ObjCClass);
   export function dict();
   export const interactWithUser: boolean;
   export function castRefToObject();
