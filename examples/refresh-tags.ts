@@ -13,7 +13,7 @@ class ItunesHelper {
     this.library = filter(
       propExecEq<"name", string, Source>("name", "Library"),
       this.itunes.sources()
-    )[0].libraryPlaylists()[0];
+    )[0]!.libraryPlaylists()[0];
   }
 
   clearOrphanedTracks(): FileTrack[] {
