@@ -10,16 +10,16 @@ interface Application {
   /** Is this the front-most (active) application? */
   frontmost(): boolean;
   strictCommandScope: boolean;
-  propertiesOfClass(): any[];
+  propertiesOfClass(): JXReadonlyArray<any>;
   parentOfClass(): any;
   includeStandardAdditions: boolean;
   strictParameterType: boolean;
   /** Quit the application. */
-  quit(saving?: 'ask' | 'yes' | 'no'): void;
+  quit(saving?: "ask" | "yes" | "no"): void;
   displayNameForPropertyOfClass(cls?: any): string | void;
   displayNameForElementOfClass(): string | void;
   displayNameForCommand(): string | void;
-  elementsOfClass(): any[];
+  elementsOfClass(): JXReadonlyArray<any>;
   /**  The name of the application. */
   name(): string;
   launch(): void;
@@ -74,7 +74,7 @@ interface FileTrack extends Track {
 
 interface ITunesLibrary {
   name(): string;
-  tracks(): FileTrack[];
+  tracks(): JXReadonlyArray<FileTrack>;
 }
 
 interface AudioCDTrack extends Track {
@@ -89,7 +89,7 @@ interface AudioCDPlaylist {
   discNumber(): number;
   genre(): string;
   year(): number;
-  audioCDTracks(): AudioCDTrack[];
+  audioCDTracks(): JXReadonlyArray<AudioCDTrack>;
 }
 
 interface Playlist {
@@ -101,44 +101,44 @@ interface Playlist {
   parent(): Playlist | void;
   size(): number;
   specialKind():
-    | 'none'
-    | 'folder'
-    | 'Genius'
-    | 'Library'
-    | 'Music'
-    | 'Purchased Music';
+    | "none"
+    | "folder"
+    | "Genius"
+    | "Library"
+    | "Music"
+    | "Purchased Music";
   time(): string;
   visible(): boolean;
-  tracks(): Track[];
+  tracks(): JXReadonlyArray<Track>;
 }
 
 /** The master library playlist. */
 interface LibraryPlaylist extends Playlist {
   /** Tracks which are local files. */
-  fileTracks(): FileTrack[];
+  fileTracks(): JXReadonlyArray<FileTrack>;
   /** Tracks which are from remote URLs. */
-  urlTracks(): any[];
-  sharedTracks(): any[];
+  urlTracks(): JXReadonlyArray<any>;
+  sharedTracks(): JXReadonlyArray<any>;
 }
 
 interface Source extends Item {
   capacity(): number;
   freeSpace(): number;
   kind():
-    | 'library'
-    | 'audio CD'
-    | 'MP3 CD'
-    | 'radio tuner'
-    | 'shared library'
-    | 'iTunes Store'
-    | 'unknown';
-  audioCDPlaylists(): AudioCDPlaylist[];
+    | "library"
+    | "audio CD"
+    | "MP3 CD"
+    | "radio tuner"
+    | "shared library"
+    | "iTunes Store"
+    | "unknown";
+  audioCDPlaylists(): JXReadonlyArray<AudioCDPlaylist>;
   /** Master library playlists. Usually there is only one. */
-  libraryPlaylists(): LibraryPlaylist[];
-  playlists(): any[];
-  radioTunerPlaylists(): any[];
-  subscriptionPlaylists(): any[];
-  userPlaylists(): any[];
+  libraryPlaylists(): JXReadonlyArray<LibraryPlaylist>;
+  playlists(): JXReadonlyArray<any>;
+  radioTunerPlaylists(): JXReadonlyArray<any>;
+  subscriptionPlaylists(): JXReadonlyArray<any>;
+  userPlaylists(): JXReadonlyArray<any>;
 }
 
 interface ItunesApplication extends Application {
@@ -152,24 +152,27 @@ interface ItunesApplication extends Application {
   mute(): boolean;
   playerPosition(): number;
   playerState():
-    | 'stopped'
-    | 'playing'
-    | 'paused'
-    | 'fast forwarding'
-    | 'rewinding';
+    | "stopped"
+    | "playing"
+    | "paused"
+    | "fast forwarding"
+    | "rewinding";
   shuffleEnabled(): boolean;
-  shuffleMode(): 'songs' | 'albums' | 'groupings';
-  songRepeat(): 'off' | 'one' | 'all';
+  shuffleMode(): "songs" | "albums" | "groupings";
+  songRepeat(): "off" | "one" | "all";
   soundVolume(): number;
   visualsEnabled(): boolean;
-  sources(): Source[];
+  sources(): JXReadonlyArray<Source>;
   /** Gets the currently selected items. */
-  selection(): Item[];
+  selection(): JXReadonlyArray<Item>;
   /** Update file track information from the current information in the
    * track’s file. */
   refresh(track: FileTrack): void;
   currentTrack(): Track;
-  add(paths: PathObject[], args: { to?: LibraryPlaylist }): Track[];
+  add(
+    paths: PathObject[],
+    args: { to?: LibraryPlaylist }
+  ): JXReadonlyArray<Track>;
 }
 
 interface FinderApplication extends Application {
@@ -184,32 +187,26 @@ interface FinderFolder {
 
 interface SystemEventsProcess {
   visible: boolean;
-  windows: {
-    [name: string]: {
-      radioGroups: {
-        radioButtons: {
-          click: () => void;
-        }[];
-      }[];
-      tabGroups: {
-        scrollAreas: {
-          tables: {
-            rows: {}[];
-          }[];
-        }[];
-      }[];
-    };
-  };
+  windows: JXReadonlyArray<{
+    radioGroups: JXReadonlyArray<{
+      radioButtons: JXReadonlyArray<{
+        click: () => void;
+      }>;
+    }>;
+    tabGroups: JXReadonlyArray<{
+      scrollAreas: JXReadonlyArray<{
+        tables: JXReadonlyArray<{ rows: JXReadonlyArray<{}> }>;
+      }>;
+    }>;
+  }>;
 }
 
 interface SystemEventsApplication extends Application {
-  processes: {
-    [name: string]: SystemEventsProcess;
-  };
+  processes: JXReadonlyArray<SystemEventsProcess>;
   keyCode(n: number): void;
 }
 
-declare function Application(x: 'Finder'): FinderApplication;
-declare function Application(x: 'iTunes'): ItunesApplication;
-declare function Application(x: 'Music'): ItunesApplication;
-declare function Application(x: 'System Events'): SystemEventsApplication;
+declare function Application(x: "Finder"): FinderApplication;
+declare function Application(x: "iTunes"): ItunesApplication;
+declare function Application(x: "Music"): ItunesApplication;
+declare function Application(x: "System Events"): SystemEventsApplication;
