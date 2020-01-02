@@ -25,7 +25,7 @@ export function applicationWithStandardAdditions(
   return app;
 }
 
-export const chr = (x: number) => String.fromCharCode(x);
+export const chr = String.fromCharCode;
 export const ord = (xs: string | string[]): number =>
   String.prototype.charCodeAt.call(xs, 0);
 
