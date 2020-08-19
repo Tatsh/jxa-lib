@@ -7,8 +7,8 @@
   },
   "description": "TypeScript library for AppleScript.",
   "devDependencies": {
-    "ts-loader": "^6.2.2",
-    "webpack": "^4.42.1"
+    "ts-loader": "^8.0.2",
+    "webpack": "^4.44.1"
   },
   "keywords": [
     "applescript",
