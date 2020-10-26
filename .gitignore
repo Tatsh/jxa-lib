@@ -7,16 +7,12 @@
 *.so
 *.pyc
 *.pyo
-__pycache__/
 *.egg-info/
 
 # Backups
 *~
 *.swp*
 *.kate-swp
-
-# KDevelop
-.kdev4/
 
 # Miscellaneous
 *.sqlite
