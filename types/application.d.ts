@@ -28,13 +28,22 @@ interface Application {
   displayDialog(
     message: string,
     args?: {
-      withTitle?: string;
-      defaultAnswer?: string;
-      buttons?: string[];
-      defaultButton?: number; // starts at index 1
-      withIcon?: number;
+      defaultAnswer?: string; // the default editable string
+      hiddenAnswer?: boolean; // Should editable text be displayed as bullets? (default is false)
+      buttons?: Array<string>; // a list of up to three button names
+      defaultButton?: string | number; // the name or number of the default button — NB: starts at index 1
+      cancelButton?: string | number; // the name or number of the cancel button
+      withTitle?: string; // the dialog window title
+      withIcon?:
+        | string // the resource name or ID of the icon to display…
+        | number
+        | "stop" // …or one of these system icons…
+        | "note"
+        | "caution"
+        | Item; // …or an alias or file reference to a ‘.icns’ file
+      givingUpAfter?: number; // number of seconds to wait before automatically dismissing the dialog
     }
-  ): { buttonReturned?: string };
+  ): DialogReply;
   /** Displays a dialog with choices. If the user chooses to cancel, `false` is
    * returned. Otherwise, a list of items selected is returned. */
   chooseFromList(
@@ -50,7 +59,14 @@ interface Application {
     }
   ): false | (number | string)[];
 }
+
 declare function Application(x: string | number): Application;
+
+interface DialogReply {
+  buttonReturned?: string; // name of button chosen (empty if ‘giving up after’ was supplied and dialog timed out)
+  textReturned?: string; //  text entered (present only if ‘default answer’ was supplied)
+  gaveUp: boolean; // Did the dialog time out? (present only if ‘giving up after’ was supplied)
+}
 
 interface Item {
   /** Get the class (string) of a selected item. */
