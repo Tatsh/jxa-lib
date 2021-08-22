@@ -30,7 +30,7 @@ interface Application {
     args?: {
       defaultAnswer?: string; // the default editable string
       hiddenAnswer?: boolean; // Should editable text be displayed as bullets? (default is false)
-      buttons?: Arracy<string>; // a list of up to three button names
+      buttons?: Array<string>; // a list of up to three button names
       defaultButton?: string | number; // the name or number of the default button — NB: starts at index 1
       cancelButton?: string | number; // the name or number of the cancel button
       withTitle?: string; // the dialog window title
