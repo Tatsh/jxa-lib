@@ -6,7 +6,7 @@ type WrappedResponse = {
 };
 
 /** Basic fetch-like function. Only GET method is supported.*/
-export default async function fetch(url: string) {
+export async function fetch(url: string) {
   return new Promise<WrappedResponse>((resolve, reject) => {
     $.NSURLSession.sharedSession.dataTaskWithURLCompletionHandler(
       $.NSURL.URLWithString(url),
