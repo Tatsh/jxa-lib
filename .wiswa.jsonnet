@@ -43,8 +43,6 @@ local utils = import 'utils.libjsonnet';
     devDependencies+: {
       '@types/ramda': '^0.30.2',
       'jxa-types': '^0.0.1',
-      'ts-loader': '^9.5.2',
-      webpack: '^5.99.9',
     },
     main: 'dist/index.js',
     types: './dist/',
