@@ -1,15 +1,21 @@
 {
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
     "alwaysStrict": true,
+    "baseUrl": "src",
     "declaration": true,
+    "disableReferencedProjectLoad": true,
+    "disableSolutionSearching": true,
     "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "lib": ["es2018"],
-    "moduleResolution": "node",
+    "module": "commonjs",
     "newLine": "LF",
     "noEmitOnError": true,
+    "noErrorTruncation": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -17,6 +23,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "outDir": "./dist/",
+    "preserveConstEnums": true,
+    "pretty": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
@@ -24,7 +33,9 @@
     "strictFunctionTypes": false,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "target": "es2018"
+    "stripInternal": true,
+    "target": "es2018",
+    "types": ["jxa-types"]
   },
-  "include": ["./**/*.ts"]
+  "include": ["src"]
 }

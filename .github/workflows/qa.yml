@@ -1,0 +1,21 @@
+jobs:
+  qa:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v3'
+      - name: 'Install dependencies (Yarn)'
+        run: 'yarn'
+      - name: 'ESLint'
+        run: 'yarn eslint'
+      - name: 'Check formatting'
+        run: 'yarn check-formatting'
+      - name: 'Check spelling'
+        run: 'yarn check-spelling'
+name: 'QA'
+'on':
+  pull_request:
+    branches:
+      - 'master'
+  push:
+    branches:
+      - 'master'

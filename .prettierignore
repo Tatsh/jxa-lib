@@ -1,4 +1,9 @@
+*.1
+*.j2
+*.jsonnet
 *.kate-swp
+*.libjsonnet
+*.lock
 *.log
 *~
 .*.swp
@@ -7,6 +12,7 @@
 .cspellcache
 .directory
 .pnp.*
+/.yarn/**/*.cjs
 /.yarn/install-state.gz
 /build/
 /dist/
