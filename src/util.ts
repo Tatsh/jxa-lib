@@ -20,6 +20,9 @@ export const chr = String.fromCharCode;
 export const ord = (xs: string | string[]): number => String.prototype.charCodeAt.call(xs, 0);
 
 export const propExecEq =
-  <S extends keyof T, VT, T extends Record<S, (args?: AT) => VT>, AT = any>(name: S, value: VT) =>
+  <S extends keyof T, VT, T extends Record<S, (args?: AT) => VT>, AT = object>(
+    name: S,
+    value: VT,
+  ) =>
   (x: T, args?: AT) =>
     equals(x[name](args), value);
