@@ -2,7 +2,7 @@
 
 [![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Tatsh/jxa-lib)](https://github.com/Tatsh/jxa-lib/tags)
 [![License](https://img.shields.io/github/license/Tatsh/jxa-lib)](https://github.com/Tatsh/jxa-lib/blob/master/LICENSE.txt)
-[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/jxa-lib/v0.0.2/master)](https://github.com/Tatsh/jxa-lib/compare/v0.0.2...master)
+[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/jxa-lib/v0.1.0/master)](https://github.com/Tatsh/jxa-lib/compare/v0.1.0...master)
 [![CodeQL](https://github.com/Tatsh/jxa-lib/actions/workflows/codeql.yml/badge.svg)](https://github.com/Tatsh/jxa-lib/actions/workflows/codeql.yml)
 [![QA](https://github.com/Tatsh/jxa-lib/actions/workflows/qa.yml/badge.svg)](https://github.com/Tatsh/jxa-lib/actions/workflows/qa.yml)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
@@ -13,7 +13,8 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109370961877277568?domain=hostux.social&style=social)](https://hostux.social/@Tatsh)
 
 This is a helper library for AppleScript in JavaScript that works on macOS 10.10 and above. To
-properly use this, a bundler must be used such as Webpack.
+properly use this, a bundler must be used such as Webpack. It is recommended to install
+[`jxa-types`](https://www.npmjs.com/package/jxa-types) as well.
 
 ## Example use
 

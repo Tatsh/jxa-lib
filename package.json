@@ -114,5 +114,5 @@
     "qa": "yarn eslint && yarn check-spelling && yarn check-formatting"
   },
   "types": "./dist/",
-  "version": "0.0.2"
+  "version": "0.1.0"
 }
