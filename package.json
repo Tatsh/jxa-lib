@@ -55,6 +55,7 @@
     "webpack": "^5.99.9",
     "yarn-audit-fix": "^10.1.1"
   },
+  "files": ["dist/**/*.js", "dist/**/*.d.ts", "LICENSE.txt", "README.md"],
   "homepage": "https://tatsh.github.io/jxa-lib/",
   "keywords": ["applescript", "jxa", "macos", "typescript"],
   "license": "MIT",
