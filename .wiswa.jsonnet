@@ -18,7 +18,7 @@ local utils = import 'utils.libjsonnet';
   ],
   project_name: 'jxa-lib',
   version: '0.0.2',
-  description: 'TypeScript library for AppleScript.',
+  description: 'General library for AppleScript (JXA).',
   keywords: ['applescript', 'jxa', 'macos', 'typescript'],
   want_main: false,
   copilot: {
