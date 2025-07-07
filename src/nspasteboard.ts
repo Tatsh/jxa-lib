@@ -16,8 +16,6 @@ export class GeneralPasteboard {
   }
 
   get(index = 0): PasteboardItem {
-    return ObjC.unwrap<NSArray<NSPasteboardItem>, NSPasteboardItem[]>(this.general.pasteboardItems)[
-      index
-    ];
+    return ObjC.unwrap(this.general.pasteboardItems)[index];
   }
 }
