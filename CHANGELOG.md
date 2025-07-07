@@ -9,6 +9,14 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.2]
+
+### Added
+
+- `ItunesHelper` class
+- `Workspace.appIsRunning()`
+- `Workspace.startApp()`
+
 ## [0.1.0] - 2025-07-06
 
 ### Changed
