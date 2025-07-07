@@ -24,4 +24,4 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Re-arrange library.
 - Use `jxa-types` package.
 
-[unreleased]: https://github.com/Tatsh/jxa-lib/compare/v0.0.2...HEAD
+[unreleased]: https://github.com/Tatsh/jxa-lib/compare/v0.1.3...HEAD
