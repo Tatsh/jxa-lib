@@ -36,7 +36,7 @@
   "dependencies": {
     "ramda": "^0.31.3"
   },
-  "description": "TypeScript library for AppleScript.",
+  "description": "General library for AppleScript (JXA).",
   "devDependencies": {
     "@eslint/js": "^9.30.1",
     "@prettier/plugin-xml": "^3.4.1",
