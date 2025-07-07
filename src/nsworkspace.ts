@@ -60,4 +60,36 @@ export class Workspace {
   iconForFiles(paths: JXString[]): NSImage {
     return this.ws.iconForFiles(ObjC.wrap(paths));
   }
+
+  /**
+   * Check if an app is running by bundle ID.
+   * @param bundleId The bundle identifier of the app to check.
+   * @returns `true` if the app is running; otherwise, `false`.
+   */
+  appIsRunning(bundleId: string): boolean {
+    for (const app of ObjC.unwrap($.NSWorkspace.sharedWorkspace.runningApplications)) {
+      if (
+        typeof app.bundleIdentifier.isEqualToString !== 'undefined' &&
+        app.bundleIdentifier.isEqualToString(bundleId)
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Start an application by bundle ID.
+   * @param bundleId The bundle identifier of the app to start.
+   * @param waitTime The time to wait after starting the app, in seconds.
+   */
+  startApp(bundleId: string, waitTime = 3): void {
+    $.NSWorkspace.sharedWorkspace.launchAppWithBundleIdentifierOptionsAdditionalEventParamDescriptorLaunchIdentifier(
+      bundleId,
+      $.NSWorkspaceLaunchAsync | $.NSWorkspaceLaunchAndHide,
+      $.NSAppleEventDescriptor.nullDescriptor,
+      null,
+    );
+    delay(waitTime);
+  }
 }
