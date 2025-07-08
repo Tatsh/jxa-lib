@@ -18,6 +18,9 @@ This is a helper library for AppleScript in JavaScript that works on macOS 10.10
 properly use this, a bundler must be used such as Webpack. It is recommended to install
 [`jxa-types`](https://www.npmjs.com/package/jxa-types) as well.
 
+This repository also demonstrates how to write tests mocking the JXA environment. See the `*.test.ts`
+files in `src`.
+
 ## Example use
 
 ```typescript
