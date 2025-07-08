@@ -11,6 +11,7 @@ export class GeneralPasteboard {
     return this.general.setStringForType(data, type);
   }
 
+  /* istanbul ignore next */
   clear() {
     this.general.clearContents;
   }

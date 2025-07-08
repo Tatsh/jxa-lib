@@ -9,6 +9,7 @@
 .pnp.*
 /.yarn/install-state.gz
 /build/
+/coverage/
 /dist/
 /docs/_build/
 /man/_static/

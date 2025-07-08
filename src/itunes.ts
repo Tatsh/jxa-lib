@@ -6,7 +6,7 @@ export class ItunesHelper {
   private _devicesMenuItems: Entries<MenuItem>;
   private _finder = Application('Finder');
   private _itunes: ItunesApplication;
-  private _library?: LibraryPlaylist;
+  private _library: LibraryPlaylist;
 
   constructor(itunesApp: ItunesApplication) {
     this._itunes = itunesApp;
@@ -22,9 +22,6 @@ export class ItunesHelper {
   }
 
   clearOrphanedTracks(): FileTrack[] {
-    if (!this._library) {
-      return [];
-    }
     const ret = [];
     for (const track of this._library.fileTracks()) {
       const name = track.name();
@@ -49,9 +46,6 @@ export class ItunesHelper {
   }
 
   addTracksAtPath(root: FinderFolder) {
-    if (!this._library) {
-      return;
-    }
     const paths: string[] = [];
     for (const x of root.entireContents()) {
       paths.push(x.url().replace(/^file:\/\//, ''));
@@ -85,7 +79,7 @@ export class ItunesHelper {
 
   deleteOrphanedTracks(): FileTrack[] {
     const ret: FileTrack[] = [];
-    for (const track of (this._library?.tracks() ?? []) as JXReadonlyArray<FileTrack>) {
+    for (const track of this._library.tracks() as JXReadonlyArray<FileTrack>) {
       const name = track.name();
       let loc;
       try {

@@ -35,7 +35,7 @@
     "strictPropertyInitialization": true,
     "stripInternal": true,
     "target": "es2018",
-    "types": ["jxa-types"]
+    "types": ["jxa-types", "node"]
   },
   "include": ["src"]
 }

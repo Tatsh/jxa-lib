@@ -1,0 +1,19 @@
+jobs:
+  test:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v4'
+      - name: 'Install dependencies (Yarn)'
+        run: 'yarn'
+      - name: 'Tests'
+        run: 'yarn jest --coverage'
+      - name: Coveralls
+        uses: coverallsapp/github-action@v2
+name: 'Tests'
+'on':
+  pull_request:
+    branches:
+      - 'master'
+  push:
+    branches:
+      - 'master'

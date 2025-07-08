@@ -6,6 +6,7 @@ atoi
 bsky
 codeowners
 coveragerc
+coverallsapp
 docstrings
 esbenp
 getenv
@@ -20,6 +21,7 @@ nsascii
 nsfilemanager
 nspasteboard
 nsurl
+nsutf
 nsworkspace
 pipx
 putenv
