@@ -23,7 +23,6 @@ nspasteboard
 nsurl
 nsutf
 nsworkspace
-pipx
 putenv
 pycache
 ramda
@@ -39,3 +38,4 @@ udvare
 unistd
 unsetenv
 vars
+wiswa

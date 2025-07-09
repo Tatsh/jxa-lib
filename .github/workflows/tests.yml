@@ -7,8 +7,8 @@ jobs:
         run: 'yarn'
       - name: 'Tests'
         run: 'yarn jest --coverage'
-      - name: Coveralls
-        uses: coverallsapp/github-action@v2
+      - name: 'Coveralls'
+        uses: 'coverallsapp/github-action@v2'
 name: 'Tests'
 'on':
   pull_request:
