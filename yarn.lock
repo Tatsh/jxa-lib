@@ -4429,7 +4429,7 @@ __metadata:
     cspell: "npm:^9.1.3"
     eslint: "npm:^9.30.1"
     jest: "npm:^30.0.4"
-    jxa-types: "npm:^0.0.5"
+    jxa-types: "npm:^0.0.6"
     markdownlint-cli2: "npm:^0.18.1"
     prettier: "npm:^3.6.2"
     prettier-plugin-ini: "npm:^1.3.0"
@@ -4444,10 +4444,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"jxa-types@npm:^0.0.5":
-  version: 0.0.5
-  resolution: "jxa-types@npm:0.0.5"
-  checksum: 10c0/98f018d8847e41084e1f9052002e5bff27354855f8ad5b527821825515b2497a02934a1d3ec9e64fb2b1c68482d5e36b32e93371f160a4b238b43fa9ede8f04a
+"jxa-types@npm:^0.0.6":
+  version: 0.0.6
+  resolution: "jxa-types@npm:0.0.6"
+  checksum: 10c0/0adad0543285c341d8d0d3f0ffff6efb87a3c08ed4eb453975cdd66bf494937bb2d4e69c35d75c9f6554286cb59f2623e3f009229878836d5d16aa728d7b5100
   languageName: node
   linkType: hard
 
