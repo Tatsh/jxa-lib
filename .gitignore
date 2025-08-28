@@ -11,7 +11,7 @@
 /build/
 /coverage/
 /dist/
-/docs/_build/
+/docs/
 /man/_static/
 __pycache__/
 htmlcov/

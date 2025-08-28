@@ -54,6 +54,7 @@
     "prettier-plugin-toml": "^2.0.6",
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
+    "typedoc": "^0.28.11",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
     "yarn-audit-fix": "^10.1.1"

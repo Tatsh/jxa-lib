@@ -1,9 +1,12 @@
 ObjC.import('Cocoa');
 
-type WrappedResponse = {
+/** Response-like object. */
+export interface WrappedResponse {
+  /** Raw returned data. */
   data?: NSData;
+  /** Response. */
   originalResponse?: NSURLResponse;
-};
+}
 
 /** Basic fetch-like function. Only GET method is supported.*/
 export async function fetch(url: string) {

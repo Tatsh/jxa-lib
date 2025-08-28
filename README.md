@@ -9,7 +9,7 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
 [![Tests](https://github.com/Tatsh/jxa-lib/actions/workflows/tests.yml/badge.svg)](https://github.com/Tatsh/jxa-lib/actions/workflows/tests.yml)
 [![Coverage Status](https://coveralls.io/repos/github/Tatsh/jxa-lib/badge.svg?branch=master)](https://coveralls.io/github/Tatsh/jxa-lib?branch=master)
-[![GitHub Pages](https://github.com/Tatsh/jxa-lib/actions/workflows/pages/pages-build-deployment/badge.svg)](https://tatsh.github.io/jxa-lib/)
+[![GitHub Pages](https://github.com/Tatsh/jxa-lib/actions/workflows/pages.yml/badge.svg)](https://tatsh.github.io/jxa-lib/)
 [![Stargazers](https://img.shields.io/github/stars/Tatsh/jxa-lib?logo=github&style=flat)](https://github.com/Tatsh/jxa-lib/stargazers)
 [![NPM Downloads](https://img.shields.io/npm/dm/jxa-lib)](https://www.npmjs.com/package/jxa-lib)
 
