@@ -19,3 +19,5 @@ name: 'QA'
   push:
     branches:
       - 'master'
+permissions:
+  contents: 'read'

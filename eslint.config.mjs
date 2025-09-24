@@ -5,7 +5,7 @@ import tseslint from 'typescript-eslint';
 
 export default defineConfig(
   [
-    globalIgnores(['dist']),
+    globalIgnores(['coverage', 'dist']),
     { files: ['**/*.{js,mjs,cjs,ts,mts,cts}'], plugins: { js }, extends: ['js/recommended'] },
     { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
     { files: ['**/*.{js,mjs,cjs,ts,mts,cts}'], languageOptions: { globals: globals.browser } },

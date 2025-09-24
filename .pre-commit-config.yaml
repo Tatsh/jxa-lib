@@ -12,7 +12,8 @@ repos:
       - id: 'check-case-conflict'
       - id: 'check-executables-have-shebangs'
       - id: 'check-merge-conflict'
-      - id: 'check-shebang-scripts-are-executable'
+      - exclude: "src/index\\.ts$"
+        id: 'check-shebang-scripts-are-executable'
       - id: 'check-symlinks'
       - id: 'check-toml'
       - id: 'debug-statements'
@@ -25,7 +26,7 @@ repos:
       - id: 'fix-byte-order-marker'
       - id: 'mixed-line-ending'
     repo: 'https://github.com/pre-commit/pre-commit-hooks'
-    rev: 'v5.0.0'
+    rev: 'v6.0.0'
   - hooks:
       - id: 'check-github-actions'
       - id: 'check-github-workflows'
@@ -36,7 +37,7 @@ repos:
         id: 'check-jsonschema'
         name: 'validate package.json'
     repo: 'https://github.com/python-jsonschema/check-jsonschema'
-    rev: '0.33.0'
+    rev: '0.34.0'
   - hooks:
       - id: 'validate-cff'
     repo: 'https://github.com/citation-file-format/cffconvert'
@@ -70,6 +71,12 @@ repos:
         id: 'fix-formatting-prettier'
         language: 'system'
         name: 'check files are formatted with Prettier'
+      - entry: 'yarn eslint --fix'
+        id: 'fix-eslint'
+        language: 'system'
+        name: 'run ESLint'
+        types_or:
+          - 'javascript'
       - entry: "yarn markdownlint-cli2 --fix '#node_modules'"
         id: 'fix-formatting-markdown'
         language: 'system'
