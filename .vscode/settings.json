@@ -3,6 +3,7 @@
     "editor.defaultFormatter": "Grafana.vscode-jsonnet"
   },
   "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format",
     "editor.tabSize": 4
   },
   "cSpell.enabled": true,
@@ -21,5 +22,8 @@
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   "files.trimTrailingWhitespace": true,
+  "shellformat.flag": "i 2 -ci -sr",
+  "sortJSON.excludedFiles": [],
+  "sortJSON.excludedPaths": [],
   "yaml.format.printWidth": 100
 }

@@ -3,6 +3,7 @@
 *~
 .*.swp
 .*_cache/
+.DS_Store*
 .coverage
 .cspellcache
 .directory
@@ -11,7 +12,7 @@
 /build/
 /coverage/
 /dist/
-/docs/
+/docs/_build/
 /man/_static/
 __pycache__/
 htmlcov/

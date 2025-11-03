@@ -9,6 +9,7 @@ coveragerc
 coverallsapp
 docstrings
 esbenp
+foxundermoon
 getenv
 htmlcov
 jsonnet
@@ -28,6 +29,7 @@ pycache
 ramda
 schemafile
 sema
+shellformat
 srand
 stdlib
 strtod

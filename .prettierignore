@@ -8,10 +8,13 @@
 *~
 .*.swp
 .*_cache/
+.DS_Store*
 .coverage
 .cspellcache
 .directory
+.eslintignore
 .pnp.*
+.shellcheckrc
 /.yarn/**/*.cjs
 /.yarn/install-state.gz
 /build/
