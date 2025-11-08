@@ -3,7 +3,7 @@
 [![NPM Version](https://img.shields.io/npm/v/jxa-lib)](https://www.npmjs.com/package/jxa-lib)
 [![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Tatsh/jxa-lib)](https://github.com/Tatsh/jxa-lib/tags)
 [![License](https://img.shields.io/github/license/Tatsh/jxa-lib)](https://github.com/Tatsh/jxa-lib/blob/master/LICENSE.txt)
-[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/jxa-lib/v0.1.7/master)](https://github.com/Tatsh/jxa-lib/compare/v0.1.7...master)
+[![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/jxa-lib/v0.1.8/master)](https://github.com/Tatsh/jxa-lib/compare/v0.1.8...master)
 [![CodeQL](https://github.com/Tatsh/jxa-lib/actions/workflows/codeql.yml/badge.svg)](https://github.com/Tatsh/jxa-lib/actions/workflows/codeql.yml)
 [![QA](https://github.com/Tatsh/jxa-lib/actions/workflows/qa.yml/badge.svg)](https://github.com/Tatsh/jxa-lib/actions/workflows/qa.yml)
 [![Tests](https://github.com/Tatsh/jxa-lib/actions/workflows/tests.yml/badge.svg)](https://github.com/Tatsh/jxa-lib/actions/workflows/tests.yml)
