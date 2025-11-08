@@ -1,0 +1,25 @@
+---
+jobs:
+  publish:
+    permissions:
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+      - name: Update npm
+        run: npm install -g npm@latest
+      - name: Install dependencies
+        run: yarn
+      - name: Publish to NPM
+        run: yarn npm publish --access public --provenance
+name: Publish to NPM
+'on':
+  push:
+    tags:
+      - 'v*'
