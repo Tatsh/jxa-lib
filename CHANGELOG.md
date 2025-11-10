@@ -9,6 +9,12 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.9] - 2025-11-10
+
+### Fixed
+
+- Fix bad release.
+
 ## [0.1.8]
 
 Testing release for the publish workflow.
@@ -38,7 +44,8 @@ Testing release for the publish workflow.
 - Re-arrange library.
 - Use `jxa-types` package.
 
-[unreleased]: https://github.com/Tatsh/jxa-lib/compare/v0.1.8...HEAD
+[unreleased]: https://github.com/Tatsh/jxa-lib/compare/v0.1.9...HEAD
+[0.1.9]: https://github.com/Tatsh/jxa-lib/compare/v0.1.8...v0.1.9
 [0.1.8]: https://github.com/Tatsh/jxa-lib/compare/v0.1.7...v0.1.8
 [0.1.7]: https://github.com/Tatsh/jxa-lib/compare/v0.1.6...v0.1.7
 [0.1.2]: https://github.com/Tatsh/jxa-lib/compare/v0.1.1...v0.1.2
