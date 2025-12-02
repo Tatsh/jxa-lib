@@ -11,9 +11,9 @@ docstrings
 esbenp
 foxundermoon
 getenv
-htmlcov
 jsonnet
 jsonschema
+libera
 libjsonnet
 malloc
 memchr
@@ -25,7 +25,6 @@ nsurl
 nsutf
 nsworkspace
 putenv
-pycache
 ramda
 schemafile
 sema
