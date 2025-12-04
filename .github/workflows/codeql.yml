@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         language:
-          - 'javascript'
+          - 'javascript-typescript'
 name: 'CodeQL'
 'on':
   pull_request:
