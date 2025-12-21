@@ -1062,7 +1062,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/js@npm:9.39.2, @eslint/js@npm:^9.39.1":
+"@eslint/js@npm:9.39.2, @eslint/js@npm:^9.39.2":
   version: 9.39.2
   resolution: "@eslint/js@npm:9.39.2"
   checksum: 10c0/00f51c52b04ac79faebfaa65a9652b2093b9c924e945479f1f3945473f78aee83cbc76c8d70bbffbf06f7024626575b16d97b66eab16182e1d0d39daff2f26f5
@@ -1876,12 +1876,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^25.0.2":
-  version: 25.0.2
-  resolution: "@types/node@npm:25.0.2"
+"@types/node@npm:^25.0.3":
+  version: 25.0.3
+  resolution: "@types/node@npm:25.0.3"
   dependencies:
     undici-types: "npm:~7.16.0"
-  checksum: 10c0/12c4044bf2e46ba3d313ddf6256ee3c88e336a62d129fe788eeab8ff2631b3df51eb31ade4cdc04552fbe51e285f0663c49b60c78acd31da2b9f2c86a84347e3
+  checksum: 10c0/b7568f0d765d9469621615e2bb257c7fd1953d95e9acbdb58dffb6627a2c4150d405a4600aa1ad8a40182a94fe5f903cafd3c0a2f5132814debd0e3bfd61f835
   languageName: node
   linkType: hard
 
@@ -3110,7 +3110,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.39.1":
+"eslint@npm:^9.39.2":
   version: 9.39.2
   resolution: "eslint@npm:9.39.2"
   dependencies:
@@ -4510,15 +4510,15 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "jxa-lib@workspace:."
   dependencies:
-    "@eslint/js": "npm:^9.39.1"
+    "@eslint/js": "npm:^9.39.2"
     "@prettier/plugin-xml": "npm:^3.4.2"
     "@types/jest": "npm:^30.0.0"
-    "@types/node": "npm:^25.0.2"
+    "@types/node": "npm:^25.0.3"
     "@types/ramda": "npm:^0.31.1"
     cspell: "npm:^9.4.0"
-    eslint: "npm:^9.39.1"
+    eslint: "npm:^9.39.2"
     jest: "npm:^30.2.0"
-    jxa-types: "npm:^0.0.6"
+    jxa-types: "npm:^0.0.8"
     markdownlint-cli2: "npm:^0.20.0"
     prettier: "npm:^3.7.4"
     prettier-plugin-ini: "npm:^1.3.0"
@@ -4529,14 +4529,14 @@ __metadata:
     ts-node: "npm:^10.9.2"
     typedoc: "npm:^0.28.15"
     typescript: "npm:^5.9.3"
-    typescript-eslint: "npm:^8.48.1"
+    typescript-eslint: "npm:^8.50.0"
   languageName: unknown
   linkType: soft
 
-"jxa-types@npm:^0.0.6":
-  version: 0.0.6
-  resolution: "jxa-types@npm:0.0.6"
-  checksum: 10c0/0adad0543285c341d8d0d3f0ffff6efb87a3c08ed4eb453975cdd66bf494937bb2d4e69c35d75c9f6554286cb59f2623e3f009229878836d5d16aa728d7b5100
+"jxa-types@npm:^0.0.8":
+  version: 0.0.8
+  resolution: "jxa-types@npm:0.0.8"
+  checksum: 10c0/af735c2e48af5089e2f1eb2a9b517d0e548bdea37686e7a294336184eb704c8c1ac5e887c9911a638a6bfec94ffa8183803b4706d406f3caa910333d548bf138
   languageName: node
   linkType: hard
 
@@ -6200,7 +6200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-eslint@npm:^8.48.1":
+"typescript-eslint@npm:^8.50.0":
   version: 8.50.0
   resolution: "typescript-eslint@npm:8.50.0"
   dependencies:
