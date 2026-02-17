@@ -15,6 +15,7 @@ local utils = import 'utils.libjsonnet';
     dependencies+: { ramda: utils.latestNpmPackageVersionCaret('ramda') },
     devDependencies+: {
       '@types/ramda': utils.latestNpmPackageVersionCaret('@types/ramda'),
+      'globals': utils.latestNpmPackageVersionCaret('globals'),
       'jxa-types': utils.latestNpmPackageVersionCaret('jxa-types'),
     },
     files+: ['dist/**/*.js', 'dist/**/*.d.ts'],
