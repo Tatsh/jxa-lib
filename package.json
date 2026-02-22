@@ -42,23 +42,23 @@
     "@eslint/js": "^10.0.1",
     "@prettier/plugin-xml": "^3.4.2",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.0.3",
+    "@types/node": "^25.3.0",
     "@types/ramda": "^0.31.1",
-    "cspell": "^9.4.0",
-    "eslint": "^10.0.0",
+    "cspell": "^9.6.4",
+    "eslint": "^10.0.1",
     "globals": "^17.3.0",
     "jest": "^30.2.0",
     "jxa-types": "^0.0.8",
     "markdownlint-cli2": "^0.21.0",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.1",
     "prettier-plugin-ini": "^1.3.0",
-    "prettier-plugin-sort-json": "^4.1.1",
+    "prettier-plugin-sort-json": "^4.2.0",
     "prettier-plugin-toml": "^2.0.6",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.28.15",
+    "typedoc": "^0.28.17",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.50.0"
+    "typescript-eslint": "^8.56.0"
   },
   "files": ["LICENSE.txt", "README.md", "dist/**/*.js", "dist/**/*.d.ts"],
   "homepage": "https://tatsh.github.io/jxa-lib/",
@@ -79,7 +79,11 @@
         "line_length": 100,
         "tables": false
       }
-    }
+    },
+    "gitignore": true,
+    "globs": ["**/*.md", "**/*.mdc"],
+    "noBanner": true,
+    "showFound": true
   },
   "name": "jxa-lib",
   "packageManager": "yarn@4.12.0",
@@ -110,9 +114,9 @@
     "url": "git@github.com:Tatsh/jxa-lib.git"
   },
   "scripts": {
-    "check-formatting": "yarn prettier -c . && yarn markdownlint-cli2 '**/*.md' '#node_modules'",
+    "check-formatting": "yarn prettier -c . && yarn markdownlint-cli2",
     "check-spelling": "yarn cspell --no-progress './**/*'  './**/.*'",
-    "format": "prettier -w . && yarn markdownlint-cli2 --fix '**/*.md' '#node_modules'",
+    "format": "prettier -w . && yarn markdownlint-cli2 --fix",
     "qa": "yarn eslint && yarn check-spelling && yarn check-formatting",
     "test": "jest"
   },

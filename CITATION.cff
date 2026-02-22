@@ -2,7 +2,7 @@ authors:
   - family-names: 'Udvare'
     given-names: 'Andrew'
 cff-version: '1.2.0'
-date-released: '2025-12-21'
+date-released: '2026-02-22'
 message: 'If you use this software, please cite it as below.'
 title: 'jxa-lib'
 version: '0.1.9'

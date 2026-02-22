@@ -4,7 +4,6 @@ atexit
 atof
 atoi
 bsky
-codeowners
 coveragerc
 coverallsapp
 docstrings
