@@ -11,10 +11,11 @@ export class GeneralPasteboard {
     return this.general.setStringForType(data, type);
   }
 
-  /* istanbul ignore next */
+  /* c8 ignore start */
   clear() {
     this.general.clearContents;
   }
+  /* c8 ignore stop */
 
   get(index = 0): PasteboardItem {
     return ObjC.unwrap(this.general.pasteboardItems)[index];
