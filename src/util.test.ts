@@ -1,8 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
-import equals from 'ramda/es/equals';
 import { applicationWithStandardAdditions, chr, ord, propExecEq, throwErrorIfNotNil } from './util';
-
-jest.mock('ramda/es/equals', () => jest.fn());
 
 describe('throwErrorIfNotNil', () => {
   it('should throw an Error if NSError is not nil', () => {
@@ -69,24 +66,26 @@ describe('ord', () => {
 });
 
 describe('propExecEq', () => {
-  beforeEach(() => {
-    (equals as jest.Mock).mockReset();
-  });
-
   it('should call the property as a function and compare with value', () => {
-    (equals as jest.Mock).mockReturnValue(true);
     const obj = {
       foo: jest.fn().mockReturnValue(42),
     };
     const fn = propExecEq('foo', 42);
     const result = fn(obj as { foo: (arg?: unknown) => number });
     expect(obj.foo).toHaveBeenCalledWith(undefined);
-    expect(equals).toHaveBeenCalledWith(42, 42);
     expect(result).toBe(true);
   });
 
+  it('should return false when property result does not equal value', () => {
+    const obj = {
+      foo: jest.fn().mockReturnValue(99),
+    };
+    const fn = propExecEq('foo', 42);
+    const result = fn(obj as { foo: (arg?: unknown) => number });
+    expect(result).toBe(false);
+  });
+
   it('should pass args to the property function', () => {
-    (equals as jest.Mock).mockReturnValue(false);
     const obj = {
       bar: jest.fn().mockReturnValue('baz'),
     };

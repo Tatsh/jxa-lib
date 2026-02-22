@@ -6,11 +6,6 @@ global.ObjC = {
   unwrap: jest.fn(),
 } as unknown as typeof global.ObjC;
 import { FileManager, FileAttributeKey, FileType } from './nsfilemanager';
-import * as util from './util';
-
-jest.mock('./util', () => ({
-  throwErrorIfNotNil: jest.fn(),
-}));
 
 const mockNSFileManager = {
   attributesOfItemAtPathError: jest.fn(),
@@ -44,20 +39,18 @@ describe('FileManager', () => {
       });
       const result = fm.attributesOfItem('/foo');
       expect(result).toBe(attrs);
-      expect(util.throwErrorIfNotNil).toHaveBeenCalledWith(null as unknown as NSError);
     });
 
     it('throws error if error is not nil', () => {
+      const err = {
+        isNil: () => false,
+        localizedDescription: { js: 'err' },
+      };
       mockNSFileManager.attributesOfItemAtPathError.mockImplementation((_p, e) => {
-        (e as unknown[])[0] = { code: 'err', domain: '', localizedDescription: 'err' };
+        (e as unknown[])[0] = err;
         return null;
       });
-      fm.attributesOfItem('/foo');
-      expect(util.throwErrorIfNotNil).toHaveBeenCalledWith({
-        code: 'err',
-        domain: '',
-        localizedDescription: 'err',
-      } as unknown as NSError);
+      expect(() => fm.attributesOfItem('/foo')).toThrow('err');
     });
   });
 
@@ -70,16 +63,18 @@ describe('FileManager', () => {
       });
       const result = fm.contentsOfDirectory('/bar');
       expect(result).toBe(files);
-      expect(util.throwErrorIfNotNil).toHaveBeenCalledWith(null as unknown as NSError);
     });
 
     it('throws error if error is not nil', () => {
+      const err = {
+        isNil: () => false,
+        localizedDescription: { js: 'contents err' },
+      };
       mockNSFileManager.contentsOfDirectoryAtPathError.mockImplementation((_p, e) => {
-        (e as unknown[])[0] = 'err';
+        (e as unknown[])[0] = err;
         return null;
       });
-      fm.contentsOfDirectory('/bar');
-      expect(util.throwErrorIfNotNil).toHaveBeenCalledWith('err' as unknown as NSError);
+      expect(() => fm.contentsOfDirectory('/bar')).toThrow('contents err');
     });
   });
 
