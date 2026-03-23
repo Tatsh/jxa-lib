@@ -3,14 +3,37 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: 'actions/checkout@v6'
+      - name: 'Yarn cache'
+        uses: 'actions/cache@v5'
+        with:
+          key: "${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}"
+          path: '~/.yarn/berry'
+          restore-keys: '${ runner.os }}-yarn'
       - name: 'Install dependencies (Yarn)'
         run: 'yarn'
-      - name: 'ESLint'
+      - continue-on-error: true
+        id: 'eslint'
+        name: 'ESLint'
         run: 'yarn eslint'
-      - name: 'Check formatting'
-        run: 'yarn check-formatting'
-      - name: 'Check spelling'
+      - continue-on-error: true
+        id: 'prettier'
+        name: 'Check formatting (Prettier)'
+        run: 'yarn prettier -c .'
+      - continue-on-error: true
+        id: 'markdownlint'
+        name: 'Check formatting (markdownlint)'
+        run: 'yarn markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2'
+      - continue-on-error: true
+        id: 'spelling'
+        name: 'Check spelling'
         run: 'yarn check-spelling'
+      - if: 'always()'
+        name: 'Check results'
+        run: |
+          [ "${{ steps.eslint.outcome }}" = "success" ] &&
+          [ "${{ steps.prettier.outcome }}" = "success" ] &&
+          [ "${{ steps.markdownlint.outcome }}" = "success" ] &&
+          [ "${{ steps.spelling.outcome }}" = "success" ]
 name: 'QA'
 'on':
   pull_request:

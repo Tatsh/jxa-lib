@@ -1,3 +1,12 @@
+ci:
+  skip:
+    - 'check-jsonschema'
+    - 'cspell'
+    - 'detect-aws-credentials'
+    - 'fix-formatting-markdown'
+    - 'fix-formatting-prettier'
+    - 'fix-ruff'
+    - 'yarn-check-lock'
 default_install_hook_types:
   - 'pre-commit'
   - 'pre-push'
@@ -37,7 +46,7 @@ repos:
         id: 'check-jsonschema'
         name: 'validate package.json'
     repo: 'https://github.com/python-jsonschema/check-jsonschema'
-    rev: '0.36.2'
+    rev: '0.37.0'
   - hooks:
       - id: 'validate-cff'
     repo: 'https://github.com/citation-file-format/cffconvert'
@@ -77,13 +86,13 @@ repos:
         name: 'run ESLint'
         types_or:
           - 'javascript'
-      - entry: 'yarn markdownlint-cli2 --fix'
+      - entry: 'yarn markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2 --fix'
         id: 'fix-formatting-markdown'
         language: 'system'
         name: 'check Markdown files are formatted'
         types_or:
           - 'markdown'
-      - entry: 'yarn check-spelling --no-must-find-files --no-summary'
+      - entry: 'yarn cspell --no-progress --no-must-find-files --no-summary'
         id: 'cspell'
         language: 'node'
         name: 'check spelling'
