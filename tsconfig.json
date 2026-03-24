@@ -2,7 +2,6 @@
   "compilerOptions": {
     "allowJs": true,
     "alwaysStrict": true,
-    "baseUrl": "src",
     "declaration": true,
     "disableReferencedProjectLoad": true,
     "disableSolutionSearching": true,
@@ -10,10 +9,11 @@
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
+    "ignoreDeprecations": "6.0",
     "isolatedModules": true,
     "lib": ["es2018"],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "newLine": "LF",
     "noEmitOnError": true,
     "noErrorTruncation": true,
@@ -27,6 +27,7 @@
     "preserveConstEnums": true,
     "pretty": true,
     "resolveJsonModule": true,
+    "rootDir": "./src/",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
@@ -38,5 +39,12 @@
     "target": "es2018",
     "types": ["jxa-types", "node"]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "ts-node": {
+    "compilerOptions": {
+      "ignoreDeprecations": "6.0",
+      "module": "commonjs",
+      "moduleResolution": "node10"
+    }
+  }
 }
