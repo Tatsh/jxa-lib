@@ -19,30 +19,28 @@ files. Launch each agent sequentially using the Agent tool with subagent_type `g
 telling it to follow the corresponding `.claude/agents/<name>.md` file. Scope each agent to only the
 changed files, not the entire project.
 
-### When Python code is being committed
+### When TypeScript code is being committed
 
-If any changed files are under `jxa_lib/` or `tests/`, run the following agents **in order**:
+If any changed files are under `src/`, run the following agents **in order**:
 
-1. **python-moderniser** - upgrade to modern Python features.
-1. **click-auditor** - validate Click command consistency. **Only run if files under
-   `jxa_lib/commands/` changed.**
-1. **docstring-fixer** - fix missing or incomplete docstrings.
-1. **copy-editor** - fix prose in comments, docstrings, and strings.
-1. **test-writer** - generate/update tests for new/changed code. **Skip if the only changes are in
-   `tests/`.**
+1. **copy-editor** - fix prose in comments, JSDoc, and strings.
 1. **qa-fixer** - format and fix lint/spelling issues.
 
 ### When user-facing changes are being committed
 
-- **changelog** - update `CHANGELOG.md` with entries for the changes. After it completes, check if
-  `CHANGELOG.md` was modified (`git diff CHANGELOG.md`). If it was, it will be staged together with
-  the relevant commit. **Only run when changes affect users**: files under `jxa_lib/`, `tests/`,
-  or dependency/version changes in `pyproject.toml`. **Skip for**: workflows, CI config, `.claude/`,
-  `.cursor/`, `.github/instructions/`, documentation-only changes, and other non-user-facing files.
+- **changelog** - update `CHANGELOG.md` with entries for the changes.
+  After it completes, check if `CHANGELOG.md` was modified
+  (`git diff CHANGELOG.md`). If it was, it will be staged together
+  with the relevant commit. **Only run when changes affect users**:
+  files under `jxa_lib/`, `src/`, or
+  dependency/version changes in `package.json`. **Skip for**: workflows, CI config, `.claude/`,
+  `.cursor/`, `.github/instructions/`, documentation-only changes,
+  and other non-user-facing files.
 
 ## Analysing changes
 
-Group changed files by component. Determine if one commit or multiple logical commits are needed.
+Group changed files by component. Determine if one commit or multiple
+logical commits are needed.
 
 ### Incidental files
 
@@ -52,17 +50,15 @@ file in a commit:
 - `CHANGELOG.md`
 - `.vscode/dictionary.txt`
 
-For example, if a commit contains `jxa_lib/commands/main.py`,
-`tests/test_main_command.py`, and `CHANGELOG.md`, the component is determined by
-`jxa_lib/commands/main.py` and `tests/test_main_command.py` only.
-`CHANGELOG.md` is simply staged alongside them.
+For example, if a commit contains `jxa_lib/src/index.ts`, and `CHANGELOG.md`, the component is
+determined by the source files only. `CHANGELOG.md` is simply staged alongside them.
 
 If `CHANGELOG.md` is the only file being committed, use the `changelog:` prefix. If
 `.vscode/dictionary.txt` is the only file, use `dictionary:` prefix.
 
 ### When to split into multiple commits
 
-- Changes span unrelated components (e.g. `jxa_lib/media.py` and `.claude/agents/release.md`).
+- Changes span unrelated components.
 - A refactor and a bug fix in the same file should be separate commits.
 - New tests for existing code should be separate from the code changes they test only if the code
   changes are themselves separate.
@@ -71,13 +67,14 @@ If `CHANGELOG.md` is the only file being committed, use the `changelog:` prefix.
 
 ### Cruft updates
 
-When all changes are from re-running Wiswa (the project generator) and no hand-written code changed,
-this is a **cruft update**. Indicators:
+When all changes are from re-running Wiswa (the project generator) and
+no hand-written code changed, this is a **cruft update**. Indicators:
 
-- Only Wiswa-managed files changed (workflows, `package.json`, `pyproject.toml`,
-  `.pre-commit-config.yaml`, `.claude/agents/`, `.cursor/rules/`, `.github/instructions/`,
-  `CITATION.cff`, `.vscode/dictionary.txt`, `uv.lock`, `.wiswa.jsonnet`, etc.).
-- No files under the primary module or `tests/` changed.
+- Only Wiswa-managed files changed (workflows,
+  `package.json`, `tsconfig.json`, `.pre-commit-config.yaml`, `.claude/agents/`,
+  `.cursor/rules/`, `.github/instructions/`, `CITATION.cff`, `.vscode/dictionary.txt`,
+  `.wiswa.jsonnet`, etc.).
+- No files under the primary module or `src/` changed.
 
 Commit everything in a single commit with the subject `cruft: update`. Include a body summarising
 what changed (e.g. new/updated workflows, updated agent files, dependency version bumps, new managed
@@ -112,25 +109,24 @@ Closes: #123
 
 ### Component prefix rules
 
-For Python files, strip the `jxa_lib/` prefix and replace `/` with `.` (like module imports).
+For TypeScript files, strip the `src/` prefix and use the file name (without extension) as the
+component.
 
-- Python file `jxa_lib/media.py` → `media:`.
-- Multiple files under `jxa_lib/commands/` → `commands:`.
-- Single command file `jxa_lib/commands/admin.py` → `commands.admin:`.
+- Source file `src/index.ts` → `index:`.
+- Multiple files under `src/` → `src:`.
 - Workflow file `.github/workflows/qa.yml` → `workflows/qa:`.
 - Multiple workflows → `workflows/*:`.
 - Agent files `.claude/agents/*.md` → `.claude:` or specific agent name.
 - Instruction files across all 3 locations → `project:` (since they span Copilot/Cursor/Claude).
-- Test files `tests/test_media.py` → `tests/test_media:` (or `tests:` for multiple).
 - Dictionary `.vscode/dictionary.txt` → `dictionary:` (only when committed alone).
-- Top-level config (`pyproject.toml`, `package.json`) → `project:`.
+- Top-level config (`tsconfig.json`, `package.json`) → `project:`.
 - If changes span many unrelated areas → `project:`.
 - CHANGELOG.md → `changelog:` (only when committed alone).
 - CONTRIBUTING.md → `contributing:`.
 
 ### Trailers
 
-- `Closes: #N` - when a commit closes a GitHub issue. If it is another project, use the full URI.
+- `Closes: #N` - when a commit closes an issue. If it is another project, use the full URI.
 - `Fixes: #N` - when a commit fixes a bug reported in an issue. If it is another project, use the
   full URI.
 - `Related: #N` - when a commit is related to an issue but does not fully close or fix it. If it is

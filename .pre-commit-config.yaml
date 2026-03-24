@@ -5,7 +5,6 @@ ci:
     - 'detect-aws-credentials'
     - 'fix-formatting-markdown'
     - 'fix-formatting-prettier'
-    - 'fix-ruff'
     - 'yarn-check-lock'
 default_install_hook_types:
   - 'pre-commit'

@@ -1,5 +1,25 @@
 jobs:
+  changes:
+    outputs:
+      typescript: '${{ steps.filter.outputs.typescript }}'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v6'
+      - id: 'filter'
+        uses: 'dorny/paths-filter@v4'
+        with:
+          filters: |
+            typescript:
+              - '**/*.ts'
+              - '**/*.tsx'
+              - '**/*.js'
+              - '**/*.jsx'
+              - '**/*.mjs'
+              - '**/*.cjs'
+              - 'package.json'
+              - 'tsconfig.json'
   qa:
+    needs: 'changes'
     runs-on: 'ubuntu-latest'
     steps:
       - uses: 'actions/checkout@v6'
@@ -13,6 +33,7 @@ jobs:
         run: 'yarn'
       - continue-on-error: true
         id: 'eslint'
+        if: "needs.changes.outputs.typescript == 'true'"
         name: 'ESLint'
         run: 'yarn eslint'
       - continue-on-error: true
@@ -30,7 +51,7 @@ jobs:
       - if: 'always()'
         name: 'Check results'
         run: |
-          [ "${{ steps.eslint.outcome }}" = "success" ] &&
+          ([ "${{ needs.changes.outputs.typescript }}" != "true" ] || [ "${{ steps.eslint.outcome }}" = "success" ]) &&
           [ "${{ steps.prettier.outcome }}" = "success" ] &&
           [ "${{ steps.markdownlint.outcome }}" = "success" ] &&
           [ "${{ steps.spelling.outcome }}" = "success" ]

@@ -4,14 +4,14 @@ Checks and fixes writing style, grammar, spelling, and punctuation in comments a
 
 ## Role
 
-You are a copy editor. You fix prose in Python comments, docstrings, and user-facing string
+You are a copy editor. You fix prose in comments, and user-facing string
 literals. You do not touch code logic, identifiers, or anything outside comments and strings.
 
 ## Scope
 
 Edit prose in all text files in the repository:
 
-- Python comments (`#` lines), docstrings, and user-facing string literals.
+- TypeScript/JavaScript comments (`//` and `/* */` blocks), JSDoc, and user-facing string literals.
 - Markdown files (`.md`, `.mdc`).
 - reStructuredText files (`.rst`).
 - YAML files (comments and string values).
@@ -71,9 +71,6 @@ Do not edit:
 - Fix obvious spelling mistakes.
 - Code identifiers within comments keep their original (often en-US) spelling:
   `# Call the colorize() function.` is correct because `colorize` is a code identifier.
-- In docstrings, wrap code identifiers in double backticks (`identifier`) or use Sphinx
-  cross-references (`:py:class:`, `:py:func:`, `:py:mod:`, `:py:meth:`). Plain unquoted
-  identifiers in docstrings are not acceptable.
 
 ### Grammar
 
@@ -85,12 +82,12 @@ Do not edit:
 
 ## Workflow
 
-1. For each text file in the repository (Python, Markdown, RST, YAML, TOML, man pages, etc.):
+1. For each text file in the repository (Typescript source,
+   Markdown, RST, YAML, TOML, man pages, etc.):
    a. Read the file.
-   b. Examine all prose (comments, docstrings, string literals, Markdown body text, etc.).
+   b. Examine all prose (comments, string literals, Markdown body text, etc.).
    c. Apply fixes following the rules above.
 2. After all fixes, launch the **qa-fixer** agent to format and fix any lint/spelling issues.
-3. Run `uv run pytest` to verify no regressions.
 
 ## Rules
 

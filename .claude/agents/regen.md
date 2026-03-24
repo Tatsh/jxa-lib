@@ -22,10 +22,6 @@ and verify nothing is broken before committing.
 1. Run the wiswa-sync agent skill to ensure `.wiswa.jsonnet` is up to date with the latest schema
    and settings.
 
-1. **Record pre-existing `tests/test_main.py`.** Check if `tests/test_main.py` exists before
-   running Wiswa. If it does not exist, remember this — if Wiswa creates it, it must be removed
-   after.
-
 1. **Run Wiswa.** Execute:
 
    ```shell
@@ -39,20 +35,12 @@ and verify nothing is broken before committing.
 
 1. **Update the dictionary.** Run `yarn dict:update`.
 
-1. **Post-process `docs/conf.py`.** If `docs/conf.py` exists, remove any `'hoverxref.extension',`
-   entry from it (this extension is no longer used).
-
 1. **Format.** Run `yarn format`.
-
-1. **Clean up unwanted files.** If `tests/test_main.py` did not exist before step 2 but exists
-   now, delete it (Wiswa creates it for `want_main` projects but multi-entry-point projects do not
-   want it).
 
 1. **Install Node dependencies.** Run `yarn`.
 
 1. **Review changes.** Run `git diff --stat` and `git diff` to inspect what changed. Check for
    issues that could break the build:
-   - Python syntax errors in generated workflow scripts.
    - Missing or malformed YAML in workflow files.
    - Removed dependencies that are still imported in source code.
    - Changed entry points that do not match actual code.
@@ -66,8 +54,8 @@ and verify nothing is broken before committing.
 
 ## Rules
 
-- Never modify source code under `jxa_lib/` or `tests/`. This agent only
-  updates managed/generated files.
+- Never modify source code under `jxa_lib/`. This agent only updates
+  managed/generated files.
 - If Wiswa fails, stop and report the error.
 - If any post-processing step fails, stop and report the error.
 - Always verify changes before committing. Err on the side of caution.

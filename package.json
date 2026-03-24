@@ -56,9 +56,9 @@
     "prettier-plugin-toml": "^2.0.6",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.28.17",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.1"
+    "typedoc": "^0.28.18",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.57.2"
   },
   "files": ["LICENSE.txt", "README.md", "dist/**/*.js", "dist/**/*.d.ts"],
   "homepage": "https://tatsh.github.io/jxa-lib/",
