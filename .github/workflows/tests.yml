@@ -13,7 +13,8 @@ jobs:
         run: 'yarn'
       - name: 'Tests'
         run: 'yarn jest --coverage'
-      - name: 'Coveralls'
+      - if: "github.event_name != 'pull_request'"
+        name: 'Coveralls'
         uses: 'coverallsapp/github-action@v2'
 name: 'Tests'
 'on':

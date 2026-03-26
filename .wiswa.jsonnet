@@ -14,6 +14,8 @@ local utils = import 'utils.libjsonnet';
   package_json+: {
     dependencies+: { ramda: utils.latestNpmPackageVersionCaret('ramda') },
     devDependencies+: {
+       // Pin to 5.x until ts-jest and typescript-eslint support TypeScript 6
+      typescript: '^5.9.3',
       '@types/ramda': utils.latestNpmPackageVersionCaret('@types/ramda'),
       'globals': utils.latestNpmPackageVersionCaret('globals'),
       'jxa-types': utils.latestNpmPackageVersionCaret('jxa-types'),

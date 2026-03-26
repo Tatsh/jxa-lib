@@ -11,7 +11,7 @@ again would produce the same result.
 ## Context
 
 - **Wiswa source**: `~/dev/wiswa`
-- **Defaults**: `~/dev/wiswa/wiswa-jsonnet/defaults.libjsonnet` — merged with `.wiswa.jsonnet`
+- **Defaults**: `~/dev/wiswa/wiswa-jsonnet/defaults.libsonnet` — merged with `.wiswa.jsonnet`
 - **Config**: `.wiswa.jsonnet` — only contains overrides on top of defaults
 
 The jsonnet evaluation is: `defaults + .wiswa.jsonnet` (deep merge with `+:`). Only what differs
@@ -89,7 +89,7 @@ For example, if `compilerOptions.strict` in `tsconfig.json` changes, the overrid
 
 2. **Read the changed managed files** (e.g. `tsconfig.json`, `package.json`) to identify what changed.
 
-3. **Read the relevant defaults** (`defaults.libjsonnet`, etc.)
+3. **Read the relevant defaults** (`defaults.libsonnet`, etc.)
    to determine what is already provided by Wiswa.
 
 4. **Determine the minimal change** to `.wiswa.jsonnet`:
@@ -103,7 +103,7 @@ For example, if `compilerOptions.strict` in `tsconfig.json` changes, the overrid
 
 ## Dependency version patterns
 
-Use these helpers from `utils.libjsonnet` (already imported in `.wiswa.jsonnet`):
+Use these helpers from `utils.libsonnet` (already imported in `.wiswa.jsonnet`):
 
 - `utils.latestNpmPackageVersion('name')` — resolves to the latest npm version at generation time.
 - For pinned versions, use a string literal: `'^1.0.0'`, `'~2.0.0'`.
