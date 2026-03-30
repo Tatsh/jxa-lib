@@ -24,7 +24,7 @@ jobs:
           path: ${{github.workspace}}/docs
       - id: deployment
         name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 name: GitHub Pages
 'on':
   push:
