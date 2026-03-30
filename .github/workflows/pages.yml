@@ -13,7 +13,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
       - name: Install dependencies
         run: yarn
       - name: Build documentation
