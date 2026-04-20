@@ -1,32 +1,87 @@
 jobs:
+  check:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: 'actions/checkout@v6.0.2'
+      - env:
+          COMMIT_SHA: '${{ github.sha }}'
+          GH_TOKEN: '${{ github.token }}'
+        id: 'check'
+        name: 'Wait for workflows'
+        run: |
+          sha="$COMMIT_SHA"
+          for i in $(seq 1 30); do
+            all_done=true
+            for workflow in Prettier QA Spelling Tests markdownlint; do
+              run=$(gh run list --workflow "$workflow" --commit "$sha" --json status,conclusion --jq '.[0]')
+              if [[ -z "$run" || "$run" == 'null' ]]; then
+                echo "Workflow '$workflow' did not run for this commit; treating as optional."
+                continue
+              fi
+              status=$(echo "$run" | jq -r '.status')
+              conclusion=$(echo "$run" | jq -r '.conclusion')
+              case "$conclusion" in
+                failure|cancelled|timed_out|startup_failure|action_required)
+                  echo "::error::Workflow '$workflow' ${conclusion}."
+                  exit 1
+                  ;;
+                success|skipped|neutral)
+                  ;;
+                *)
+                  if [[ "$status" == 'completed' ]]; then
+                    echo "::error::Workflow '$workflow' completed with unexpected conclusion '${conclusion}'."
+                    exit 1
+                  fi
+                  echo "Workflow '$workflow' still pending (status=${status})."
+                  all_done=false
+                  ;;
+              esac
+            done
+            if [[ "$all_done" == 'true' ]]; then
+              echo 'All required workflows succeeded.'
+              exit 0
+            fi
+            echo "Waiting 60s for workflows to complete (attempt ${i}/30)..."
+            sleep 60
+          done
+          echo '::error::Timed out waiting for workflows.'
+          exit 1
   publish:
+    needs:
+      - 'check'
     permissions:
-      contents: 'read'
+      contents: 'write'
       id-token: 'write'
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v6'
+      - uses: 'actions/checkout@v6.0.2'
       - name: 'Setup Node.js'
-        uses: 'actions/setup-node@v6'
+        uses: 'actions/setup-node@v6.3.0'
         with:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org/'
       - name: 'Update npm'
-        run: 'npm install -g npm@latest'
+        run: 'npm install --global npm@latest'
       - name: 'Yarn cache'
-        uses: 'actions/cache@v5'
+        uses: 'actions/cache@v5.0.5'
         with:
           key: "${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}"
           path: '~/.yarn/berry'
-          restore-keys: '${ runner.os }}-yarn'
+          restore-keys: '${{ runner.os }}-yarn'
       - name: 'Install dependencies'
         run: 'yarn'
       - name: 'Build'
         run: 'yarn tsc'
       - name: 'Publish to NPM'
         run: 'yarn npm publish'
-name: 'Publish to NPM'
+      - uses: 'softprops/action-gh-release@v3.0.0'
+        with:
+          draft: true
+name: 'Publish'
 'on':
   push:
     tags:
       - 'v*'
+permissions:
+  contents: 'write'
+  id-token: 'write'

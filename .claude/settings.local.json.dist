@@ -1,28 +1,43 @@
 {
+  "env": {
+    "MYPY_CACHE_DIR": ".wiswa-ci/cache/mypy",
+    "RUFF_CACHE_DIR": ".wiswa-ci/cache/ruff",
+    "UV_CACHE_DIR": ".wiswa-ci/cache/uv",
+    "YARN_CACHE_FOLDER": ".wiswa-ci/cache/yarn"
+  },
   "permissions": {
     "allow": [
       "Bash(gh api *)",
-      "Bash(git add *)",
-      "Bash(git check-ignore *)",
-      "Bash(git commit *)",
-      "Bash(git status *)",
-      "Bash(find *)",
-      "Bash(grep *)",
-      "Bash(ls *)",
+      "Bash(gh release edit *)",
+      "Bash(gh release list *)",
+      "Bash(gh release view *)",
+      "Bash(git commit -S -s -F *)",
+      "Bash(git commit -S -s -m *)",
+      "Bash(git rev-parse *)",
+      "Bash(git tag -s * -m *)",
+      "Bash(mkdir --parents .wiswa-ci)",
+      "Bash(mkdir -p .wiswa-ci)",
+      "Bash(mkdir .wiswa-ci)",
       "Bash(mktemp *)",
       "Bash(yarn check-formatting *)",
       "Bash(yarn check-spelling *)",
+      "Bash(yarn cspell *)",
       "Bash(yarn dict:update *)",
       "Bash(yarn format *)",
       "Bash(yarn gen-docs *)",
       "Bash(yarn gen-manpage *)",
-      "Bash(yarn mypy *)",
+      "Bash(yarn gen-manpage)",
+      "Bash(yarn markdownlint-cli2 *)",
+      "Bash(yarn prettier *)",
       "Bash(yarn qa *)",
       "Bash(yarn regen *)",
-      "Bash(yarn ruff *)",
-      "Bash(yarn ruff:fix *)",
-      "Bash(yarn test *)",
-      "Bash(yarn test:cov *)"
+      "Edit(/.vscode/dictionary.txt)",
+      "Edit(/.wiswa-ci/**)",
+      "Read(/.vscode/dictionary.txt)",
+      "Read(/.wiswa-ci/**)",
+      "Update(/.vscode/dictionary.txt)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:npmjs.com)"
     ]
   }
 }

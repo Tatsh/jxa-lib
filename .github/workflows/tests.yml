@@ -2,27 +2,47 @@ jobs:
   test:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v6'
+      - uses: 'actions/checkout@v6.0.2'
       - name: 'Yarn cache'
-        uses: 'actions/cache@v5'
+        uses: 'actions/cache@v5.0.5'
         with:
           key: "${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}"
           path: '~/.yarn/berry'
-          restore-keys: '${ runner.os }}-yarn'
+          restore-keys: '${{ runner.os }}-yarn'
       - name: 'Install dependencies (Yarn)'
         run: 'yarn'
       - name: 'Tests'
         run: 'yarn jest --coverage'
       - if: "github.event_name != 'pull_request'"
         name: 'Coveralls'
-        uses: 'coverallsapp/github-action@v2'
+        uses: 'coverallsapp/github-action@v2.3.7'
 name: 'Tests'
 'on':
   pull_request:
     branches:
       - 'master'
+    paths:
+      - '**/*.cjs'
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.mjs'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '.github/workflows/tests.yml'
+      - 'package.json'
+      - 'tsconfig.json'
   push:
     branches:
       - 'master'
+    paths:
+      - '**/*.cjs'
+      - '**/*.js'
+      - '**/*.jsx'
+      - '**/*.mjs'
+      - '**/*.ts'
+      - '**/*.tsx'
+      - '.github/workflows/tests.yml'
+      - 'package.json'
+      - 'tsconfig.json'
 permissions:
   contents: 'read'

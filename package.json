@@ -14,7 +14,7 @@
       "*": true
     },
     "enableGlobDot": true,
-    "files": ["*"],
+    "files": ["**"],
     "ignorePaths": [
       "*.1",
       "*.har",
@@ -42,23 +42,23 @@
     "@eslint/js": "^10.0.1",
     "@prettier/plugin-xml": "^3.4.2",
     "@types/jest": "^30.0.0",
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.6.0",
     "@types/ramda": "^0.31.1",
     "cspell": "^10.0.0",
-    "eslint": "^10.1.0",
-    "globals": "^17.4.0",
+    "eslint": "^10.2.0",
+    "globals": "^17.5.0",
     "jest": "^30.3.0",
     "jxa-types": "^0.0.8",
     "markdownlint-cli2": "^0.22.0",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "prettier-plugin-ini": "^1.3.0",
     "prettier-plugin-sort-json": "^4.2.0",
     "prettier-plugin-toml": "^2.0.6",
-    "ts-jest": "^29.4.6",
+    "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.28.18",
+    "typedoc": "^0.28.19",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.2"
+    "typescript-eslint": "^8.58.1"
   },
   "files": ["LICENSE.txt", "README.md", "dist/**/*.js", "dist/**/*.d.ts"],
   "homepage": "https://tatsh.github.io/jxa-lib/",
@@ -86,28 +86,16 @@
     "showFound": true
   },
   "name": "jxa-lib",
-  "packageManager": "yarn@4.13.0",
+  "packageManager": "yarn@4.14.1",
   "prettier": {
     "endOfLine": "lf",
     "iniSpaceAroundEquals": true,
     "jsonRecursiveSort": true,
     "overrides": [
       {
-        "files": ["package.json"],
+        "files": ["*.json.dist", "package.json"],
         "options": {
           "parser": "json"
-        }
-      },
-      {
-        "files": ["*.json.dist"],
-        "options": {
-          "parser": "json"
-        }
-      },
-      {
-        "files": ["*.md", "*.mdc"],
-        "options": {
-          "parser": "markdown"
         }
       }
     ],
@@ -126,10 +114,10 @@
     "url": "git@github.com:Tatsh/jxa-lib.git"
   },
   "scripts": {
-    "check-formatting": "prettier -c . && markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2",
-    "check-spelling": "cspell --no-progress './**/*'  './**/.*'",
-    "dict:update": "rm -f .vscode/dictionary.txt && cspell --no-progress './**/*' './**/.*' 2>&1 | grep -oP '(?<=Unknown word \\()\\S+(?=\\))' | python3 -c \"import sys; print('\\n'.join(sorted(set(l.strip().lower() for l in sys.stdin if l.strip()))))\" > .vscode/dictionary.txt",
-    "format": "prettier -w . && markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2 --fix",
+    "check-formatting": "prettier --check . && markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2",
+    "check-spelling": "cspell --no-progress",
+    "dict:update": "rm -f .vscode/dictionary.txt && cspell lint --no-progress --no-summary --unique --words-only | tr '[:upper:]' '[:lower:]' | sort -u > .vscode/dictionary.txt",
+    "format": "prettier --write . && markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2 --fix",
     "qa": "eslint && yarn check-spelling && yarn check-formatting",
     "test": "jest"
   },

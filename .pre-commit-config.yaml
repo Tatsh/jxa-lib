@@ -66,8 +66,8 @@ repos:
         stages:
           - 'post-checkout'
           - 'post-merge'
-      - entry: 'yarn prettier -w'
-        exclude: '((requirements|robots).txt|Dockerfile.*|..*ignore|.(coveragerc|gitattributes)|.*.(csv|lock|resource|robot)|CODEOWNERS|py.typed)$'
+      - entry: 'yarn exec prettier --write'
+        exclude: "((requirements|robots).txt|Dockerfile.*|..*ignore|.(coveragerc|gitattributes)|.*.(csv|lock|resource|robot)|pylock.*\\.toml|CODEOWNERS|py.typed)$"
         exclude_types:
           - 'binary'
           - 'dockerfile'
@@ -91,10 +91,8 @@ repos:
         name: 'check Markdown files are formatted'
         types_or:
           - 'markdown'
-      - entry: 'yarn cspell --no-progress --no-must-find-files --no-summary'
-        id: 'cspell'
-        language: 'node'
-        name: 'check spelling'
-        types:
-          - 'text'
     repo: 'local'
+  - hooks:
+      - id: 'cspell'
+    repo: 'https://github.com/streetsidesoftware/cspell-cli'
+    rev: 'v10.0.0'

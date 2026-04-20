@@ -1,5 +1,5 @@
 jobs:
-  eslint:
+  markdownlint:
     runs-on: 'ubuntu-latest'
     steps:
       - uses: 'actions/checkout@v6.0.2'
@@ -11,35 +11,23 @@ jobs:
           restore-keys: '${{ runner.os }}-yarn'
       - name: 'Install dependencies (Yarn)'
         run: 'yarn'
-      - name: 'ESLint'
-        run: 'yarn eslint'
-name: 'QA'
+      - name: 'Check formatting (markdownlint)'
+        run: 'yarn markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2'
+name: 'markdownlint'
 'on':
   pull_request:
     branches:
       - 'master'
     paths:
-      - '**/*.cjs'
-      - '**/*.js'
-      - '**/*.jsx'
-      - '**/*.mjs'
-      - '**/*.ts'
-      - '**/*.tsx'
-      - '.github/workflows/qa.yml'
-      - 'package.json'
-      - 'tsconfig.json'
+      - '**/*.md'
+      - '**/*.mdc'
+      - '.github/workflows/markdownlint.yml'
   push:
     branches:
       - 'master'
     paths:
-      - '**/*.cjs'
-      - '**/*.js'
-      - '**/*.jsx'
-      - '**/*.mjs'
-      - '**/*.ts'
-      - '**/*.tsx'
-      - '.github/workflows/qa.yml'
-      - 'package.json'
-      - 'tsconfig.json'
+      - '**/*.md'
+      - '**/*.mdc'
+      - '.github/workflows/markdownlint.yml'
 permissions:
   contents: 'read'

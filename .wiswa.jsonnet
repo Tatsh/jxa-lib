@@ -1,15 +1,13 @@
 local utils = import 'utils.libjsonnet';
 
 {
+  uses_user_defaults: true,
   project_type: 'typescript',
   project_name: 'jxa-lib',
   version: '0.1.9',
   description: 'General library for AppleScript (JXA).',
   keywords: ['applescript', 'jxa', 'macos', 'typescript'],
   want_main: false,
-  copilot+: {
-    intro: 'jxa-lib is a library for JXA (JavaScript for Automation) that provides various utilities and functions to simplify automation tasks on macOS.',
-  },
   // TypeScript only
   package_json+: {
     dependencies+: { ramda: utils.latestNpmPackageVersionCaret('ramda') },

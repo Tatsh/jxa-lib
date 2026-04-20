@@ -1,5 +1,7 @@
 # Library for JXA
 
+<!-- WISWA-GENERATED-README:START -->
+
 [![GitHub tag (with filter)](https://img.shields.io/github/v/tag/Tatsh/jxa-lib)](https://github.com/Tatsh/jxa-lib/tags)
 [![License](https://img.shields.io/github/license/Tatsh/jxa-lib)](https://github.com/Tatsh/jxa-lib/blob/master/LICENSE.txt)
 [![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/Tatsh/jxa-lib/v0.1.9/master)](https://github.com/Tatsh/jxa-lib/compare/v0.1.9...master)
@@ -10,8 +12,8 @@
 [![Dependabot](https://img.shields.io/badge/Dependabot-enabled-blue?logo=dependabot)](https://github.com/dependabot)
 [![GitHub Pages](https://github.com/Tatsh/jxa-lib/actions/workflows/pages.yml/badge.svg)](https://tatsh.github.io/jxa-lib/)
 [![Stargazers](https://img.shields.io/github/stars/Tatsh/jxa-lib?logo=github&style=flat)](https://github.com/Tatsh/jxa-lib/stargazers)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://pre-commit.com/)
-[![Prettier](https://img.shields.io/badge/Prettier-enabled-black?logo=prettier)](https://prettier.io/)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Prettier](https://img.shields.io/badge/Prettier-black?logo=prettier)](https://prettier.io/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-black?logo=typescript)](https://www.typescriptlang.org/)
 [![Yarn](https://img.shields.io/badge/Yarn-4c335c?logo=yarn)](https://yarnpkg.com/)
 [![eslint](https://img.shields.io/badge/eslint-black?logo=eslint)](https://www.npmjs.com/package/eslint)
@@ -22,6 +24,8 @@
 [![Libera.Chat](https://img.shields.io/badge/Libera.Chat-Tatsh-black?logo=liberadotchat)](irc://irc.libera.chat/Tatsh)
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109370961877277568?domain=hostux.social&style=social)](https://hostux.social/@Tatsh)
 [![Patreon](https://img.shields.io/badge/Patreon-Tatsh2-F96854?logo=patreon)](https://www.patreon.com/Tatsh2)
+
+<!-- WISWA-GENERATED-README:STOP -->
 
 This is a helper library for AppleScript in JavaScript that works on macOS 10.10 and above. To
 properly use this, a bundler must be used such as Webpack. It is recommended to install
