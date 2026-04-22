@@ -5,7 +5,8 @@ Reflects changes made to Wiswa-managed files back into `.wiswa.jsonnet`.
 ## Role
 
 When a managed file is modified directly (e.g. `yarn add`, manual
-`package.json` edits, etc.), you update `.wiswa.jsonnet` so that running Wiswa
+`package.json` edits, etc.), you
+update `.wiswa.jsonnet` so that running Wiswa
 again would produce the same result.
 
 ## Context
