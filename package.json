@@ -60,9 +60,6 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^7.18.0"
   },
-  "engines": {
-    "node": ">=20.0"
-  },
   "files": ["LICENSE.txt", "README.md", "dist/**/*.js", "dist/**/*.d.ts"],
   "homepage": "https://tatsh.github.io/jxa-lib/",
   "keywords": ["applescript", "jxa", "macos", "typescript"],
