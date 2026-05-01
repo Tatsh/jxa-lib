@@ -7,6 +7,9 @@ updates:
         dependency-type: 'development'
       production:
         dependency-type: 'production'
+    ignore:
+      - dependency-name: 'typescript'
+        versions: ['>=6.0.0']
     package-ecosystem: 'npm'
     schedule:
       interval: 'weekly'
