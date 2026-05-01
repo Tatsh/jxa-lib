@@ -62,7 +62,7 @@
     "ts-jest": "^29.4.9",
     "ts-node": "^10.9.2",
     "typedoc": "^0.28.19",
-    "typescript": "^6.0.3",
+    "typescript": "^5.9.3",
     "typescript-eslint": "^8.58.2"
   },
   "files": ["LICENSE.txt", "README.md", "dist/**/*.js", "dist/**/*.d.ts"],
