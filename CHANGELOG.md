@@ -9,6 +9,31 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.1.10] - 2026-05-02
+
+### Changed
+
+- Updated development dependencies, including `cspell`, `eslint`, `typescript-eslint`,
+  `@types/node`, `prettier`, `typedoc`, `jest`, `ts-jest`, `markdownlint-cli2`, `globals`, and
+  `prettier-plugin-sort-json`.
+- Updated GitHub Actions dependencies: `actions/checkout`, `actions/setup-node`,
+  `actions/configure-pages`, `actions/deploy-pages`, and `actions/upload-pages-artifact`.
+- Updated transitive dependencies in the `npm_and_yarn` group, including `tar`, `handlebars`,
+  `js-yaml`, and `minimatch`.
+- Configured Dependabot to ignore TypeScript major version bumps to keep the GitHub Pages CI
+  green.
+- Refreshed scaffolding via `cruft` and pinned `module` and `moduleResolution` overrides in
+  `tsconfig` for CommonJS compatibility.
+- Updated the `nspasteboard` ignore list and the Jest configuration.
+
+### Fixed
+
+- Fixed the `tsconfig` configuration for TypeScript 6 and removed the deprecated `baseUrl`
+  option.
+- Reverted `moduleResolution` to `node` to preserve CommonJS compatibility.
+- Fixed flaky tests in `src`.
+- Fixed a broken badge in the README.
+
 ## [0.1.9] - 2025-11-10
 
 ### Fixed
@@ -44,7 +69,8 @@ Testing release for the publish workflow.
 - Re-arrange library.
 - Use `jxa-types` package.
 
-[unreleased]: https://github.com/Tatsh/jxa-lib/compare/v0.1.9...HEAD
+[unreleased]: https://github.com/Tatsh/jxa-lib/compare/v0.1.10...HEAD
+[0.1.10]: https://github.com/Tatsh/jxa-lib/compare/v0.1.9...v0.1.10
 [0.1.9]: https://github.com/Tatsh/jxa-lib/compare/v0.1.8...v0.1.9
 [0.1.8]: https://github.com/Tatsh/jxa-lib/compare/v0.1.7...v0.1.8
 [0.1.7]: https://github.com/Tatsh/jxa-lib/compare/v0.1.6...v0.1.7
