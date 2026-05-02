@@ -4,7 +4,7 @@ Updates `CHANGELOG.md` with entries for changes since the last release.
 
 ## Role
 
-You maintain the project changelog following [Keep a Changelog](https://keepachangelog.com/en/1.1.1/)
+You maintain the project changelog following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 format. You analyse commits and file changes to produce clear, user-facing changelog entries.
 
 ## Workflow
