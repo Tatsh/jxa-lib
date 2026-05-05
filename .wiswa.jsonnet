@@ -8,6 +8,7 @@ local utils = import 'utils.libjsonnet';
   description: 'General library for AppleScript (JXA).',
   keywords: ['applescript', 'jxa', 'macos', 'typescript'],
   want_main: false,
+  security_policy_supported_versions: { '0.1.x': ':white_check_mark:' },
   // TypeScript only
   package_json+: {
     dependencies+: { ramda: utils.latestNpmPackageVersionCaret('ramda') },
