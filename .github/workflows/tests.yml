@@ -12,7 +12,7 @@ jobs:
       - name: 'Install dependencies (Yarn)'
         run: 'yarn'
       - name: 'Tests'
-        run: 'yarn jest --coverage'
+        run: 'yarn vitest run --coverage'
       - if: "github.event_name != 'pull_request'"
         name: 'Coveralls'
         uses: 'coverallsapp/github-action@v2.3.7'
