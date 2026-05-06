@@ -13,30 +13,25 @@ local utils = import 'utils.libjsonnet';
   package_json+: {
     dependencies+: { ramda: utils.latestNpmPackageVersionCaret('ramda') },
     devDependencies+: {
-      // Pin to 5.x until ts-jest and typescript-eslint support TypeScript 6
-      typescript: '^5.9.3',
       '@types/ramda': utils.latestNpmPackageVersionCaret('@types/ramda'),
+      '@vitest/coverage-v8': utils.latestNpmPackageVersionCaret('@vitest/coverage-v8'),
       globals: utils.latestNpmPackageVersionCaret('globals'),
       'jxa-types': utils.latestNpmPackageVersionCaret('jxa-types'),
+      vitest: utils.latestNpmPackageVersionCaret('vitest'),
+      // Drop the Jest stack now that Vitest is the test runner.
+      '@types/jest': null,
+      jest: null,
+      'ts-jest': null,
     },
     files+: ['dist/**/*.js', 'dist/**/*.d.ts'],
     main: 'dist/index.js',
+    scripts+: { test: 'vitest run' },
     types: './dist/',
   },
   eslint+: [{ rules: { '@typescript-eslint/no-unused-expressions': 'off' } }],
-  github+: {
-    // Keep TypeScript on 5.x until ts-jest and typescript-eslint support TypeScript 6
-    dependabot+: {
-      updates: [super.updates[0] {
-        ignore: [{ 'dependency-name': 'typescript', versions: ['>=6.0.0'] }],
-      }] + super.updates[1:],
-    },
-  },
   tsconfig+: {
     compilerOptions+: {
-      // Pin to commonjs/node until ts-jest and typescript-eslint support TypeScript 6
       module: 'commonjs',
-      moduleResolution: 'node',
       declaration: true,
       emitDecoratorMetadata: true,
       lib: ['es2018'],

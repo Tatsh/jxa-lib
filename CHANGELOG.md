@@ -9,6 +9,15 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Switched the test runner from Jest to Vitest. Removed `jest`, `ts-jest`, and `@types/jest`;
+  added `vitest` and `@vitest/coverage-v8`. Test files now import from `vitest` (`vi`, `Mock`)
+  instead of `@jest/globals`.
+- Upgraded TypeScript to the latest 6.x. Removed the temporary 5.x pin from `.wiswa.jsonnet`,
+  the `moduleResolution: 'node'` override in `tsconfig`, and the matching Dependabot ignore
+  rule.
+
 ## [0.1.10] - 2026-05-02
 
 ### Changed

@@ -1,10 +1,10 @@
-import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { afterEach, beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { applicationWithStandardAdditions, chr, ord, propExecEq, throwErrorIfNotNil } from './util';
 
 describe('throwErrorIfNotNil', () => {
   it('should throw an Error if NSError is not nil', () => {
     const error = {
-      isNil: jest.fn().mockReturnValue(false),
+      isNil: vi.fn().mockReturnValue(false),
       localizedDescription: { js: 'Some error' },
     };
     expect(() => throwErrorIfNotNil(error as unknown as NSError)).toThrow('Some error');
@@ -12,7 +12,7 @@ describe('throwErrorIfNotNil', () => {
 
   it('should not throw if NSError is nil', () => {
     const error = {
-      isNil: jest.fn().mockReturnValue(true),
+      isNil: vi.fn().mockReturnValue(true),
       localizedDescription: { js: 'Should not throw' },
     };
     expect(() => throwErrorIfNotNil(error as unknown as NSError)).not.toThrow();
@@ -27,7 +27,7 @@ describe('applicationWithStandardAdditions', () => {
   const originalApplication = global.Application;
 
   beforeEach(() => {
-    global.Application = jest.fn((spec: unknown) => ({
+    global.Application = vi.fn((spec: unknown) => ({
       spec,
     })) as unknown as typeof global.Application;
   });
@@ -38,14 +38,14 @@ describe('applicationWithStandardAdditions', () => {
 
   it('should set includeStandardAdditions to true', () => {
     const app = { includeStandardAdditions: false };
-    (global.Application as jest.Mock).mockReturnValue(app);
+    (global.Application as Mock).mockReturnValue(app);
     const result = applicationWithStandardAdditions('Finder');
     expect(result.includeStandardAdditions).toBe(true);
   });
 
   it('should pass spec to Application', () => {
     const app = { includeStandardAdditions: false };
-    (global.Application as jest.Mock).mockReturnValue(app);
+    (global.Application as Mock).mockReturnValue(app);
     applicationWithStandardAdditions('Music');
     expect(global.Application).toHaveBeenCalledWith('Music');
   });
@@ -68,7 +68,7 @@ describe('ord', () => {
 describe('propExecEq', () => {
   it('should call the property as a function and compare with value', () => {
     const obj = {
-      foo: jest.fn().mockReturnValue(42),
+      foo: vi.fn().mockReturnValue(42),
     };
     const fn = propExecEq('foo', 42);
     const result = fn(obj as { foo: (arg?: unknown) => number });
@@ -78,7 +78,7 @@ describe('propExecEq', () => {
 
   it('should return false when property result does not equal value', () => {
     const obj = {
-      foo: jest.fn().mockReturnValue(99),
+      foo: vi.fn().mockReturnValue(99),
     };
     const fn = propExecEq('foo', 42);
     const result = fn(obj as { foo: (arg?: unknown) => number });
@@ -87,7 +87,7 @@ describe('propExecEq', () => {
 
   it('should pass args to the property function', () => {
     const obj = {
-      bar: jest.fn().mockReturnValue('baz'),
+      bar: vi.fn().mockReturnValue('baz'),
     };
     const fn = propExecEq('bar', 'baz');
     const args = { x: 1 };

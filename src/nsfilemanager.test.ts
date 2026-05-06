@@ -1,32 +1,34 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 
-global.ObjC = {
-  ['import']: jest.fn(),
-  deepUnwrap: jest.fn(),
-  unwrap: jest.fn(),
-} as unknown as typeof global.ObjC;
+const { mockNSFileManager, mockNSHomeDirectory } = vi.hoisted(() => {
+  const mockNSFileManager = {
+    attributesOfItemAtPathError: vi.fn(),
+    contentsOfDirectoryAtPathError: vi.fn(),
+    fileExistsAtPath: vi.fn(),
+  };
+  const mockNSHomeDirectory = vi.fn();
+  global.ObjC = {
+    ['import']: vi.fn(),
+    deepUnwrap: vi.fn(),
+    unwrap: vi.fn(),
+  } as unknown as typeof global.ObjC;
+  global.$ = {
+    NSFileManager: { defaultManager: mockNSFileManager },
+    NSHomeDirectory: mockNSHomeDirectory,
+  } as unknown as typeof global.$;
+  global.Ref = ((_?: unknown) => ({})) as typeof global.Ref;
+  return { mockNSFileManager, mockNSHomeDirectory };
+});
+
 import { FileManager, FileAttributeKey, FileType } from './nsfilemanager';
-
-const mockNSFileManager = {
-  attributesOfItemAtPathError: jest.fn(),
-  contentsOfDirectoryAtPathError: jest.fn(),
-  fileExistsAtPath: jest.fn(),
-};
-const mockNSHomeDirectory = jest.fn();
-
-global.$ = {
-  NSFileManager: { defaultManager: mockNSFileManager },
-  NSHomeDirectory: mockNSHomeDirectory,
-} as unknown as typeof global.$;
-global.Ref = ((_?: unknown) => ({})) as typeof global.Ref;
 
 describe('FileManager', () => {
   let fm: FileManager;
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    (global.ObjC.deepUnwrap as jest.Mock).mockImplementation((v: unknown) => v);
-    (global.ObjC.unwrap as jest.Mock).mockImplementation((v: unknown) => v);
+    vi.clearAllMocks();
+    (global.ObjC.deepUnwrap as Mock).mockImplementation((v: unknown) => v);
+    (global.ObjC.unwrap as Mock).mockImplementation((v: unknown) => v);
     fm = new FileManager();
   });
 
@@ -93,7 +95,7 @@ describe('FileManager', () => {
   describe('homeDirectory', () => {
     it('returns unwrapped home directory', () => {
       mockNSHomeDirectory.mockReturnValue('homedir');
-      (global.ObjC.unwrap as jest.Mock).mockReturnValue('homedir');
+      (global.ObjC.unwrap as Mock).mockReturnValue('homedir');
       expect(fm.homeDirectory()).toBe('homedir');
       expect(global.ObjC.unwrap).toHaveBeenCalledWith('homedir');
     });

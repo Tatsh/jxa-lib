@@ -1,39 +1,39 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mockObjC = {
-  import: jest.fn(),
-  wrap: jest.fn((x) => x),
-  unwrap: jest.fn((x) => x),
-};
-const mockNSAppleEventDescriptor = {
-  nullDescriptor: {},
-};
-const mockDelay = jest.fn();
-global.ObjC = mockObjC as unknown as typeof global.ObjC;
-const mockNSWorkspace = {
-  getInfoForFileApplicationType: jest.fn(),
-  isFilePackageAtPath: jest.fn(),
-  iconForFile: jest.fn(),
-  iconForFiles: jest.fn(),
-  runningApplications: [] as unknown[],
-  launchAppWithBundleIdentifierOptionsAdditionalEventParamDescriptorLaunchIdentifier: jest.fn(),
-};
-global.$ = {
-  NSWorkspace: {
-    sharedWorkspace: mockNSWorkspace,
-  },
-  NSAppleEventDescriptor: mockNSAppleEventDescriptor,
-  NSWorkspaceLaunchAsync: 1 << 0,
-  NSWorkspaceLaunchAndHide: 1 << 1,
-} as unknown as typeof global.$;
-global.delay = mockDelay as unknown as typeof global.delay;
+const { mockDelay, mockNSAppleEventDescriptor, mockNSWorkspace, mockObjC } = vi.hoisted(() => {
+  const mockObjC = {
+    import: vi.fn(),
+    wrap: vi.fn((x) => x),
+    unwrap: vi.fn((x) => x),
+  };
+  const mockNSAppleEventDescriptor = { nullDescriptor: {} };
+  const mockDelay = vi.fn();
+  const mockNSWorkspace = {
+    getInfoForFileApplicationType: vi.fn(),
+    isFilePackageAtPath: vi.fn(),
+    iconForFile: vi.fn(),
+    iconForFiles: vi.fn(),
+    runningApplications: [] as unknown[],
+    launchAppWithBundleIdentifierOptionsAdditionalEventParamDescriptorLaunchIdentifier: vi.fn(),
+  };
+  global.ObjC = mockObjC as unknown as typeof global.ObjC;
+  global.$ = {
+    NSWorkspace: { sharedWorkspace: mockNSWorkspace },
+    NSAppleEventDescriptor: mockNSAppleEventDescriptor,
+    NSWorkspaceLaunchAsync: 1 << 0,
+    NSWorkspaceLaunchAndHide: 1 << 1,
+  } as unknown as typeof global.$;
+  global.delay = mockDelay as unknown as typeof global.delay;
+  return { mockDelay, mockNSAppleEventDescriptor, mockNSWorkspace, mockObjC };
+});
+
 import { Workspace } from './nsworkspace';
 
 describe('Workspace', () => {
   let workspace: Workspace;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     workspace = Workspace.shared;
   });
 
@@ -81,7 +81,7 @@ describe('Workspace', () => {
     it('returns true if app with bundleId is running', () => {
       const mockApp = {
         bundleIdentifier: {
-          isEqualToString: jest.fn((id) => id === 'com.apple.Finder'),
+          isEqualToString: vi.fn((id) => id === 'com.apple.Finder'),
         },
       };
       mockNSWorkspace.runningApplications = [mockApp];
@@ -92,7 +92,7 @@ describe('Workspace', () => {
     it('returns false if app with bundleId is not running', () => {
       const mockApp = {
         bundleIdentifier: {
-          isEqualToString: jest.fn(() => false),
+          isEqualToString: vi.fn(() => false),
         },
       };
       mockNSWorkspace.runningApplications = [mockApp];

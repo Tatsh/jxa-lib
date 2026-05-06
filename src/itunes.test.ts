@@ -1,39 +1,39 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 import { ItunesHelper } from './itunes';
 
-const mockSources = jest.fn();
-const mockLibraryPlaylists = jest.fn();
-const mockFileTracks = jest.fn();
-const mockTracks = jest.fn();
-const mockAdd = jest.fn();
-const mockRefresh = jest.fn();
-const mockCurrentTrack = jest.fn();
-const mockActivate = jest.fn();
-const mockFinderExists = jest.fn();
-const mockMenuItemClick = jest.fn();
+const mockSources = vi.fn();
+const mockLibraryPlaylists = vi.fn();
+const mockFileTracks = vi.fn();
+const mockTracks = vi.fn();
+const mockAdd = vi.fn();
+const mockRefresh = vi.fn();
+const mockCurrentTrack = vi.fn();
+const mockActivate = vi.fn();
+const mockFinderExists = vi.fn();
+const mockMenuItemClick = vi.fn();
 
 const mockDevicesMenuItems = [
-  { title: jest.fn(() => 'Sync iPhone'), enabled: jest.fn(() => true), click: mockMenuItemClick },
-  { title: jest.fn(() => 'Back Up'), enabled: jest.fn(() => true), click: mockMenuItemClick },
+  { title: vi.fn(() => 'Sync iPhone'), enabled: vi.fn(() => true), click: mockMenuItemClick },
+  { title: vi.fn(() => 'Back Up'), enabled: vi.fn(() => true), click: mockMenuItemClick },
   {
-    title: jest.fn(() => 'Transfer Purchases from iPhone'),
-    enabled: jest.fn(() => true),
+    title: vi.fn(() => 'Transfer Purchases from iPhone'),
+    enabled: vi.fn(() => true),
     click: mockMenuItemClick,
   },
 ];
 
-jest.mock('ramda/es/filter', () =>
-  jest.fn((fn, arr) =>
+vi.mock('ramda/es/filter', () => ({
+  default: vi.fn((fn, arr) =>
     (arr as unknown[]).filter(fn as (value: unknown, index: number, array: unknown[]) => unknown),
   ),
-);
+}));
 
-jest.mock('./util', () => ({
+vi.mock('./util', () => ({
   propExecEq: (prop: string, value: string) => (obj: Record<string, () => string>) =>
     obj[prop]() === value,
 }));
 
-(global as unknown as { Application: (name: string) => unknown }).Application = jest.fn(
+(global as unknown as { Application: (name: string) => unknown }).Application = vi.fn(
   (name: string) => {
     if (name === 'Finder') {
       return { exists: mockFinderExists };
@@ -41,18 +41,18 @@ jest.mock('./util', () => ({
     if (name === 'System Events') {
       return {
         processes: {
-          byName: jest.fn(() => ({
+          byName: vi.fn(() => ({
             menuBars: [
               {
                 menuBarItems: {
-                  byName: jest.fn(() => ({
+                  byName: vi.fn(() => ({
                     menus: [
                       {
                         menuItems: {
-                          byName: jest.fn(() => ({
+                          byName: vi.fn(() => ({
                             menus: [
                               {
-                                menuItems: jest.fn(() => mockDevicesMenuItems),
+                                menuItems: vi.fn(() => mockDevicesMenuItems),
                               },
                             ],
                           })),
@@ -73,27 +73,27 @@ jest.mock('./util', () => ({
 
 describe('ItunesHelper', () => {
   interface MockItunesApp {
-    sources: jest.Mock;
-    add: jest.Mock;
-    refresh: jest.Mock;
-    currentTrack: jest.Mock;
-    activate: jest.Mock;
+    sources: Mock;
+    add: Mock;
+    refresh: Mock;
+    currentTrack: Mock;
+    activate: Mock;
   }
   let itunesApp: MockItunesApp;
   let helper: ItunesHelper;
-  let libraryPlaylist: { fileTracks: jest.Mock; tracks: jest.Mock };
+  let libraryPlaylist: { fileTracks: Mock; tracks: Mock };
   let fileTrack: {
-    name: jest.Mock;
-    location: jest.Mock;
-    delete: jest.Mock;
+    name: Mock;
+    location: Mock;
+    delete: Mock;
   };
-  let finderFolder: { entireContents: jest.Mock } | undefined;
+  let finderFolder: { entireContents: Mock } | undefined;
 
   beforeEach(() => {
     fileTrack = {
-      name: jest.fn(() => 'Track 1'),
-      location: jest.fn(() => '/Users/test/Music/Track1.mp3'),
-      delete: jest.fn(),
+      name: vi.fn(() => 'Track 1'),
+      location: vi.fn(() => '/Users/test/Music/Track1.mp3'),
+      delete: vi.fn(),
     };
     libraryPlaylist = {
       fileTracks: mockFileTracks,
@@ -104,7 +104,7 @@ describe('ItunesHelper', () => {
     mockLibraryPlaylists.mockReturnValue([libraryPlaylist]);
     mockSources.mockReturnValue([
       {
-        name: jest.fn(() => 'Library'),
+        name: vi.fn(() => 'Library'),
         libraryPlaylists: mockLibraryPlaylists,
       },
     ]);
@@ -125,7 +125,7 @@ describe('ItunesHelper', () => {
 
   describe('clearOrphanedTracks', () => {
     beforeEach(() => {
-      global.$ = { printf: jest.fn() } as unknown as typeof global.$;
+      global.$ = { printf: vi.fn() } as unknown as typeof global.$;
     });
     it('removes tracks with missing location', () => {
       fileTrack.location.mockImplementationOnce(() => {
@@ -154,9 +154,7 @@ describe('ItunesHelper', () => {
   describe('addTracksAtPath', () => {
     it('adds tracks and refreshes them', () => {
       finderFolder = {
-        entireContents: jest.fn(() => [
-          { url: jest.fn(() => 'file:///Users/test/Music/Track1.mp3') },
-        ]),
+        entireContents: vi.fn(() => [{ url: vi.fn(() => 'file:///Users/test/Music/Track1.mp3') }]),
       };
       helper.addTracksAtPath(finderFolder as unknown as FinderFolder);
       expect(mockAdd).toHaveBeenCalledWith(['/Users/test/Music/Track1.mp3'], {
@@ -180,7 +178,7 @@ describe('ItunesHelper', () => {
 
     it('returns undefined if no Library source', () => {
       helper = new ItunesHelper(itunesApp as unknown as ItunesApplication);
-      mockSources.mockReturnValue([{ name: jest.fn(() => 'Other') }]);
+      mockSources.mockReturnValue([{ name: vi.fn(() => 'Other') }]);
       expect(helper.library).toBeUndefined();
     });
   });

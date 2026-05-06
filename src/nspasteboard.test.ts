@@ -1,31 +1,33 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 
-global.ObjC = {
-  ['import']: jest.fn(),
-  deepUnwrap: jest.fn(),
-  unwrap: jest.fn(),
-} as unknown as typeof global.ObjC;
-const mockSetStringForType = jest.fn();
-const mockClearContents = jest.fn();
-const mockPasteboardItems = [{ foo: 'bar' }, { baz: 'qux' }];
-const mockGeneralPasteboard = {
-  setStringForType: mockSetStringForType,
-  clearContents: mockClearContents,
-  pasteboardItems: mockPasteboardItems,
-};
-global.$ = {
-  NSPasteboardTypeString: 'public.utf8-plain-text',
-  NSPasteboard: {
-    generalPasteboard: mockGeneralPasteboard,
-  },
-} as unknown as typeof global.$;
+const { mockPasteboardItems, mockSetStringForType } = vi.hoisted(() => {
+  const mockSetStringForType = vi.fn();
+  const mockClearContents = vi.fn();
+  const mockPasteboardItems = [{ foo: 'bar' }, { baz: 'qux' }];
+  const mockGeneralPasteboard = {
+    setStringForType: mockSetStringForType,
+    clearContents: mockClearContents,
+    pasteboardItems: mockPasteboardItems,
+  };
+  global.ObjC = {
+    ['import']: vi.fn(),
+    deepUnwrap: vi.fn(),
+    unwrap: vi.fn(),
+  } as unknown as typeof global.ObjC;
+  global.$ = {
+    NSPasteboardTypeString: 'public.utf8-plain-text',
+    NSPasteboard: { generalPasteboard: mockGeneralPasteboard },
+  } as unknown as typeof global.$;
+  return { mockPasteboardItems, mockSetStringForType };
+});
+
 import { GeneralPasteboard, PasteboardTypeString } from './nspasteboard';
 
 describe('GeneralPasteboard', () => {
   let pasteboard: GeneralPasteboard;
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     pasteboard = new GeneralPasteboard();
   });
 
@@ -44,14 +46,14 @@ describe('GeneralPasteboard', () => {
   });
 
   it('should get pasteboard item at index 0 by default', () => {
-    (global.ObjC.unwrap as jest.Mock).mockReturnValue(mockPasteboardItems);
+    (global.ObjC.unwrap as Mock).mockReturnValue(mockPasteboardItems);
     const item = pasteboard.get();
     expect(global.ObjC.unwrap).toHaveBeenCalledWith(mockPasteboardItems);
     expect(item).toEqual(mockPasteboardItems[0]);
   });
 
   it('should get pasteboard item at given index', () => {
-    (global.ObjC.unwrap as jest.Mock).mockReturnValue(mockPasteboardItems);
+    (global.ObjC.unwrap as Mock).mockReturnValue(mockPasteboardItems);
     const item = pasteboard.get(1);
     expect(item).toEqual(mockPasteboardItems[1]);
   });

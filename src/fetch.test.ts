@@ -1,29 +1,25 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-global.ObjC = {
-  ['import']: jest.fn(),
-} as unknown as typeof global.ObjC;
+const { mockDataTaskWithURLCompletionHandler, mockNSURL, mockResume } = vi.hoisted(() => {
+  const mockResume = vi.fn();
+  const mockDataTaskWithURLCompletionHandler = vi.fn();
+  const mockNSURL = { URLWithString: vi.fn() };
+  global.ObjC = {
+    ['import']: vi.fn(),
+  } as unknown as typeof global.ObjC;
+  global.$ = {
+    NSURLSession: {
+      sharedSession: { dataTaskWithURLCompletionHandler: mockDataTaskWithURLCompletionHandler },
+    },
+    NSURL: mockNSURL,
+  } as unknown as typeof global.$;
+  return { mockDataTaskWithURLCompletionHandler, mockNSURL, mockResume };
+});
+
 import { fetch } from './fetch';
 
-const mockResume = jest.fn();
-const mockDataTaskWithURLCompletionHandler = jest.fn();
-const mockSharedSession = {
-  dataTaskWithURLCompletionHandler: mockDataTaskWithURLCompletionHandler,
-};
-const mockNSURLSession = {
-  sharedSession: mockSharedSession,
-};
-const mockNSURL = {
-  URLWithString: jest.fn(),
-};
-
-global.$ = {
-  NSURLSession: mockNSURLSession,
-  NSURL: mockNSURL,
-} as unknown as typeof global.$;
-
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   mockNSURL.URLWithString.mockImplementation((url: string) => `NSURL:${url}`);
 });
 

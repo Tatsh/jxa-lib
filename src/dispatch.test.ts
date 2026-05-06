@@ -1,20 +1,24 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-global.ObjC = {
-  ['import']: jest.fn(),
-} as unknown as typeof global.ObjC;
-const semaphoreMock = Symbol('semaphore');
-global.$ = {
-  DISPATCH_TIME_FOREVER: 999,
-  dispatch_semaphore_create: jest.fn(() => semaphoreMock),
-  dispatch_semaphore_signal: jest.fn(),
-  dispatch_semaphore_wait: jest.fn(),
-} as unknown as typeof global.$;
+const { semaphoreMock } = vi.hoisted(() => {
+  const semaphoreMock = Symbol('semaphore');
+  global.ObjC = {
+    ['import']: vi.fn(),
+  } as unknown as typeof global.ObjC;
+  global.$ = {
+    DISPATCH_TIME_FOREVER: 999,
+    dispatch_semaphore_create: vi.fn(() => semaphoreMock),
+    dispatch_semaphore_signal: vi.fn(),
+    dispatch_semaphore_wait: vi.fn(),
+  } as unknown as typeof global.$;
+  return { semaphoreMock };
+});
+
 import { DispatchSemaphore } from './dispatch';
 
 describe('DispatchSemaphore', () => {
   beforeEach(() => {
-    jest.resetAllMocks;
+    vi.resetAllMocks;
   });
 
   it('should create a semaphore with the given initial value', () => {

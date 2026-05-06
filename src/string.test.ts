@@ -1,27 +1,30 @@
-import { beforeEach, describe, expect, it, jest } from '@jest/globals';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const mockNSData = {};
-const mockNSString = {
-  alloc: {
-    initWithDataEncoding: jest.fn(),
-  },
-};
-const mockObjCUnwrap = jest.fn();
+const { mockNSData, mockNSString, mockObjCUnwrap } = vi.hoisted(() => {
+  const mockNSData = {};
+  const mockNSString = {
+    alloc: {
+      initWithDataEncoding: vi.fn(),
+    },
+  };
+  const mockObjCUnwrap = vi.fn();
+  global.ObjC = {
+    import: vi.fn(),
+    unwrap: mockObjCUnwrap,
+  } as unknown as typeof global.ObjC;
+  global.$ = {
+    NSString: mockNSString,
+    NSASCIIStringEncoding: 1,
+    NSUTF8StringEncoding: 4,
+  } as unknown as typeof global.$;
+  return { mockNSData, mockNSString, mockObjCUnwrap };
+});
 
-global.ObjC = {
-  import: jest.fn(),
-  unwrap: mockObjCUnwrap,
-} as unknown as typeof global.ObjC;
-global.$ = {
-  NSString: mockNSString,
-  NSASCIIStringEncoding: 1,
-  NSUTF8StringEncoding: 4,
-} as unknown as typeof global.$;
 import { stringWithData } from './string';
 
 describe('string.ts', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   describe('stringWithData', () => {
