@@ -2512,7 +2512,7 @@ __metadata:
     cspell: "npm:^10.0.0"
     eslint: "npm:^10.2.1"
     globals: "npm:^17.5.0"
-    jxa-types: "npm:^0.0.8"
+    jxa-types: "npm:^0.0.11"
     markdownlint-cli2: "npm:^0.22.1"
     prettier: "npm:^3.8.3"
     prettier-plugin-ini: "npm:^1.3.0"
@@ -2527,10 +2527,10 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"jxa-types@npm:^0.0.8":
-  version: 0.0.8
-  resolution: "jxa-types@npm:0.0.8"
-  checksum: 10c0/af735c2e48af5089e2f1eb2a9b517d0e548bdea37686e7a294336184eb704c8c1ac5e887c9911a638a6bfec94ffa8183803b4706d406f3caa910333d548bf138
+"jxa-types@npm:^0.0.11":
+  version: 0.0.11
+  resolution: "jxa-types@npm:0.0.11"
+  checksum: 10c0/e700bda5c4fc6e428c1cc81d266fea57bdf44b57a22867ebf8688e8787fb40f76e2c5b0b783f7005df8442b450cfe3b08fd111512750888117543730a6dcebb0
   languageName: node
   linkType: hard
 
