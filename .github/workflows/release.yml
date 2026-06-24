@@ -2,7 +2,7 @@ jobs:
   publish-release:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v6.0.2'
+      - uses: 'actions/checkout@v7'
       - env:
           HEAD_BRANCH: '${{ github.event.workflow_run.head_branch }}'
           TRIGGER_CONCLUSION: '${{ github.event.workflow_run.conclusion }}'
