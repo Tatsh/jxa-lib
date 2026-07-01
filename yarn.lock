@@ -1194,21 +1194,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^25.6.0":
-  version: 25.9.2
-  resolution: "@types/node@npm:25.9.2"
+"@types/node@npm:^26.0.0":
+  version: 26.0.0
+  resolution: "@types/node@npm:26.0.0"
   dependencies:
-    undici-types: "npm:>=7.24.0 <7.24.7"
-  checksum: 10c0/f14c0d56361febb985eccc45cf0834ee6e2f07c4389a636f3e1a55ebde320077a80bface18c9afd3092f5fa295925502c1a9d55f805efa813f634aa9c941cbac
+    undici-types: "npm:~8.3.0"
+  checksum: 10c0/f36e21634fd8e8ded162ca486508bd8bb229d398a8d5541f6d8c1255968d4464e53327a77f403b216ef98e3b6f6956882eef83e4857d4bc2be9569dd55d37aae
   languageName: node
   linkType: hard
 
-"@types/ramda@npm:^0.31.1":
-  version: 0.31.1
-  resolution: "@types/ramda@npm:0.31.1"
+"@types/ramda@npm:^0.32.0":
+  version: 0.32.0
+  resolution: "@types/ramda@npm:0.32.0"
   dependencies:
-    types-ramda: "npm:^0.31.0"
-  checksum: 10c0/60c11e66730e2d1c96d480a9e4474be0ae82a84700a34937032c1e46147b8625e1a977361c37ca65e8b29d4368dc942354c7942aebda91b0fd416beac87646d6
+    types-ramda: "npm:^0.32.0"
+  checksum: 10c0/3787a771abc3ea1372577a4507988a850c917e46ba2adb565a42ba55bf78ac212ce992dba9df9bb18de1adacc9eae33323940d7ae3cd688469cc3523e47ce0b4
   languageName: node
   linkType: hard
 
@@ -2506,8 +2506,8 @@ __metadata:
   dependencies:
     "@eslint/js": "npm:^10.0.1"
     "@prettier/plugin-xml": "npm:^3.4.2"
-    "@types/node": "npm:^25.6.0"
-    "@types/ramda": "npm:^0.31.1"
+    "@types/node": "npm:^26.0.0"
+    "@types/ramda": "npm:^0.32.0"
     "@vitest/coverage-v8": "npm:^4.1.5"
     cspell: "npm:^10.0.0"
     eslint: "npm:^10.2.1"
@@ -3724,12 +3724,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"types-ramda@npm:^0.31.0":
-  version: 0.31.0
-  resolution: "types-ramda@npm:0.31.0"
+"types-ramda@npm:^0.32.0":
+  version: 0.32.0
+  resolution: "types-ramda@npm:0.32.0"
   dependencies:
     ts-toolbelt: "npm:^9.6.0"
-  checksum: 10c0/fcdd4673fb9a08f82e5f72071200c662cdeb5b785556186645af0c43f9ab999de64c110c4f2a83b508aae985f014839799d2e3c552473543e8458733e6d0174a
+  checksum: 10c0/b6bfc73ffef1b2e1b07bd741ef187ee40b8c4fdd2f5392c1f17acc6ac2ebb34f6bab13b681de05f3594347bd3f8009f222002fc2752f54ae33e648dc61713431
   languageName: node
   linkType: hard
 
@@ -3775,10 +3775,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:>=7.24.0 <7.24.7":
-  version: 7.24.6
-  resolution: "undici-types@npm:7.24.6"
-  checksum: 10c0/d9cd8befb643ac904615c280a095ba4240531f6bb4a5e75a22a7483630ca8d3f1016d2ab6ace6ceda1f63b3a2db2fe037fafe121d6917a0187573aa548ff78ca
+"undici-types@npm:~8.3.0":
+  version: 8.3.0
+  resolution: "undici-types@npm:8.3.0"
+  checksum: 10c0/c8aa7e2fbebfce519654dafadc0ece59be888d2ccaf180fb4495da875e7b536d2456345c384069c7e6f3e9c9ab7435f074957da306f142343eee86ff8048855a
   languageName: node
   linkType: hard
 

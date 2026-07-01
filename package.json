@@ -46,8 +46,8 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@prettier/plugin-xml": "^3.4.2",
-    "@types/node": "^25.6.0",
-    "@types/ramda": "^0.31.1",
+    "@types/node": "^26.0.0",
+    "@types/ramda": "^0.32.0",
     "@vitest/coverage-v8": "^4.1.5",
     "cspell": "^10.0.0",
     "eslint": "^10.2.1",
