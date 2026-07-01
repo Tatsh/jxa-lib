@@ -84,7 +84,7 @@ jobs:
       - name: 'Update npm'
         run: 'npm install --global npm@latest'
       - name: 'Yarn cache'
-        uses: 'actions/cache@v6.0.0'
+        uses: 'actions/cache@v6.1.0'
         with:
           key: "${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}"
           path: '~/.yarn/berry'
