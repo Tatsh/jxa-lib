@@ -95,7 +95,7 @@ jobs:
         run: 'yarn tsc'
       - name: 'Publish to NPM'
         run: 'yarn npm publish'
-      - uses: 'softprops/action-gh-release@v3.0.2'
+      - uses: 'softprops/action-gh-release@v3.0.3'
         with:
           draft: true
 name: 'Publish'
