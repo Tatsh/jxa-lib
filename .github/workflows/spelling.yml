@@ -4,7 +4,7 @@ jobs:
     steps:
       - uses: 'actions/checkout@v7'
       - name: 'Check spelling'
-        uses: 'streetsidesoftware/cspell-action@v9.0.1'
+        uses: 'streetsidesoftware/cspell-action@v9.1.0'
         with:
           check_dot_files: true
           suggestions: true
