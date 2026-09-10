@@ -15,17 +15,21 @@ and use each product's own mechanics for attaching repo context where needed.
 
 ## Rules (`.claude/rules/`)
 
-| File                                    | Scope                    |
-| --------------------------------------- | ------------------------ |
-| [general](.claude/rules/general.md)     | Project-wide conventions |
-| [json-yaml](.claude/rules/json-yaml.md) | JSON and YAML files      |
-| [toml-ini](.claude/rules/toml-ini.md)   | TOML and INI files       |
-| [markdown](.claude/rules/markdown.md)   | Markdown files           |
+| File                                    | Scope                                                |
+| --------------------------------------- | ---------------------------------------------------- |
+| [general](.claude/rules/general.md)     | Project-wide conventions                             |
+| [json-yaml](.claude/rules/json-yaml.md) | JSON and YAML files                                  |
+| [toml-ini](.claude/rules/toml-ini.md)   | TOML and INI files                                   |
+| [markdown](.claude/rules/markdown.md)   | Markdown files                                       |
+| [prose](.claude/rules/prose.md)         | Prose in Markdown, comments, docstrings, and strings |
 
 ## Skills (`.claude/skills/`)
 
-Skills are folders with a `SKILL.md` file (for example [ci](.claude/skills/ci/SKILL.md) when
-present).
+Skills are folders with a `SKILL.md` file (for example [ci](.claude/skills/ci/SKILL.md) or
+[make-release](.claude/skills/make-release/SKILL.md) when present). The `make-release` skill drives
+the changelog, version bump, and push. The
+[prose-lint](.claude/skills/prose-lint/SKILL.md) skill audits prose against
+[.claude/rules/prose.md](.claude/rules/prose.md) and applies the fixes.
 
 ## Agents (`.claude/agents/`)
 
@@ -38,5 +42,4 @@ present).
 | [changelog](.claude/agents/changelog.md)                     | Update CHANGELOG.md with entries since last release.        |
 | [copy-editor](.claude/agents/copy-editor.md)                 | Fix prose style, grammar, and spelling in comments/strings. |
 | [regen](.claude/agents/regen.md)                             | Run Wiswa, post-process, verify, and commit.                |
-| [release](.claude/agents/release.md)                         | Changelog, version bump, push.                              |
 | [wiswa-sync](.claude/agents/wiswa-sync.md)                   | Reflect managed file changes back to `.wiswa.jsonnet`.      |

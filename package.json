@@ -1,8 +1,8 @@
 {
   "_wiswa": {
-    "commandLine": "wiswa",
-    "lastRun": "2026-05-02T19:56:05Z",
-    "version": "398974a"
+    "commandLine": "wiswa -d",
+    "lastRun": "2026-09-10T17:26:10Z",
+    "version": "26daa23"
   },
   "contributors": ["Andrew Udvare <audvare@gmail.com>"],
   "cspell": {
@@ -46,22 +46,23 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@prettier/plugin-xml": "^3.4.2",
-    "@types/node": "^26.0.0",
+    "@types/node": "^26.4.1",
     "@types/ramda": "^0.32.0",
-    "@vitest/coverage-v8": "^4.1.5",
-    "cspell": "^10.0.0",
-    "eslint": "^10.2.1",
-    "globals": "^17.5.0",
-    "jxa-types": "^0.0.11",
-    "markdownlint-cli2": "^0.22.1",
-    "prettier": "^3.8.3",
+    "@vitest/coverage-v8": "^5.0.0",
+    "cspell": "^10.2.1",
+    "eslint": "^10.9.1",
+    "globals": "^17.12.0",
+    "jxa-types": "^0.0.12",
+    "markdownlint-cli2": "^0.23.2",
+    "prettier": "^3.9.6",
     "prettier-plugin-ini": "^1.3.0",
     "prettier-plugin-sort-json": "^4.2.0",
     "prettier-plugin-toml": "^2.0.6",
     "ts-node": "^10.9.2",
-    "typedoc": "^0.28.19",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.1",
+    "typedoc": "^0.28.20",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "typescript-eslint": "^8.69.0",
+    "vite": "^8.2.2",
     "vitest": "^5.0.0"
   },
   "files": ["LICENSE.txt", "README.md", "dist/**/*.js", "dist/**/*.d.ts"],
@@ -90,7 +91,7 @@
     "showFound": true
   },
   "name": "jxa-lib",
-  "packageManager": "yarn@4.14.1",
+  "packageManager": "yarn@4.18.0",
   "prettier": {
     "endOfLine": "lf",
     "iniSpaceAroundEquals": true,
@@ -115,12 +116,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Tatsh/jxa-lib.git"
+    "url": "git+https://github.com/Tatsh/jxa-lib.git"
   },
   "scripts": {
     "check-formatting": "prettier --check . && markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2",
     "check-spelling": "cspell --no-progress",
-    "dict:update": "rm -f .vscode/dictionary.txt && cspell lint --no-progress --no-summary --unique --words-only | tr '[:upper:]' '[:lower:]' | sort -u > .vscode/dictionary.txt",
+    "dict:update": "rm -f .vscode/dictionary.txt && cspell lint --no-progress --no-summary --unique --words-only | LC_ALL=C tr '[:upper:]' '[:lower:]' | LC_ALL=C sort -u > .vscode/dictionary.txt",
     "format": "prettier --write . && markdownlint-cli2 --config package.json --configPointer /markdownlint-cli2 --fix",
     "qa": "eslint && yarn check-spelling && yarn check-formatting",
     "test": "vitest run"

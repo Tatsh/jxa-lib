@@ -1,0 +1,11 @@
+rules:
+  adhoc-packages:
+    ignore:
+      - 'publish.yml'
+  cache-poisoning:
+    ignore:
+      - 'pyinstaller.yml'
+  dangerous-triggers:
+    ignore:
+      - 'publish-winget.yml'
+      - 'release.yml'

@@ -17,6 +17,8 @@ local utils = import 'utils.libjsonnet';
       '@vitest/coverage-v8': utils.latestNpmPackageVersionCaret('@vitest/coverage-v8'),
       globals: utils.latestNpmPackageVersionCaret('globals'),
       'jxa-types': utils.latestNpmPackageVersionCaret('jxa-types'),
+      // Vitest 5 requires Vite as a peer dependency.
+      vite: utils.latestNpmPackageVersionCaret('vite'),
       vitest: utils.latestNpmPackageVersionCaret('vitest'),
       // Drop the Jest stack now that Vitest is the test runner.
       '@types/jest': null,

@@ -2,9 +2,11 @@ jobs:
   test:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v7'
+      - uses: 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1'
+        with:
+          persist-credentials: false
       - name: 'Yarn cache'
-        uses: 'actions/cache@v6.1.0'
+        uses: 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9'
         with:
           key: "${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}"
           path: '~/.yarn/berry'
@@ -15,7 +17,7 @@ jobs:
         run: 'yarn vitest run --coverage'
       - if: "github.event_name != 'pull_request'"
         name: 'Coveralls'
-        uses: 'coverallsapp/github-action@v2.3.8'
+        uses: 'coverallsapp/github-action@8d6379e14d29928660c4ba802d8e85393440b329'
 name: 'Tests'
 'on':
   pull_request:

@@ -1,8 +1,13 @@
 jobs:
   check:
+    permissions:
+      actions: 'read'
+      contents: 'read'
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v7'
+      - uses: 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1'
+        with:
+          persist-credentials: false
       - env:
           COMMIT_SHA: '${{ github.sha }}'
           GH_TOKEN: '${{ github.token }}'
@@ -68,41 +73,63 @@ jobs:
           echo '::error::Timed out waiting for workflows.'
           exit 1
   publish:
+    environment: 'release'
     needs:
       - 'check'
     permissions:
       contents: 'write'
       id-token: 'write'
+      packages: 'write'
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: 'actions/checkout@v7'
+      - uses: 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1'
+        with:
+          persist-credentials: false
       - name: 'Setup Node.js'
-        uses: 'actions/setup-node@v7.0.0'
+        uses: 'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020'
         with:
           node-version: '24'
+          package-manager-cache: false
           registry-url: 'https://registry.npmjs.org/'
       - name: 'Update npm'
         run: 'npm install --global npm@latest'
-      - name: 'Yarn cache'
-        uses: 'actions/cache@v6.1.0'
-        with:
-          key: "${{ runner.os }}-yarn-${{ hashFiles('yarn.lock', '.yarnrc.yml') }}"
-          path: '~/.yarn/berry'
-          restore-keys: '${{ runner.os }}-yarn'
       - name: 'Install dependencies'
         run: 'yarn'
       - name: 'Build'
         run: 'yarn tsc'
-      - name: 'Publish to NPM'
+      - env:
+          NODE_AUTH_TOKEN: '${{ secrets.NODE_AUTH_TOKEN || secrets.GITHUB_TOKEN }}'
+        name: 'Publish to NPM'
         run: 'yarn npm publish'
-      - uses: 'softprops/action-gh-release@v3.0.3'
-        with:
-          draft: true
+  release-assets:
+    concurrency:
+      group: 'release-assets-${{ github.ref }}'
+      queue: 'max'
+    if: "github.ref_type == 'tag'"
+    needs:
+      - 'publish'
+    permissions:
+      contents: 'write'
+    runs-on: 'ubuntu-latest'
+    steps:
+      - env:
+          GH_REPO: '${{ github.repository }}'
+          GH_TOKEN: '${{ github.token }}'
+        name: 'Create or update draft release'
+        run: |
+          gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1 ||
+            gh release create "$GITHUB_REF_NAME" --draft --notes ''
+          shopt -s nullglob
+          assets=(_release_assets/*)
+          if [ -z "${assets[0]-}" ]; then
+            echo 'No build artifacts to attach.'
+            exit 0
+          fi
+          gh release upload "$GITHUB_REF_NAME" "${assets[@]}" --clobber
+        shell: 'bash'
 name: 'Publish'
 'on':
   push:
     tags:
       - 'v*'
-permissions:
-  contents: 'write'
-  id-token: 'write'
+permissions: {}

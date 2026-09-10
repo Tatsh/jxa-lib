@@ -1,4 +1,7 @@
 *.1
+*.3
+*.7
+*.desktop
 *.j2
 *.jsonnet
 *.kate-swp
@@ -18,7 +21,18 @@
 .shellcheckrc
 /.bash_profile
 /.bashrc
+/.claude/auto-continue.md
 /.claude/commands
+/.claude/hooks
+/.claude/hooks/inject-standing-instructions.sh
+/.claude/hooks/log-stop-failure.sh
+/.claude/hooks/remind-on-prompt.sh
+/.claude/quota-blocked.json
+/.claude/session-recover.js
+/.claude/settings.example.json
+/.claude/standing-instructions.md
+/.claude/statusline-quota-cache.sh
+/.claude/stop-failure-events.jsonl
 /.gitconfig
 /.gitmodules
 /.idea
@@ -30,7 +44,9 @@
 /.yarn/install-state.gz
 /.zprofile
 /.zshrc
+/HANDOFF.md
 /build/
 /dist/
+/session-recover.yaml
 node_modules/
 pylock*.toml
