@@ -79,7 +79,7 @@ export class ItunesHelper {
 
   deleteOrphanedTracks(): FileTrack[] {
     const ret: FileTrack[] = [];
-    for (const track of this._library.tracks() as JXReadonlyArray<FileTrack>) {
+    for (const track of this._library.tracks() as unknown as JXReadonlyArray<FileTrack>) {
       const name = track.name();
       let loc;
       try {
