@@ -62,7 +62,7 @@
     "typedoc": "^0.28.19",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.1",
-    "vitest": "^4.1.5"
+    "vitest": "^5.0.0"
   },
   "files": ["LICENSE.txt", "README.md", "dist/**/*.js", "dist/**/*.d.ts"],
   "homepage": "https://tatsh.github.io/jxa-lib/",
