@@ -29,6 +29,10 @@ Audit every piece of prose inside each target file:
 Do not edit:
 
 - Identifiers, code, URLs, file paths, and dependency names.
+- Assistant instructions. `AGENTS.md`, `CLAUDE.md`, and everything under `.claude/` are out of
+  scope, including when the user requests every file (`everywhere`, `the whole repository`, a
+  glob that covers them). Report a hit in one of them only when the user has requested a change to
+  that file.
 - Fenced blocks and italic examples inside `.claude/rules/prose.md`. They exist to demonstrate
   violations.
 - Released `CHANGELOG.md` sections. Only the `Unreleased` section is in scope.
@@ -37,7 +41,11 @@ Do not edit:
 ## Detection
 
 Run the greps below over the target files, then review every hit by hand. Each grep over-matches by
-design; a noun spelled like a banned verb is valid, and the fix depends on the sentence.
+design; a noun matching a banned verb is valid, and the fix depends on the sentence. _claim_ is
+valid wherever a specification defines it as a term, such as an OIDC or JWT claim. The noun
+_project_ is valid and accounts for most hits on that word. Only the verb is banned, and the
+geometric sense of the verb is valid too. The noun _ask_ is banned as well. Review every hit on that
+word rather than excusing the noun.
 
 ```shell
 grep -nP '\x{2013}|\x{2014}' <files>
@@ -48,15 +56,35 @@ grep -nEi "[[:alpha:]]+n[’']t\b|[[:alpha:]]+[’'](re|ll|ve|m)\b|\b(it|that|th
 ```
 
 ```shell
-grep -nEiw "gate|gates|gated|gating|stamp|stamps|stamped|stamping|answer|answers|answered|answering|say|says|said|saying|contain|contains|contained|containing|carry|carries|carried|carrying|hold|holds|held|holding|keep|keeps|kept|keeping|reach|reaches|reached|reaching|name|names|named|naming|lay|lays|laid|laying|leave|leaves|left|leaving|confine|confines|confined|confining|manufacture|manufactures|manufactured|manufacturing|claim|claims|claimed|claiming|ask|asks|asked|asking|transport|transports|transported|transporting" <files>
+grep -nEiw "gate|gates|gated|gating|stamp|stamps|stamped|stamping|answer|answers|answered|answering|say|says|said|saying|spell|spells|spelled|spelling|state|states|stated|stating|contain|contains|contained|containing|carry|carries|carried|carrying|hold|holds|held|holding|keep|keeps|kept|keeping|reach|reaches|reached|reaching|name|names|named|naming|title|titles|titled|titling|lay|lays|laid|laying|leave|leaves|left|leaving|confine|confines|confined|confining|manufacture|manufactures|manufactured|manufacturing|mint|mints|minted|minting|claim|claims|claimed|claiming|ask|asks|asked|asking|transport|transports|transported|transporting|project|projects|projected|projecting|bake|bakes|baked|baking|null|nulls|null(ed|ing)|own|owns|owned|owning" <files>
 ```
 
 ```shell
-grep -nEi "\banyway\b|\banyone\b|\bnobody\b|\bno[ -]?one\b|\bobligatory\b|ground truth|elephant in the room|writing on the wall|beat around the bush|call it a day|cut to the chase|hit the nail on the head|jump on the bandwagon|think outside the box" <files>
+grep -nEi "\banyway\b|\banyone\b|\bnobody\b|\bno[ -]?one\b|\bobligatory\b|straight[ -]up|ground truth|house style|house convention|elephant in the room|writing on the wall|beat around the bush|best[ -]of[ -]breed|call it a day|cut to the chase|hit the nail on the head|jump on the bandwagon|think outside the box" <files>
+```
+
+Ornamental wording and filler need a pass of their own. Delete a hit that adds no fact a reader
+cannot already derive, and retain one that changes the meaning. _actor_ is valid wherever a
+specification defines it as a term. _leading_ is valid in the positional sense (_a leading zero_,
+_leading whitespace_), and banned as an adjective of rank or prominence.
+
+```shell
+grep -nEiw "leverage|leverages|leveraged|leveraging|sunset|sunsets|simply|just|basically|various|powerful|seamless|robust|actor|actors|leading" <files>
 ```
 
 ```shell
-grep -nEi ", (which|so|since|because)\b|says nothing|say nothing|for such|left alone|written by hand|that matters is|\bsomething\b|of (its|their|his|her) own|their own" <files>
+grep -nEi "it is worth noting|in order to" <files>
+```
+
+```shell
+grep -nEi ", (which|so|since|because)\b|says nothing|say nothing|for such|left alone|written by hand|that matters is|\b[[:alpha:]]+s no\b|\b(give|make|take|need|want|hold|know|find|show|draw|add|read|write|identify|record|list|store|specify|use|mark) no\b|\bstate[sd]\b|\bsomething\b|\bnothing\b|of (its|their|his|her) own|their own" <files>
+```
+
+Personification hits, an inanimate subject taking a verb of life or emotion (a noun of the same
+spelling is valid, such as a `die` roll or a `wish` list):
+
+```shell
+grep -nEiw "survive|survives|survived|surviving|die|dies|died|dying|perish|perishes|perished|perishing|breathe|breathes|breathed|breathing|suffer|suffers|suffered|suffering|wish|wishes|wished|wishing|enjoy|enjoys|enjoyed|enjoying|hope|hopes|hoped|hoping|fear|fears|feared|fearing" <files>
 ```
 
 Headings and titles need a separate pass:

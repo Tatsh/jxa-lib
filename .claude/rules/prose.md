@@ -5,6 +5,16 @@ review notes, plain comments, user-facing string literals, and formal documentat
 format (Numpydoc, JSDoc, Doxygen, Javadoc, XML doc comments, and equivalents). A formal comment
 format is no exemption. Code, identifiers, URLs, and file paths are exempt.
 
+Assistant instructions are exempt as well. `AGENTS.md`, `CLAUDE.md`, and everything under
+`.claude/` are never rewritten to satisfy these rules, whether by a lint pass or in passing during
+other work. Edit them only when the user requests a change to them.
+
+Text shown to a non-developer end user is exempt and is never rewritten to satisfy these rules.
+This covers website copy and application UI text (labels, buttons, headings, in-app messages).
+Command-line text is not exempt: help strings, usage output, command results, and error messages
+presented at a terminal follow every rule here. Edit end-user product copy only when the user
+requests a change to it.
+
 Apply these rules adversarially. A construction that is defensible under a loose reading and a
 violation under a strict one is a violation, and doubt resolves toward the rewrite.
 
@@ -27,7 +37,7 @@ Examples of banned writing appear in italics or inside a fenced block. Linting m
 
 ## Acronyms and abbreviations
 
-- Write an acronym in full uppercase, whether a reader pronounces it as a word or spells it out
+- Write an acronym in full uppercase, whether a reader pronounces it as a word or reads it out
   letter by letter. _ASCII_, _NASA_, _NATO_, _UNESCO_, _HTML_, _URL_, and _JSON_ all take the same
   treatment.
 - An entity whose common usage differs takes its own form. _Ofcom_ is the UK regulator, and _OFCOM_
@@ -40,14 +50,24 @@ Examples of banned writing appear in italics or inside a fenced block. Linting m
 
 Every inflection of each verb below is banned (_says_, _said_, _saying_, _keeps_, _kept_, and so
 on). A noun or adjective of the same spelling is allowed. _The name of the file_ and _a rubber
-stamp_ are both fine.
+stamp_ are both fine. _spell-check_ is allowed in every form and position. _claim_ is allowed
+wherever a specification defines it as a term, such as an OIDC or JWT claim. _state_ is allowed as a
+noun (_a state machine_, _the saved state_) and inside _restate_, and no replacement in this table
+is itself a banned verb. _name_ is allowed in the passive form that describes where a name comes
+from, such as _the file is named after the archive_ and _the directory named after it_. _null_ is
+banned as a verb, and _nullify_ is allowed, as are the noun and adjective (_a null value_, _the
+column is null_). _project_ is banned wherever _display_ fits. The geometric sense of mapping a
+point or a shape onto a surface or an axis is allowed (_project the vertex onto the near plane_),
+and so is the noun _projection_. _ask_ is banned as a noun as well (_the ask_, _a big ask_, _the
+asks for this quarter_). Write _request_.
 
 | Banned        | Write instead                       |
 | ------------- | ----------------------------------- |
 | _answer_      | _respond, reply, resolve_           |
 | _ask_         | _request, query, prompt_            |
+| _bake_        | _embed, build in, compile in_       |
 | _carry_       | _include, have, move_               |
-| _claim_       | _state, assert, report_             |
+| _claim_       | _assert, report, record_            |
 | _confine_     | _limit, restrict_                   |
 | _contain_     | _include, list, comprise_           |
 | _gate_        | _block, restrict, require approval_ |
@@ -56,10 +76,17 @@ stamp_ are both fine.
 | _lay_         | _place, put, set down_              |
 | _leave_       | _depart, exit, abandon, omit_       |
 | _manufacture_ | _produce, fabricate, build_         |
-| _name_        | _identify, specify, list, title_    |
+| _mint_        | _create, issue, generate_           |
+| _name_        | _identify, specify, list_           |
+| _null_        | _nullify, clear, unset, reset_      |
+| _own_         | _provide, include, manage_          |
+| _project_     | _display, show, forecast_           |
 | _reach_       | _arrive at, contact_                |
-| _say_         | _state, write, document, report_    |
+| _say_         | _write, document, report, record_   |
+| _spell_       | _write, writes, reads_              |
 | _stamp_       | _mark, write, record_               |
+| _state_       | _record, specify, report, require_  |
+| _title_       | _identify, label, call_             |
 | _transport_   | _move, ship, deliver_               |
 
 ## Banned words and phrases
@@ -67,36 +94,72 @@ stamp_ are both fine.
 - _anyone_
 - _anyway_
 - _beat around the bush_
+- _best-of-breed_
 - _call it a day_
 - _cut to the chase_
 - _elephant in the room_
 - _ground truth_
 - _hit the nail on the head_
+- _house convention_
+- _house style_
 - _jump on the bandwagon_
 - _no one_, _no-one_, and _noone_
 - _nobody_
 - _obligatory_
+- _straight-up_ and _straight up_
 - _the writing on the wall_
 - _think outside the box_
 
+_leading_ is banned as an adjective of rank or prominence (_the leading provider_, _an
+industry-leading tool_, _a leading cause_). Give the concrete fact instead, or delete the word. The
+positional sense of first in a sequence is allowed (_a leading zero_, _leading whitespace_, _a
+leading underscore_).
+
+## Personification
+
+An inanimate subject does not take a verb reserved for a living thing. A file, a byte, a record, a
+chart, a value, a path, or a character does not _survive_, _die_, _perish_, _live_, _breathe_,
+_wake_, _sleep_, _suffer_, _feel_, _care_, _enjoy_, _wish_, _hope_, or _fear_. This list is not
+comprehensive. Any verb of life, death, sensation, or emotion is banned for an inanimate subject,
+whether or not it appears here. Rewrite with the mechanism. _the fallback fires when no character
+survives_ becomes _the fallback fires when no character remains_, and _a byte that dies_ becomes _a
+byte that is discarded_.
+
+An active component described as an agent is exempt for verbs of action and cognition, not of life
+or emotion. _the parser expects a header_ and _the reader knows the offset_ are allowed. _the parser
+is happy_ and _the reader grows tired_ are not.
+
 ## Banned phraseology
 
-| Banned pattern                                                                     | Fix                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| _they say nothing about X_, _it says nothing about X_, _that says nothing about X_ | State what is absent, or delete the sentence.              |
-| _..., which (second statement)_                                                    | Split into two sentences.                                  |
-| _..., so (second statement)_ and _..., so that ..._                                | Split into two sentences.                                  |
-| _..., since (second statement)_                                                    | Split into two sentences.                                  |
-| _for such_                                                                         | Rewrite with the concrete noun.                            |
-| _left alone_                                                                       | State the concrete action, for example _no edit was made_. |
-| _written by hand_                                                                  | _hand-written_                                             |
-| _(number) things worth (verb):_                                                    | Delete the preamble and give the items.                    |
-| _... that matters is ..._                                                          | State the item directly.                                   |
-| _, because (vague justification)_ at the end                                       | Delete the clause.                                         |
-| _either_ at the end of a sentence                                                  | Delete the word, or restructure the sentence.              |
+| Banned pattern                                                                     | Fix                                                                                                                                                                                                |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _they say nothing about X_, _it says nothing about X_, _that says nothing about X_ | Record what is absent, or delete the sentence.                                                                                                                                                     |
+| _X verbs no Y_, such as _the pass touches no files_                                | Rewrite as _X does not verb Y_, such as _the pass does not touch files_.                                                                                                                           |
+| _nothing verbs Y_, such as _nothing touches the page_                              | Identify the subject and negate the verb, such as _the page is never written to_. Where the subject is genuinely every candidate, _no X verbs Y_ is the rewrite.                                   |
+| _X states that Y_ and _X states Y_, such as _the rule states that tests pass_      | Rewrite as _X requires Y_ where X imposes the requirement, and as _X records Y_ or _X specifies Y_ where X merely reports it.                                                                      |
+| _..., which (second statement)_                                                    | Delete the clause by default. A reader derives an obvious consequence, restatement, or justification without it. Split into two sentences only when the clause adds a fact a reader cannot derive. |
+| _..., so (second statement)_ and _..., so that ..._                                | Delete the clause by default. A reader derives an obvious consequence, restatement, or justification without it. Split into two sentences only when the clause adds a fact a reader cannot derive. |
+| _..., since (second statement)_                                                    | Delete the clause by default. A reader derives an obvious consequence, restatement, or justification without it. Split into two sentences only when the clause adds a fact a reader cannot derive. |
+| _for such_                                                                         | Rewrite with the concrete noun.                                                                                                                                                                    |
+| _left alone_                                                                       | Specify the concrete action, for example _no edit was made_.                                                                                                                                       |
+| _written by hand_                                                                  | _hand-written_                                                                                                                                                                                     |
+| _(number) things worth (verb):_                                                    | Delete the preamble and give the items.                                                                                                                                                            |
+| _... that matters is ..._                                                          | State the item directly.                                                                                                                                                                           |
+| _, because (vague justification)_ at the end                                       | Delete the clause.                                                                                                                                                                                 |
+| _either_ at the end of a sentence                                                  | Delete the word, or restructure the sentence.                                                                                                                                                      |
 
 ## Specificity
 
+- Write plainly. Prefer the plain word to the ornamental one (_use_ over _leverage_, _end_ over
+  _sunset_, _let_ over _enable_ where the meaning is _let_). State the mechanism directly rather
+  than through an abstract stand-in. A phrase such as _the audited layer that lets_ names nothing
+  concrete. Write what the code actually does.
+- Prefer _user_ to _actor_ for the person who performed an action, unless a specification defines
+  _actor_ as a term.
+- De-fluff. Delete a word, clause, or sentence that adds no fact a reader cannot already derive.
+  Adjectives and adverbs that do not change the meaning (_simply_, _just_, _basically_, _various_,
+  _powerful_, _seamless_, _robust_), throat-clearing openers (_it is worth noting that_, _in order
+  to_), and a sentence restating the previous one all go. Shorter is correct when nothing is lost.
 - Do not write _something_ where a specific noun exists.
 - Do not use _that_, _this_, _these_, or _those_ as a stand-in for a noun already available. Repeat
   the noun. _that timestamp_ becomes _the global timestamp_, and _a folder in that state_ becomes

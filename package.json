@@ -1,8 +1,8 @@
 {
   "_wiswa": {
-    "commandLine": "wiswa -d",
-    "lastRun": "2026-09-10T17:26:10Z",
-    "version": "26daa23"
+    "commandLine": "wiswa -q --skip-remote --cache-time 86400",
+    "lastRun": "2026-10-03T00:51:12Z",
+    "version": "eb45807"
   },
   "contributors": ["Andrew Udvare <audvare@gmail.com>"],
   "cspell": {
@@ -27,6 +27,7 @@
       ".git/**",
       ".yarn/**/*.cjs",
       ".vscode/extensions.json",
+      ".wiswa-ci/**",
       "dist/**",
       "man/**"
     ],
@@ -46,24 +47,25 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@prettier/plugin-xml": "^3.4.2",
-    "@types/node": "^26.4.1",
+    "@types/node": "^26.6.3",
     "@types/ramda": "^0.32.0",
-    "@vitest/coverage-v8": "^5.0.0",
-    "cspell": "^10.2.1",
-    "eslint": "^10.9.1",
+    "@vitest/coverage-v8": "^5.0.2",
+    "cspell": "^10.3.4",
+    "eslint": "^10.11.0",
     "globals": "^17.12.0",
+    "jiti": "^2.7.0",
     "jxa-types": "^0.0.12",
-    "markdownlint-cli2": "^0.23.2",
-    "prettier": "^3.9.6",
+    "markdownlint-cli2": "^0.23.3",
+    "prettier": "^3.9.9",
     "prettier-plugin-ini": "^1.3.0",
     "prettier-plugin-sort-json": "^4.2.0",
-    "prettier-plugin-toml": "^2.0.6",
+    "prettier-plugin-toml": "^3.0.2",
     "ts-node": "^10.9.2",
     "typedoc": "^0.28.20",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "typescript-eslint": "^8.69.0",
-    "vite": "^8.2.2",
-    "vitest": "^5.0.0"
+    "typescript-eslint": "^8.70.1",
+    "vite": "^8.3.1",
+    "vitest": "^5.0.2"
   },
   "files": ["LICENSE.txt", "README.md", "dist/**/*.js", "dist/**/*.d.ts"],
   "homepage": "https://tatsh.github.io/jxa-lib/",
@@ -91,7 +93,7 @@
     "showFound": true
   },
   "name": "jxa-lib",
-  "packageManager": "yarn@4.18.0",
+  "packageManager": "yarn@4.18.1",
   "prettier": {
     "endOfLine": "lf",
     "iniSpaceAroundEquals": true,
@@ -101,6 +103,12 @@
         "files": ["*.json.dist", "package.json"],
         "options": {
           "parser": "json"
+        }
+      },
+      {
+        "files": ["*.toml"],
+        "options": {
+          "singleQuote": false
         }
       }
     ],

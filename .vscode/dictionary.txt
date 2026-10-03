@@ -70,7 +70,6 @@ vitest
 winget
 wiswa
 wiswa's
-worktree
 yarnrc
 zizmor
 Ångström

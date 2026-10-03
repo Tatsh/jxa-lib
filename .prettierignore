@@ -9,6 +9,7 @@
 *.lock
 *.log
 *.min.js
+*.tsbuildinfo
 *~
 .*.swp
 .*_cache/

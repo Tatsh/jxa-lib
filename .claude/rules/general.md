@@ -21,7 +21,7 @@ concrete repository change, do not edit project files.
 - Do not explain project structure or conventions in comments or docstrings.
 - Use 2 spaces for indentation.
 - Files must end with a single newline character.
-- Keep lines shorter than 100 characters.
+- Lines must not exceed 100 characters, inclusive.
 - Line endings must be Unix-style (LF).
 - Use UTF-8 encoding for all files.
 - Use spaces instead of tabs for indentation.

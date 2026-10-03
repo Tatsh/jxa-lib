@@ -3,6 +3,7 @@ ci:
     - 'check-jsonschema'
     - 'cspell'
     - 'detect-aws-credentials'
+    - 'fix-eslint'
     - 'fix-formatting-markdown'
     - 'fix-formatting-prettier'
     - 'yarn-check-lock'
