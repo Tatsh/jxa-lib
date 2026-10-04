@@ -42,6 +42,7 @@ pyproject
 ramda
 regen
 ripgreprc
+sbclaude
 schemafile
 sema
 shellcheck
