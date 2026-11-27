@@ -74,7 +74,7 @@ repos:
         stages:
           - 'post-checkout'
           - 'post-merge'
-      - entry: 'yarn exec prettier --write'
+      - entry: 'yarn exec prettier --write --ignore-unknown'
         exclude: "((requirements|robots).txt|Dockerfile.*|..*ignore|.(coveragerc|gitattributes)|.*.(csv|lock|resource|robot)|pylock.*\\.toml|CODEOWNERS|py.typed)$"
         exclude_types:
           - 'binary'
